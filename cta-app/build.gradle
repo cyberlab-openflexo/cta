@@ -1,0 +1,13 @@
+dependencies {
+
+  compile project(':cta-module')
+  compile project(':cta-rc')
+ 
+  //testCompile testUtils()
+  //testCompile ginaTest()
+  //testCompile ginaSwingEditorTest()
+  testCompile flexoFoundationTest()
+  testCompile flexoUiTest()
+  //testRuntime flexoTestResources()
+
+}
