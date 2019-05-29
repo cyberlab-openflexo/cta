@@ -1,0 +1,18 @@
+use org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstanceModelSlot;
+
+/**
+ * 
+ * @author sylvain
+ * @version 0.1
+ */
+@VirtualModel(uri="http://ensta-bretagne.fr/cyber/cta/CTA.fml")
+public class CTA {
+
+  public PimCA pimca;
+
+  @CreationScheme  
+  CTA:init() {  
+    pimca = PimCA.create();  
+  }  
+
+}

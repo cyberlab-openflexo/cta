@@ -32,6 +32,6 @@
 	<FIBVariable id="139"
 		type="org.openflexo.ctamodule.model.CTAProjectNature" name="data" />
 	<FIBVariable id="140"
-		type="org.openflexo.foundation.fml.VirtualModelInstanceType&lt;http://openflexo.org/ctamodule/CTA.fml&gt;"
+		type="org.openflexo.foundation.fml.VirtualModelInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml&gt;"
 		value="data.CTAInstance.accessedVirtualModelInstance" name="ctaView" />
 </Panel>

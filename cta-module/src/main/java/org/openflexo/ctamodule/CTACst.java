@@ -46,7 +46,7 @@ package org.openflexo.ctamodule;
  */
 public class CTACst {
 
-	public static final String CTA_VIEWPOINT_URI = "http://openflexo.org/ctamodule/CTA.fml";
+	public static final String CTA_VIEWPOINT_URI = "http://ensta-bretagne.fr/cyber/cta/CTA.fml";
 
 	public static final String CTA_VIEW_NAME = "CTAView";
 

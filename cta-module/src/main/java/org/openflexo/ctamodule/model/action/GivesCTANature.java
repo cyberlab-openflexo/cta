@@ -189,7 +189,7 @@ public class GivesCTANature extends GivesNatureAction<GivesCTANature, CTAProject
 		action.setNewVirtualModelInstanceTitle(CTACst.CTA_VIEW_NAME);
 		action.setVirtualModel(ctaVirtualModel);
 
-		CreationScheme ctaViewCreationScheme = (CreationScheme) ctaVirtualModel.getFlexoBehaviour("create");
+		CreationScheme ctaViewCreationScheme = (CreationScheme) ctaVirtualModel.getFlexoBehaviour("init");
 
 		action.setCreationScheme(ctaViewCreationScheme);
 		action.doAction();

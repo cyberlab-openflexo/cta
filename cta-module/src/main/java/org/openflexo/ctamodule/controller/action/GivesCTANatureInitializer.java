@@ -45,6 +45,7 @@ import javax.swing.Icon;
 import org.openflexo.components.wizard.Wizard;
 import org.openflexo.components.wizard.WizardDialog;
 import org.openflexo.ctamodule.CTAIconLibrary;
+import org.openflexo.ctamodule.controller.CTAPerspective;
 import org.openflexo.ctamodule.model.action.GivesCTANature;
 import org.openflexo.ctamodule.view.ConvertToCTAProjectView;
 import org.openflexo.foundation.FlexoObject;
@@ -72,34 +73,40 @@ public class GivesCTANatureInitializer extends ActionInitializer<GivesCTANature,
 
 	@Override
 	protected FlexoActionRunnable<GivesCTANature, FlexoProject<?>, FlexoObject> getDefaultInitializer() {
- 		return (e, action) -> {
-				Progress.forceHideTaskBar();
-				Wizard wizard = new GivesCTANatureWizard(action, getController());
-				WizardDialog dialog = new WizardDialog(wizard, getController());
-				dialog.showDialog();
-				Progress.stopForceHideTaskBar();
-				if (dialog.getStatus() != Status.VALIDATED) {
-					// Operation cancelled
-					return false;
-				}
-				return true;
+		return (e, action) -> {
+			Progress.forceHideTaskBar();
+			Wizard wizard = new GivesCTANatureWizard(action, getController());
+			WizardDialog dialog = new WizardDialog(wizard, getController());
+			dialog.showDialog();
+			Progress.stopForceHideTaskBar();
+			if (dialog.getStatus() != Status.VALIDATED) {
+				// Operation cancelled
+				return false;
+			}
+			return true;
 		};
 	}
 
 	@Override
-        protected FlexoActionRunnable<GivesCTANature, FlexoProject<?>, FlexoObject> getDefaultFinalizer() {
- 		return (e, action) -> {
-				// We store the eventual ModuleView to remove, but we must remove it AFTER selection of new object
-				// Otherwise, focus on FlexoProject will be lost
-				ConvertToCTAProjectView viewToRemove = null;
-				if (getController().getCurrentModuleView() instanceof ConvertToCTAProjectView) {
-					viewToRemove = (ConvertToCTAProjectView) getController().getCurrentModuleView();
-				}
-				getController().selectAndFocusObject(action.getNewNature());
-				if (viewToRemove != null) {
-					viewToRemove.deleteModuleView();
-				}
-				return true;
+	protected FlexoActionRunnable<GivesCTANature, FlexoProject<?>, FlexoObject> getDefaultFinalizer() {
+		return (e, action) -> {
+
+			// Fixed FOR-44: prevent left browser disappearing
+			if (getController().getCurrentPerspective() instanceof CTAPerspective) {
+				((CTAPerspective) getController().getCurrentPerspective()).updateBrowser(getProject(), true);
+			}
+
+			// We store the eventual ModuleView to remove, but we must remove it AFTER selection of new object
+			// Otherwise, focus on FlexoProject will be lost
+			ConvertToCTAProjectView viewToRemove = null;
+			if (getController().getCurrentModuleView() instanceof ConvertToCTAProjectView) {
+				viewToRemove = (ConvertToCTAProjectView) getController().getCurrentModuleView();
+			}
+			getController().selectAndFocusObject(action.getNewNature());
+			if (viewToRemove != null) {
+				viewToRemove.deleteModuleView();
+			}
+			return true;
 		};
 	}
 

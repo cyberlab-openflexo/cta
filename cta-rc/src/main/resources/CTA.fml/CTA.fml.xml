@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VirtualModel id="SYL-5" virtualModelClass="org.openflexo.foundation.fml.VirtualModel" modelVersion="2.0" uri="http://ensta-bretagne.fr/cyber/cta/CTA.fml" version="0.1" bigIconResource="../../../../../cta-module/src/main/resources/Icons/CTA/module-cta-64.png" smallIconResource="../../../../../cta-module/src/main/resources/Icons/CTA/module-cta-16.png" name="CTA" mediumIconResource="../../../../../cta-module/src/main/resources/Icons/CTA/module-cta-32.png" author="sylvain" userID="SYL" flexoID="5">
+  <UseModelSlotDeclaration id="0" modelSlotClass="org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstanceModelSlot" userID="SYL" flexoID="-1" />
+  <Inspector id="SYL-1" inspectorTitle="Cta" userID="SYL" flexoID="1" />
+  <FMLRTVirtualModelInstanceModelSlot id="SYL-9" virtualModelURI="http://ensta-bretagne.fr/cyber/pimca/PimCA.fml" isRequired="true" cloningStrategy="Reference" cardinality="ZeroOne" name="pimca" userID="SYL" flexoID="9" />
+  <CreationScheme id="SYL-10" name="init" width="800" label="init" height="600" userID="SYL" flexoID="10">
+    <BehaviourControlGraph_AssignationAction id="SYL-14" assign="pimca" userID="SYL" flexoID="14">
+      <AssignableAction_AddVirtualModelInstance id="SYL-13" virtualModelInstanceTitle="&quot;PimCA&quot;" virtualModelInstanceName="&quot;PimCA&quot;" creationSchemeURI="http://ensta-bretagne.fr/cyber/pimca/PimCA.fml.create()" receiver="this" userID="SYL" flexoID="13" />
+    </BehaviourControlGraph_AssignationAction>
+  </CreationScheme>
+</VirtualModel>

@@ -46,8 +46,8 @@ import javax.swing.JPanel;
 import org.openflexo.ctamodule.CTAIconLibrary;
 import org.openflexo.ctamodule.model.CTAProjectNature;
 import org.openflexo.ctamodule.view.CTAProjectNatureModuleView;
-import org.openflexo.ctamodule.widget.GenericProjectBrowser;
 import org.openflexo.ctamodule.widget.CTAProjectBrowser;
+import org.openflexo.ctamodule.widget.GenericProjectBrowser;
 import org.openflexo.foundation.FlexoObject;
 import org.openflexo.foundation.FlexoProject;
 import org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstance;
@@ -139,7 +139,10 @@ public class CTAPerspective extends NaturePerspective<CTAProjectNature> {
 
 	@Override
 	public String getWindowTitleforObject(final FlexoObject object, final FlexoController controller) {
-		if (object instanceof FlexoProject) {
+		if (object instanceof WelcomePanel) {
+			return "Welcome";
+		}
+		else if (object instanceof FlexoProject) {
 			return ((FlexoProject<?>) object).getName();
 		}
 		else if (object instanceof CTAProjectNature) {

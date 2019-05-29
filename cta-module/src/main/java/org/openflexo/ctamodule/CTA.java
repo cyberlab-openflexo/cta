@@ -65,7 +65,7 @@ public class CTA extends Module<CTAModule> {
 
 	@Override
 	public String getHTMLDescription() {
-		return "<html>Application prototype for modelling a system and analyzing attacker viewpoints</html>";
+		return "<html>Cyber Threat Analysis application is a prototype developed at ENSTA Bretagne. The goal is to use a dedicated domain specific language, called PimCA, to represent a system, or an attacker’s point of view of the system under study. An executable language allows adding dynamicity to the system, while the attacker is discovering the system, and carrying out some attacks using registered vulnerabilities on a constantly evolving system.</html>";
 	}
 
 }
