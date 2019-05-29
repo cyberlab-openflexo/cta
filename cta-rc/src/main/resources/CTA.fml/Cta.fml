@@ -9,10 +9,15 @@ use org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstanceModelSlot;
 public class CTA {
 
   public PimCA pimca;
+  public PimCAModel pimcaModel;
+  public List diagrams;
 
   @CreationScheme  
   CTA:init() {  
-    pimca = PimCA.create();  
+    pimca = PimCA.create();    
+    pimcaModel = PimCAModel.create();    
+    VirtualModelInstanceType<PimCADiagram> defaultDiagram = PimCADiagram.init("DefaultDiagram",pimcaModel);    
+    diagrams.add(defaultDiagram)  
   }  
 
 }
