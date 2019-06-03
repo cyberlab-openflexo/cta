@@ -53,6 +53,10 @@ import org.openflexo.foundation.FlexoProject;
 import org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstance;
 import org.openflexo.foundation.fml.rt.FlexoConceptInstance;
 import org.openflexo.module.FlexoModule.WelcomePanel;
+import org.openflexo.technologyadapter.diagram.controller.DiagramTechnologyAdapterController;
+import org.openflexo.technologyadapter.diagram.controller.diagrameditor.FMLControlledDiagramEditor;
+import org.openflexo.technologyadapter.diagram.controller.diagrameditor.FMLControlledDiagramModuleView;
+import org.openflexo.technologyadapter.diagram.fml.FMLControlledDiagramVirtualModelInstanceNature;
 import org.openflexo.technologyadapter.gina.fml.FMLControlledFIBFlexoConceptInstanceNature;
 import org.openflexo.technologyadapter.gina.fml.FMLControlledFIBVirtualModelInstanceNature;
 import org.openflexo.technologyadapter.gina.view.FMLControlledFIBFlexoConceptInstanceModuleView;
@@ -61,9 +65,9 @@ import org.openflexo.view.ModuleView;
 import org.openflexo.view.controller.FlexoController;
 import org.openflexo.view.controller.model.NaturePerspective;
 
-public class CTAPerspective extends NaturePerspective<CTAProjectNature> {
+public abstract class AbstractCTAPerspective extends NaturePerspective<CTAProjectNature> {
 
-	static final Logger logger = Logger.getLogger(CTAPerspective.class.getPackage().getName());
+	static final Logger logger = Logger.getLogger(AbstractCTAPerspective.class.getPackage().getName());
 
 	private CTAProjectBrowser browser;
 	private GenericProjectBrowser genericBrowser;
@@ -72,8 +76,8 @@ public class CTAPerspective extends NaturePerspective<CTAProjectNature> {
 	 * @param controller
 	 * @param name
 	 */
-	public CTAPerspective(FlexoController controller) {
-		super("cta_perspective", controller);
+	public AbstractCTAPerspective(String name, FlexoController controller) {
+		super(name, controller);
 
 		// browser = new CTAProjectBrowser(controller);
 
@@ -179,6 +183,13 @@ public class CTAPerspective extends NaturePerspective<CTAProjectNature> {
 				return new FMLControlledFIBVirtualModelInstanceModuleView((FMLRTVirtualModelInstance) object, getController(), this,
 						getController().getModuleLocales());
 			}
+			if (((FMLRTVirtualModelInstance) object).hasNature(FMLControlledDiagramVirtualModelInstanceNature.INSTANCE)) {
+				FMLRTVirtualModelInstance diagramVMI = (FMLRTVirtualModelInstance) object;
+				DiagramTechnologyAdapterController diagramTAC = ((CTAController) getController()).getDiagramTAC();
+				FMLControlledDiagramEditor editor = new FMLControlledDiagramEditor(diagramVMI, false, getController(),
+						diagramTAC.getToolFactory());
+				return new FMLControlledDiagramModuleView(editor, this);
+			}
 		}
 
 		if (object instanceof FlexoConceptInstance) {
@@ -205,7 +216,12 @@ public class CTAPerspective extends NaturePerspective<CTAProjectNature> {
 			return true;
 		}
 		if (object instanceof FMLRTVirtualModelInstance) {
+			// FML-controlled FIB
 			if (((FMLRTVirtualModelInstance) object).hasNature(FMLControlledFIBVirtualModelInstanceNature.INSTANCE)) {
+				return true;
+			}
+			// FML-controlled diagram
+			if (((FMLRTVirtualModelInstance) object).hasNature(FMLControlledDiagramVirtualModelInstanceNature.INSTANCE)) {
 				return true;
 			}
 			return false;

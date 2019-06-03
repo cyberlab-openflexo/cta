@@ -6,8 +6,8 @@ dependencies {
   compile flexoUi()
   compile flexoUtils()
   compile flexoGraphicUtils()
-  //compile diagramConnector()
-  //compile diagramConnectorUi()
+  compile diagramConnector()
+  compile diagramConnectorUi()
   compile ginaConnector()
   compile ginaConnectorUi()
     

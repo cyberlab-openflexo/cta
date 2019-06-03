@@ -45,6 +45,7 @@ import javax.swing.ImageIcon;
 import org.openflexo.ctamodule.model.CTAProjectNature;
 import org.openflexo.gina.model.FIBComponent;
 import org.openflexo.gina.swing.view.SwingViewFactory;
+import org.openflexo.gina.view.GinaViewFactory;
 import org.openflexo.localization.FlexoLocalization;
 import org.openflexo.view.controller.FlexoFIBController;
 
@@ -52,12 +53,18 @@ import org.openflexo.view.controller.FlexoFIBController;
  * Represents the controller of a FIBComponent in CTA prototype
  * 
  * 
- * @author yourname
+ * @author sylvain
  */
 public class CTAFIBController extends FlexoFIBController {
 
 	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(CTAFIBController.class.getPackage().getName());
+
+	public CTAFIBController(FIBComponent component, GinaViewFactory<?> viewFactory) {
+		super(component, viewFactory);
+		// Default parent localizer is the main localizer
+		// setParentLocalizer(FlexoLocalization.getMainLocalizer());
+	}
 
 	public CTAFIBController(FIBComponent component) {
 		super(component, SwingViewFactory.INSTANCE);

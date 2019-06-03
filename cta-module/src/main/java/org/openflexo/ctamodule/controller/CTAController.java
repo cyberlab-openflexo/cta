@@ -47,15 +47,21 @@ import org.openflexo.ctamodule.CTAIconLibrary;
 import org.openflexo.ctamodule.CTAModule;
 import org.openflexo.ctamodule.controller.action.CTAControllerActionInitializer;
 import org.openflexo.ctamodule.model.CTAProjectNature;
-import org.openflexo.ctamodule.view.ConvertToCTAProjectView;
 import org.openflexo.ctamodule.view.CTAMainPane;
 import org.openflexo.ctamodule.view.CTAWelcomePanelModuleView;
+import org.openflexo.ctamodule.view.ConvertToCTAProjectView;
 import org.openflexo.ctamodule.view.menu.CTAMenuBar;
 import org.openflexo.foundation.FlexoEditor;
 import org.openflexo.foundation.FlexoObject;
 import org.openflexo.foundation.FlexoProject;
+import org.openflexo.foundation.fml.FlexoConcept;
+import org.openflexo.foundation.fml.VirtualModel;
+import org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstance;
+import org.openflexo.foundation.fml.rt.FlexoConceptInstance;
 import org.openflexo.module.FlexoModule.WelcomePanel;
 import org.openflexo.selection.MouseSelectionManager;
+import org.openflexo.technologyadapter.diagram.DiagramTechnologyAdapter;
+import org.openflexo.technologyadapter.diagram.controller.DiagramTechnologyAdapterController;
 import org.openflexo.view.FlexoMainPane;
 import org.openflexo.view.ModuleView;
 import org.openflexo.view.controller.ControllerActionInitializer;
@@ -73,7 +79,9 @@ public class CTAController extends FlexoController {
 	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(CTAController.class.getPackage().getName());
 
-	private CTAPerspective ctaPerspective;
+	private PimCAPerspective ctaPerspective;
+
+	private DiagramTechnologyAdapterController diagramTAC = null;
 
 	/**
 	 * Default constructor
@@ -84,10 +92,10 @@ public class CTAController extends FlexoController {
 
 	@Override
 	protected void initializePerspectives() {
-		this.addToPerspectives(ctaPerspective = new CTAPerspective(this));
+		this.addToPerspectives(ctaPerspective = new PimCAPerspective(this));
 	}
 
-	public CTAPerspective getCTAPerspective() {
+	public PimCAPerspective getCTAPerspective() {
 		return ctaPerspective;
 	}
 
@@ -154,7 +162,40 @@ public class CTAController extends FlexoController {
 		if (object instanceof CTAProjectNature) {
 			return CTAIconLibrary.CTA_SMALL_ICON;
 		}
+		if (object instanceof FMLRTVirtualModelInstance) {
+			VirtualModel type = ((FMLRTVirtualModelInstance) object).getVirtualModel();
+			/*if (type != null) {
+				if (type.getName().equals(CTACst.PIMCA_DIAGRAM_VM_NAME)) {
+					return DiagramIconLibrary.DIAGRAM_ICON;
+				}
+			}*/
+
+			return super.iconForObject(object);
+		}
+
+		if (object instanceof FlexoConceptInstance) {
+			FlexoConcept type = ((FlexoConceptInstance) object).getFlexoConcept();
+			/*if (type != null) {
+				if (type.getName().equals(FMSConstants.ELEMENT_CONCEPT_NAME)) {
+					return FMSIconLibrary.ELEMENT_ICON;
+				}
+			}*/
+		}
+
 		return super.iconForObject(object);
+	}
+
+	/**
+	 * Helper function to ease access to DiagramTAController
+	 * 
+	 * @return
+	 */
+	public DiagramTechnologyAdapterController getDiagramTAC() {
+		if (diagramTAC == null) {
+			DiagramTechnologyAdapter diagramTA = this.getTechnologyAdapter(DiagramTechnologyAdapter.class);
+			diagramTAC = (DiagramTechnologyAdapterController) getTechnologyAdapterController(diagramTA);
+		}
+		return this.diagramTAC;
 	}
 
 }

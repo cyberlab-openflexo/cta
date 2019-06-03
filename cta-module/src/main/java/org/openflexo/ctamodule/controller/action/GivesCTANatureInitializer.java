@@ -45,7 +45,7 @@ import javax.swing.Icon;
 import org.openflexo.components.wizard.Wizard;
 import org.openflexo.components.wizard.WizardDialog;
 import org.openflexo.ctamodule.CTAIconLibrary;
-import org.openflexo.ctamodule.controller.CTAPerspective;
+import org.openflexo.ctamodule.controller.PimCAPerspective;
 import org.openflexo.ctamodule.model.action.GivesCTANature;
 import org.openflexo.ctamodule.view.ConvertToCTAProjectView;
 import org.openflexo.foundation.FlexoObject;
@@ -92,8 +92,8 @@ public class GivesCTANatureInitializer extends ActionInitializer<GivesCTANature,
 		return (e, action) -> {
 
 			// Fixed FOR-44: prevent left browser disappearing
-			if (getController().getCurrentPerspective() instanceof CTAPerspective) {
-				((CTAPerspective) getController().getCurrentPerspective()).updateBrowser(getProject(), true);
+			if (getController().getCurrentPerspective() instanceof PimCAPerspective) {
+				((PimCAPerspective) getController().getCurrentPerspective()).updateBrowser(getProject(), true);
 			}
 
 			// We store the eventual ModuleView to remove, but we must remove it AFTER selection of new object
