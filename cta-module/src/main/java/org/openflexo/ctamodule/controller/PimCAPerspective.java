@@ -118,16 +118,13 @@ public class PimCAPerspective extends AbstractCTAPerspective {
 
 	@Override
 	public boolean hasModuleViewForObject(FlexoObject object) {
-		System.out.println("Alors ? " + object);
 		if (object instanceof FMLRTVirtualModelInstance) {
 			// FML-controlled diagram
 			if (((FMLRTVirtualModelInstance) object).hasNature(FMLControlledDiagramVirtualModelInstanceNature.INSTANCE)) {
 				FMLRTVirtualModelInstance diagramVMI = (FMLRTVirtualModelInstance) object;
 				VirtualModel type = diagramVMI.getVirtualModel();
-				System.out.println("type: " + type);
 				if (type != null) {
 					if (type.getName().equals(CTACst.PIMCA_DIAGRAM_VM_NAME)) {
-						System.out.println("oui");
 						return true;
 					}
 				}

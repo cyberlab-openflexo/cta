@@ -25,12 +25,18 @@
 			<!-- <Children data="nature.cTAInstance" name="ctaInstance" /> <Children 
 				data="data.cTAInstance.accessedVirtualModelInstance" name="ctaInstance2" 
 				/> -->
-			<Children data="ctaView.diagrams" name="diagrams" />
+			<Children data="ctaView.rootNode" name="rootNode" />
 		</BrowserElement>
-		<BrowserElement id="4"
+		<BrowserElement
+			dataClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml#SystemNode&gt;"
+			icon="controller.iconForObject(node)"
+			label="node.nodeName" isEditable="false" name="node">
+			<Children data="node.diagrams" name="diagrams" />
+		</BrowserElement>
+		<BrowserElement
 			dataClassName="org.openflexo.foundation.fml.VirtualModelInstanceType&lt;http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCADiagram.fml&gt;"
 			icon="controller.iconForObject(pimcaDiagram)"
-			label="pimcaDiagram.name" isEditable="false" name="pimcaDiagram" />
+			label="pimcaDiagram.diagramTitle" isEditable="false" name="pimcaDiagram" />
 	</Browser>
 	<LocalizedDictionary id="5" />
 	<FIBVariable id="6"

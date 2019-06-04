@@ -9,15 +9,39 @@ use org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstanceModelSlot;
 public class CTA {
 
   public PimCA pimca;
-  public PimCAModel pimcaModel;
-  public List diagrams;
+  public SystemNode rootNode;
 
   @CreationScheme  
   CTA:init() {  
     pimca = PimCA.create();    
-    pimcaModel = PimCAModel.create();    
-    VirtualModelInstanceType<PimCADiagram> defaultDiagram = PimCADiagram.init("DefaultDiagram",pimcaModel);    
-    diagrams.add(defaultDiagram)  
+    rootNode = SystemNode.create("System");  
+  }  
+
+
+  @FlexoConcept  
+  public class SystemNode {  
+  
+    public PimCAModel pimcaModel;  
+    public List diagrams;  
+      
+    public VirtualModelInstanceType<PimCADiagram> defaultDiagram = diagrams.get(0);  
+    public String nodeName;  
+  
+    @CreationScheme    
+    SystemNode:create(String nodeName) {    
+      pimcaModel = PimCAModel.create();      
+      nodeName = parameters.nodeName;      
+      this.createNewDiagram(("DefaultDiagramFor" + pimcaModel.name),"Default diagram")    
+    }    
+  
+    @ActionScheme    
+    public VirtualModelInstanceType<PimCADiagram> createNewDiagram(String diagramName, String diagramTitle) {    
+      log ("Create new diagram " + parameters.diagramName)      
+      VirtualModelInstanceType<PimCADiagram> newDiagram = PimCADiagram.init(parameters.diagramName,pimcaModel,parameters.diagramTitle);      
+      diagrams.add(newDiagram)      
+      return newDiagram;    
+    }    
+  
   }  
 
 }

@@ -1,28 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <VirtualModel id="SYL-5" virtualModelClass="org.openflexo.foundation.fml.VirtualModel" modelVersion="2.0" uri="http://ensta-bretagne.fr/cyber/cta/CTA.fml" version="0.1" bigIconResource="../../../../../cta-module/src/main/resources/Icons/CTA/module-cta-64.png" smallIconResource="../../../../../cta-module/src/main/resources/Icons/CTA/module-cta-16.png" name="CTA" mediumIconResource="../../../../../cta-module/src/main/resources/Icons/CTA/module-cta-32.png" author="sylvain" userID="SYL" flexoID="5">
-  <UseModelSlotDeclaration id="0" modelSlotClass="org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstanceModelSlot" userID="SYL" flexoID="-1" />
-  <Inspector id="SYL-1" inspectorTitle="Cta" userID="SYL" flexoID="1" />
-  <FMLRTVirtualModelInstanceModelSlot id="SYL-9" virtualModelURI="http://ensta-bretagne.fr/cyber/pimca/PimCA.fml" isRequired="true" cloningStrategy="Reference" cardinality="ZeroOne" name="pimca" userID="SYL" flexoID="9" />
-  <FMLRTVirtualModelInstanceModelSlot id="SYL-18" virtualModelURI="http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCAModel.fml" isRequired="true" cloningStrategy="Reference" cardinality="ZeroOne" name="pimcaModel" userID="SYL" flexoID="18" />
-  <FMLRTVirtualModelInstanceModelSlot id="SYL-23" virtualModelURI="http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCADiagram.fml" isRequired="true" cloningStrategy="Reference" cardinality="OneMany" name="diagrams" userID="SYL" flexoID="23" />
-  <CreationScheme id="SYL-10" name="init" width="800" label="init" height="600" userID="SYL" flexoID="10">
-    <BehaviourControlGraph_Sequence id="SYL-22" userID="SYL" flexoID="22">
-      <ControlGraph2_Sequence id="SYL-31" ownerContext="controlGraph2" userID="SYL" flexoID="31">
-        <ControlGraph2_Sequence id="SYL-32" ownerContext="controlGraph2" userID="SYL" flexoID="32">
-          <ControlGraph2_AddToListAction id="SYL-30" list="diagrams" ownerContext="controlGraph2" userID="SYL" flexoID="30">
-            <AssignableAction_ExpressionAction id="SYL-29" expression="defaultDiagram" userID="SYL" flexoID="29" />
-          </ControlGraph2_AddToListAction>
-          <ControlGraph1_DeclarationAction id="SYL-28" variable="defaultDiagram" ownerContext="controlGraph1" userID="SYL" flexoID="28">
-            <AssignableAction_AddVirtualModelInstance id="SYL-25" virtualModelInstanceTitle="&quot;DefaultDiagram&quot;" virtualModelInstanceName="&quot;DefaultDiagram&quot;" creationSchemeURI="http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCADiagram.fml.init(diagramName,model)" receiver="pimca" ownerContext="controlGraph2" userID="SYL" flexoID="25">
-              <AddFlexoConceptInstanceParameter id="SYL-26" paramName="diagramName" value="&quot;DefaultDiagram&quot;" userID="SYL" flexoID="26" />
-              <AddFlexoConceptInstanceParameter id="SYL-27" paramName="model" value="pimcaModel" userID="SYL" flexoID="27" />
+  <FlexoConcept id="SYL-36" bigIconResource="../Icons/SystemNode_64x64.png" smallIconResource="../Icons/SystemNode_16x16.png" name="SystemNode" mediumIconResource="../Icons/SystemNode_32x32.png" userID="SYL" flexoID="36">
+    <Inspector id="SYL-37" renderer="nodeName" inspectorTitle="SystemNode" userID="SYL" flexoID="37" />
+    <FMLRTVirtualModelInstanceModelSlot id="SYL-43" virtualModelURI="http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCAModel.fml" isRequired="true" cloningStrategy="Reference" cardinality="ZeroOne" name="pimcaModel" userID="SYL" flexoID="43" />
+    <FMLRTVirtualModelInstanceModelSlot id="SYL-44" virtualModelURI="http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCADiagram.fml" isRequired="true" cloningStrategy="Reference" cardinality="OneMany" name="diagrams" userID="SYL" flexoID="44" />
+    <ExpressionProperty id="SYL-90" expression="diagrams.get(0)" name="defaultDiagram" userID="SYL" flexoID="90" />
+    <PrimitiveRole id="SYL-111" primitiveType="String" cloningStrategy="Clone" cardinality="ZeroOne" name="nodeName" userID="SYL" flexoID="111" />
+    <CreationScheme id="SYL-47" name="create" width="800" label="create" height="600" userID="SYL" flexoID="47">
+      <BehaviourControlGraph_Sequence id="SYL-55" ownerContext="controlGraph2" userID="SYL" flexoID="55">
+        <ControlGraph2_Sequence id="SYL-114" ownerContext="controlGraph2" userID="SYL" flexoID="114">
+          <ControlGraph2_ExpressionAction id="SYL-91" expression="this.createNewDiagram((&quot;DefaultDiagramFor&quot; + pimcaModel.name),&quot;Default diagram&quot;)" ownerContext="controlGraph2" userID="SYL" flexoID="91" />
+          <ControlGraph1_AssignationAction id="SYL-113" assign="nodeName" ownerContext="controlGraph1" userID="SYL" flexoID="113">
+            <AssignableAction_ExpressionAction id="SYL-112" expression="parameters.nodeName" userID="SYL" flexoID="112" />
+          </ControlGraph1_AssignationAction>
+        </ControlGraph2_Sequence>
+        <ControlGraph1_AssignationAction id="SYL-54" assign="pimcaModel" ownerContext="controlGraph1" userID="SYL" flexoID="54">
+          <AssignableAction_AddVirtualModelInstance id="SYL-53" virtualModelInstanceTitle="parameters.nodeName" virtualModelInstanceName="parameters.nodeName" creationSchemeURI="http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCAModel.fml.create()" receiver="pimca" userID="SYL" flexoID="53" />
+        </ControlGraph1_AssignationAction>
+      </BehaviourControlGraph_Sequence>
+      <GenericBehaviourParameter id="SYL-63" widget="TEXT_FIELD" name="nodeName" type="java.lang.String" userID="SYL" flexoID="63" />
+    </CreationScheme>
+    <ActionScheme id="SYL-76" visibility="Public" name="createNewDiagram" width="800" label="createNewDiagram" height="600" userID="SYL" flexoID="76">
+      <BehaviourControlGraph_Sequence id="SYL-92" userID="SYL" flexoID="92">
+        <ControlGraph2_Sequence id="SYL-93" ownerContext="controlGraph2" userID="SYL" flexoID="93">
+          <ControlGraph2_Sequence id="SYL-94" ownerContext="controlGraph2" userID="SYL" flexoID="94">
+            <ControlGraph2_ReturnStatement id="SYL-89" ownerContext="controlGraph2" userID="SYL" flexoID="89">
+              <AssignableAction_ExpressionAction id="SYL-88" expression="newDiagram" userID="SYL" flexoID="88" />
+            </ControlGraph2_ReturnStatement>
+            <ControlGraph1_AddToListAction id="SYL-86" list="diagrams" ownerContext="controlGraph1" userID="SYL" flexoID="86">
+              <AssignableAction_ExpressionAction id="SYL-87" expression="newDiagram" userID="SYL" flexoID="87" />
+            </ControlGraph1_AddToListAction>
+          </ControlGraph2_Sequence>
+          <ControlGraph1_DeclarationAction id="SYL-81" variable="newDiagram" ownerContext="controlGraph1" userID="SYL" flexoID="81">
+            <AssignableAction_AddVirtualModelInstance id="SYL-84" virtualModelInstanceTitle="parameters.diagramName" virtualModelInstanceName="parameters.diagramName" creationSchemeURI="http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCADiagram.fml.init(diagramName,diagramTitle,model)" receiver="pimca" ownerContext="controlGraph2" userID="SYL" flexoID="84">
+              <AddFlexoConceptInstanceParameter id="SYL-82" paramName="diagramName" value="parameters.diagramName" userID="SYL" flexoID="82" />
+              <AddFlexoConceptInstanceParameter id="SYL-83" paramName="model" value="pimcaModel" userID="SYL" flexoID="83" />
+              <AddFlexoConceptInstanceParameter id="SYL-100" paramName="diagramTitle" value="parameters.diagramTitle" userID="SYL" flexoID="100" />
             </AssignableAction_AddVirtualModelInstance>
           </ControlGraph1_DeclarationAction>
         </ControlGraph2_Sequence>
-        <ControlGraph1_AssignationAction id="SYL-21" assign="pimcaModel" ownerContext="controlGraph1" userID="SYL" flexoID="21">
-          <AssignableAction_AddVirtualModelInstance id="SYL-20" virtualModelInstanceTitle="&quot;RootModel&quot;" virtualModelInstanceName="&quot;RootModel&quot;" creationSchemeURI="http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCAModel.fml.create()" receiver="pimca" userID="SYL" flexoID="20" />
-        </ControlGraph1_AssignationAction>
-      </ControlGraph2_Sequence>
+        <ControlGraph1_LogAction id="SYL-80" logLevel="INFO" logString="(&quot;Create new diagram &quot; + parameters.diagramName)" ownerContext="controlGraph1" userID="SYL" flexoID="80" />
+      </BehaviourControlGraph_Sequence>
+      <GenericBehaviourParameter id="SYL-78" widget="TEXT_FIELD" name="diagramName" type="java.lang.String" userID="SYL" flexoID="78" />
+      <GenericBehaviourParameter id="SYL-101" widget="TEXT_FIELD" name="diagramTitle" type="java.lang.String" userID="SYL" flexoID="101" />
+    </ActionScheme>
+  </FlexoConcept>
+  <UseModelSlotDeclaration id="0" modelSlotClass="org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstanceModelSlot" userID="SYL" flexoID="-1" />
+  <Inspector id="SYL-1" inspectorTitle="Cta" userID="SYL" flexoID="1" />
+  <FMLRTVirtualModelInstanceModelSlot id="SYL-9" virtualModelURI="http://ensta-bretagne.fr/cyber/pimca/PimCA.fml" isRequired="true" cloningStrategy="Reference" cardinality="ZeroOne" name="pimca" userID="SYL" flexoID="9" />
+  <FlexoConceptInstanceRole id="SYL-95" virtualModelInstance="this" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/CTA.fml#SystemNode" cloningStrategy="Reference" cardinality="One" name="rootNode" userID="SYL" flexoID="95" />
+  <CreationScheme id="SYL-10" name="init" width="800" label="init" height="600" userID="SYL" flexoID="10">
+    <BehaviourControlGraph_Sequence id="SYL-22" userID="SYL" flexoID="22">
+      <ControlGraph2_AssignationAction id="SYL-99" assign="rootNode" ownerContext="controlGraph2" userID="SYL" flexoID="99">
+        <AssignableAction_AddFlexoConceptInstance id="SYL-97" creationSchemeURI="http://ensta-bretagne.fr/cyber/cta/CTA.fml#SystemNode.create(nodeName)" receiver="this" userID="SYL" flexoID="97">
+          <AddFlexoConceptInstanceParameter id="SYL-98" paramName="nodeName" value="&quot;System&quot;" userID="SYL" flexoID="98" />
+        </AssignableAction_AddFlexoConceptInstance>
+      </ControlGraph2_AssignationAction>
       <ControlGraph1_AssignationAction id="SYL-14" assign="pimca" ownerContext="controlGraph1" userID="SYL" flexoID="14">
         <AssignableAction_AddVirtualModelInstance id="SYL-13" virtualModelInstanceTitle="&quot;PimCA&quot;" virtualModelInstanceName="&quot;PimCA&quot;" creationSchemeURI="http://ensta-bretagne.fr/cyber/pimca/PimCA.fml.create()" receiver="this" userID="SYL" flexoID="13" />
       </ControlGraph1_AssignationAction>
