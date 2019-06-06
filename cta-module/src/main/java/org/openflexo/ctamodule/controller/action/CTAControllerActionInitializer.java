@@ -75,6 +75,8 @@ public class CTAControllerActionInitializer extends ControllerActionInitializer 
 
 		new GivesCTANatureInitializer(this);
 
+		new CreateNewPimCADiagramInitializer(this);
+
 		new CTASetPropertyInitializer(this);
 
 	}

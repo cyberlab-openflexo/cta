@@ -65,6 +65,11 @@ public class CTAIconLibrary extends IconLibrary {
 			ResourceLocator.locateResource("Icons/CTA/module-cta-hover-32.png"));
 	public static final ImageIcon CTA_BIG_ICON = new ImageIconResource(ResourceLocator.locateResource("Icons/CTA/module-cta-hover-64.png"));
 
+	public static final ImageIcon PIMCA_DIAGRAM_BIG_ICON = new ImageIconResource(
+			ResourceLocator.locateResource("Icons/CTA/PimcaDiagram_64x64.png"));
+	public static final ImageIcon PIMCA_DIAGRAM_ICON = new ImageIconResource(
+			ResourceLocator.locateResource("Icons/CTA/PimcaDiagram_16x16.png"));
+
 	public static final IconMarker CTA_BIG_MARKER = new IconMarker(CTA_MEDIUM_ICON, 32, 0);
 
 }

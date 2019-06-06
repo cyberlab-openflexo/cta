@@ -40,24 +40,27 @@ package org.openflexo.ctamodule.model.action;
 
 import java.util.Vector;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openflexo.ApplicationContext;
+import org.openflexo.ctamodule.CTA;
+import org.openflexo.ctamodule.CTACst;
 import org.openflexo.foundation.FlexoEditor;
 import org.openflexo.foundation.FlexoException;
 import org.openflexo.foundation.FlexoObject;
 import org.openflexo.foundation.FlexoObject.FlexoObjectImpl;
 import org.openflexo.foundation.action.FlexoActionFactory;
+import org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstance;
 import org.openflexo.foundation.fml.rt.FlexoConceptInstance;
 import org.openflexo.localization.LocalizedDelegate;
-import org.openflexo.module.formose.FMSConstants;
-import org.openflexo.module.formose.FormoseEditor;
+import org.openflexo.toolbox.JavaUtils;
 
 /**
  * @author sylvain
  */
-public class CreateNewPimCADiagram extends FMSAction<CreateNewPimCADiagram, FlexoConceptInstance, FlexoObject> {
+public class CreateNewPimCADiagram extends CTAAction<CreateNewPimCADiagram, FlexoConceptInstance, FlexoObject> {
 
 	public static final FlexoActionFactory<CreateNewPimCADiagram, FlexoConceptInstance, FlexoObject> ACTION_TYPE = new FlexoActionFactory<CreateNewPimCADiagram, FlexoConceptInstance, FlexoObject>(
-			"create_new_goal_diagram", FlexoActionFactory.defaultGroup, FlexoActionFactory.NORMAL_ACTION_TYPE) {
+			"create_new_pimca_diagram", FlexoActionFactory.defaultGroup, FlexoActionFactory.NORMAL_ACTION_TYPE) {
 
 		@Override
 		public CreateNewPimCADiagram makeNewAction(final FlexoConceptInstance focusedObject, final Vector<FlexoObject> globalSelection,
@@ -68,7 +71,7 @@ public class CreateNewPimCADiagram extends FMSAction<CreateNewPimCADiagram, Flex
 		@Override
 		public boolean isVisibleForSelection(final FlexoConceptInstance elementMapping, final Vector<FlexoObject> globalSelection) {
 			return elementMapping != null && elementMapping.getFlexoConcept() != null
-					&& elementMapping.getFlexoConcept().getName().equals(FMSConstants.SYSML_KAOS_ELEMENT_MAPPING_CONCEPT_NAME);
+					&& elementMapping.getFlexoConcept().getName().equals(CTACst.SYSTEM_NODE_CONCEPT_NAME);
 		}
 
 		@Override
@@ -81,10 +84,11 @@ public class CreateNewPimCADiagram extends FMSAction<CreateNewPimCADiagram, Flex
 		FlexoObjectImpl.addActionForClass(ACTION_TYPE, FlexoConceptInstance.class);
 	}
 
+	private String diagramName;
 	private String diagramTitle;
 	private String diagramDescription;
 
-	private FlexoConceptInstance elementMapping;
+	private FlexoConceptInstance systemNode;
 
 	public CreateNewPimCADiagram(final FlexoConceptInstance focusedObject, final Vector<FlexoObject> globalSelection,
 			final FlexoEditor editor) {
@@ -94,24 +98,23 @@ public class CreateNewPimCADiagram extends FMSAction<CreateNewPimCADiagram, Flex
 	@Override
 	public LocalizedDelegate getLocales() {
 		if (getServiceManager() instanceof ApplicationContext) {
-			return ((ApplicationContext) getServiceManager()).getModuleLoader().getModule(FormoseEditor.class).getLoadedModuleInstance()
-					.getLocales();
+			return ((ApplicationContext) getServiceManager()).getModuleLoader().getModule(CTA.class).getLoadedModuleInstance().getLocales();
 		}
 		return super.getLocales();
 	}
 
-	private FlexoConceptInstance newDiagramMapping;
+	private FMLRTVirtualModelInstance newDiagram;
 
 	@Override
 	protected void doAction(final Object context) throws FlexoException {
 
-		System.out.println("Create new goal diagram...");
+		System.out.println("Create new PimCA diagram...");
 
-		FlexoConceptInstance elementMapping = getElementMapping();
-		System.out.println("elementMapping=" + elementMapping);
+		FlexoConceptInstance systemNode = getSystemNode();
+		System.out.println("systemNode=" + systemNode);
 
 		try {
-			newDiagramMapping = elementMapping.execute("this.createNewGoalDiagram({$title},{$description})", getDiagramTitle(),
+			newDiagram = systemNode.execute("this.createNewDiagram({$name},{$title},{$description})", getDiagramName(), getDiagramTitle(),
 					getDiagramDescription());
 		} catch (Exception e) {
 			throw new FlexoException(e);
@@ -154,19 +157,33 @@ public class CreateNewPimCADiagram extends FMSAction<CreateNewPimCADiagram, Flex
 
 	}
 
-	public FlexoConceptInstance getElementMapping() {
-		if (elementMapping == null) {
+	public FlexoConceptInstance getSystemNode() {
+		if (systemNode == null) {
 			return getFocusedObject();
 		}
-		return elementMapping;
+		return systemNode;
 	}
 
-	public void setElementMapping(FlexoConceptInstance elementMapping) {
-		if ((elementMapping == null && this.elementMapping != null)
-				|| (elementMapping != null && !elementMapping.equals(this.elementMapping))) {
-			FlexoConceptInstance oldValue = this.elementMapping;
-			this.elementMapping = elementMapping;
-			getPropertyChangeSupport().firePropertyChange("elementMapping", oldValue, elementMapping);
+	public void setSystemNode(FlexoConceptInstance systemNode) {
+		if ((systemNode == null && this.systemNode != null) || (systemNode != null && !systemNode.equals(this.systemNode))) {
+			FlexoConceptInstance oldValue = this.systemNode;
+			this.systemNode = systemNode;
+			getPropertyChangeSupport().firePropertyChange("systemNode", oldValue, systemNode);
+		}
+	}
+
+	public String getDiagramName() {
+		if (StringUtils.isEmpty(diagramName)) {
+			return JavaUtils.getClassName(getDiagramTitle());
+		}
+		return diagramName;
+	}
+
+	public void setDiagramName(String diagramName) {
+		if ((diagramName == null && this.diagramName != null) || (diagramName != null && !diagramName.equals(this.diagramName))) {
+			String oldValue = this.diagramName;
+			this.diagramName = diagramName;
+			getPropertyChangeSupport().firePropertyChange("diagramName", oldValue, diagramName);
 		}
 	}
 
@@ -179,6 +196,7 @@ public class CreateNewPimCADiagram extends FMSAction<CreateNewPimCADiagram, Flex
 			String oldValue = this.diagramTitle;
 			this.diagramTitle = diagramTitle;
 			getPropertyChangeSupport().firePropertyChange("diagramTitle", oldValue, diagramTitle);
+			getPropertyChangeSupport().firePropertyChange("diagramName", null, getDiagramName());
 		}
 	}
 
@@ -195,8 +213,8 @@ public class CreateNewPimCADiagram extends FMSAction<CreateNewPimCADiagram, Flex
 		}
 	}
 
-	public FlexoConceptInstance getNewDiagramMapping() {
-		return newDiagramMapping;
+	public FMLRTVirtualModelInstance getNewDiagram() {
+		return newDiagram;
 	}
 
 }

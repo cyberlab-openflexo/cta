@@ -31,11 +31,11 @@ public class CTA {
     SystemNode:create(String nodeName) {    
       pimcaModel = PimCAModel.create();      
       nodeName = parameters.nodeName;      
-      this.createNewDiagram(("DefaultDiagramFor" + pimcaModel.name),"Default diagram")    
+      this.createNewDiagram(("DefaultDiagramFor" + pimcaModel.name),"Default diagram","")    
     }    
   
     @ActionScheme    
-    public VirtualModelInstanceType<PimCADiagram> createNewDiagram(String diagramName, String diagramTitle) {    
+    VirtualModelInstanceType<PimCADiagram> createNewDiagram(String diagramName, String diagramTitle, String diagramDescription) {    
       log ("Create new diagram " + parameters.diagramName)      
       VirtualModelInstanceType<PimCADiagram> newDiagram = PimCADiagram.init(parameters.diagramName,pimcaModel,parameters.diagramTitle);      
       diagrams.add(newDiagram)      
