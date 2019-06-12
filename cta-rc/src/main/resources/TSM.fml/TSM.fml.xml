@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VirtualModel id="SYL-5" virtualModelClass="org.openflexo.foundation.fml.VirtualModel" modelVersion="2.0" uri="http://ensta-bretagne.fr/cyber/cta/TSM.fml" version="0.1" name="TSM" author="sylvain" description="Target System Modelling viewpoint" userID="SYL" flexoID="5">
+  <FlexoConcept id="SYL-9" name="ExecutionUnit" userID="SYL" flexoID="9">
+    <Inspector id="SYL-10" inspectorTitle="ExecutionUnit" userID="SYL" flexoID="10" />
+  </FlexoConcept>
+  <FlexoConcept id="SYL-14" parentFlexoConceptsList="http://ensta-bretagne.fr/cyber/cta/TSM.fml#ExecutionUnit" name="GuardActionExecutionUnit" userID="SYL" flexoID="14">
+    <Inspector id="SYL-15" inspectorTitle="GuardActionExecutionUnit" userID="SYL" flexoID="15" />
+    <EmbeddedFlexoConcept id="SYL-19" name="GuardAction" userID="SYL" flexoID="19">
+      <Inspector id="SYL-20" inspectorTitle="GuardAction" userID="SYL" flexoID="20" />
+    </EmbeddedFlexoConcept>
+  </FlexoConcept>
+  <FlexoConcept idref="SYL-19" />
+  <UseModelSlotDeclaration id="0" modelSlotClass="org.openflexo.foundation.fml.ta.FMLModelSlot" userID="SYL" flexoID="-1" />
+  <Inspector id="SYL-1" inspectorTitle="Tsm" userID="SYL" flexoID="1" />
+  <FMLModelSlot id="SYL-33" isRequired="true" cloningStrategy="Reference" cardinality="ZeroOne" name="executionVirtualModel" userID="SYL" flexoID="33" />
+  <CreationScheme id="SYL-34" name="init" width="800" label="init" height="600" userID="SYL" flexoID="34">
+    <BehaviourControlGraph_Sequence id="SYL-68" userID="SYL" flexoID="68">
+      <ControlGraph2_CreateContainedVirtualModel id="SYL-67" container="executionVirtualModel" virtualModelName="&quot;Toto&quot;" receiver="executionVirtualModel" ownerContext="controlGraph2" userID="SYL" flexoID="67" />
+      <ControlGraph1_AssignationAction id="SYL-53" assign="executionVirtualModel" ownerContext="controlGraph1" userID="SYL" flexoID="53">
+        <AssignableAction_CreateTopLevelVirtualModel id="SYL-52" resourceCenter="this.resourceCenter" relativePath="" dynamicRelativePath="(this.resource.parentPathRelativeToResourceCenter(this.resourceCenter) + &quot;/ExecutionModel&quot;)" resourceName="parameters.virtualModelName" userID="SYL" flexoID="52" />
+      </ControlGraph1_AssignationAction>
+    </BehaviourControlGraph_Sequence>
+    <GenericBehaviourParameter id="SYL-38" widget="TEXT_FIELD" name="virtualModelName" type="java.lang.String" userID="SYL" flexoID="38" />
+  </CreationScheme>
+</VirtualModel>

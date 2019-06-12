@@ -6,6 +6,7 @@ create_new_pimca_diagram=create_new_pimca_diagram
 create_requirement=create_requirement
 create_sub_element=create_sub_element
 cta_perspective=cta_perspective
+diagrams=diagrams
 gives_cta_nature=gives_cta_nature
 gives_project_cta_nature=gives_project_cta_nature
 gives_your_project_cta_nature=gives_your_project_cta_nature

@@ -50,13 +50,21 @@
   <Inspector id="SYL-1" inspectorTitle="Cta" userID="SYL" flexoID="1" />
   <FMLRTVirtualModelInstanceModelSlot id="SYL-9" virtualModelURI="http://ensta-bretagne.fr/cyber/pimca/PimCA.fml" isRequired="true" cloningStrategy="Reference" cardinality="ZeroOne" name="pimca" userID="SYL" flexoID="9" />
   <FlexoConceptInstanceRole id="SYL-95" virtualModelInstance="this" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/CTA.fml#SystemNode" cloningStrategy="Reference" cardinality="One" name="rootNode" userID="SYL" flexoID="95" />
+  <FMLRTVirtualModelInstanceModelSlot id="SYL-128" virtualModelURI="http://ensta-bretagne.fr/cyber/cta/TSM.fml" isRequired="true" cloningStrategy="Reference" cardinality="ZeroOne" name="tsm" userID="SYL" flexoID="128" />
   <CreationScheme id="SYL-10" name="init" width="800" label="init" height="600" userID="SYL" flexoID="10">
     <BehaviourControlGraph_Sequence id="SYL-22" userID="SYL" flexoID="22">
-      <ControlGraph2_AssignationAction id="SYL-99" assign="rootNode" ownerContext="controlGraph2" userID="SYL" flexoID="99">
-        <AssignableAction_AddFlexoConceptInstance id="SYL-97" creationSchemeURI="http://ensta-bretagne.fr/cyber/cta/CTA.fml#SystemNode.create(nodeName)" receiver="this" userID="SYL" flexoID="97">
-          <AddFlexoConceptInstanceParameter id="SYL-98" paramName="nodeName" value="&quot;System&quot;" userID="SYL" flexoID="98" />
-        </AssignableAction_AddFlexoConceptInstance>
-      </ControlGraph2_AssignationAction>
+      <ControlGraph2_Sequence id="SYL-133" ownerContext="controlGraph2" userID="SYL" flexoID="133">
+        <ControlGraph2_AssignationAction id="SYL-99" assign="rootNode" ownerContext="controlGraph2" userID="SYL" flexoID="99">
+          <AssignableAction_AddFlexoConceptInstance id="SYL-97" creationSchemeURI="http://ensta-bretagne.fr/cyber/cta/CTA.fml#SystemNode.create(nodeName)" receiver="this" userID="SYL" flexoID="97">
+            <AddFlexoConceptInstanceParameter id="SYL-98" paramName="nodeName" value="&quot;System&quot;" userID="SYL" flexoID="98" />
+          </AssignableAction_AddFlexoConceptInstance>
+        </ControlGraph2_AssignationAction>
+        <ControlGraph1_AssignationAction id="SYL-132" assign="tsm" ownerContext="controlGraph1" userID="SYL" flexoID="132">
+          <AssignableAction_AddVirtualModelInstance id="SYL-130" virtualModelInstanceTitle="&quot;TSM&quot;" virtualModelInstanceName="&quot;TSM&quot;" creationSchemeURI="http://ensta-bretagne.fr/cyber/cta/TSM.fml.init(virtualModelName)" receiver="this" ownerContext="controlGraph1" userID="SYL" flexoID="130">
+            <AddFlexoConceptInstanceParameter id="SYL-131" paramName="virtualModelName" value="&quot;ExecutionModel&quot;" userID="SYL" flexoID="131" />
+          </AssignableAction_AddVirtualModelInstance>
+        </ControlGraph1_AssignationAction>
+      </ControlGraph2_Sequence>
       <ControlGraph1_AssignationAction id="SYL-14" assign="pimca" ownerContext="controlGraph1" userID="SYL" flexoID="14">
         <AssignableAction_AddVirtualModelInstance id="SYL-13" virtualModelInstanceTitle="&quot;PimCA&quot;" virtualModelInstanceName="&quot;PimCA&quot;" creationSchemeURI="http://ensta-bretagne.fr/cyber/pimca/PimCA.fml.create()" receiver="this" userID="SYL" flexoID="13" />
       </ControlGraph1_AssignationAction>

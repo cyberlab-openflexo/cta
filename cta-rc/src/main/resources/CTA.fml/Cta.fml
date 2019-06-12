@@ -10,10 +10,12 @@ public class CTA {
 
   public PimCA pimca;
   public SystemNode rootNode;
+  public TSM tsm;
 
   @CreationScheme  
   CTA:init() {  
     pimca = PimCA.create();    
+    tsm = TSM.init("ExecutionModel");    
     rootNode = SystemNode.create("System");  
   }  
 
