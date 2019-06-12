@@ -41,13 +41,13 @@ import org.openflexo.view.controller.model.FlexoPerspective;
  * Main view for CTA module
  */
 @SuppressWarnings("serial")
-public class CTAProjectNatureModuleView extends FIBModuleView<CTAProjectNature> {
+public class ExecutionUnitPerspectiveModuleView extends FIBModuleView<CTAProjectNature> {
 
-	public static Resource CTA_PROJECT_MODULE_VIEW_FIB = ResourceLocator.locateResource("Fib/CTAProjectNaturePanel.fib");
+	public static Resource CTA_PROJECT_MODULE_VIEW_FIB = ResourceLocator.locateResource("Fib/ExecutionUnitPerspectivePanel.fib");
 
 	private final FlexoPerspective perspective;
 
-	public CTAProjectNatureModuleView(CTAProjectNature nature, FlexoController controller, FlexoPerspective perspective) {
+	public ExecutionUnitPerspectiveModuleView(CTAProjectNature nature, FlexoController controller, FlexoPerspective perspective) {
 		super(nature, controller, CTA_PROJECT_MODULE_VIEW_FIB, controller.getModule().getLocales());
 		this.perspective = perspective;
 

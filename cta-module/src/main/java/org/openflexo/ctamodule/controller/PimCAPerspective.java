@@ -44,7 +44,9 @@ import javax.swing.ImageIcon;
 
 import org.openflexo.ctamodule.CTACst;
 import org.openflexo.ctamodule.CTAIconLibrary;
+import org.openflexo.ctamodule.model.CTAProjectNature;
 import org.openflexo.ctamodule.view.PimCADiagramModuleView;
+import org.openflexo.ctamodule.view.PimCAPerspectiveModuleView;
 import org.openflexo.ctamodule.widget.AbstractCTAProjectBrowser;
 import org.openflexo.ctamodule.widget.PimCAModelBrowser;
 import org.openflexo.ctamodule.widget.PimCAProjectBrowser;
@@ -97,6 +99,10 @@ public class PimCAPerspective extends AbstractCTAPerspective {
 
 	@Override
 	public ModuleView<?> createModuleViewForObject(FlexoObject object) {
+
+		if (object instanceof CTAProjectNature) {
+			return new PimCAPerspectiveModuleView((CTAProjectNature) object, getController(), this);
+		}
 
 		if (object instanceof FMLRTVirtualModelInstance) {
 			if (((FMLRTVirtualModelInstance) object).hasNature(FMLControlledDiagramVirtualModelInstanceNature.INSTANCE)) {

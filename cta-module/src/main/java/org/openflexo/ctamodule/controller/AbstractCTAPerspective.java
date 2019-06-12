@@ -45,7 +45,6 @@ import javax.swing.JPanel;
 
 import org.openflexo.ctamodule.CTAIconLibrary;
 import org.openflexo.ctamodule.model.CTAProjectNature;
-import org.openflexo.ctamodule.view.CTAProjectNatureModuleView;
 import org.openflexo.ctamodule.widget.AbstractCTAProjectBrowser;
 import org.openflexo.ctamodule.widget.GenericProjectBrowser;
 import org.openflexo.foundation.FlexoObject;
@@ -172,10 +171,6 @@ public abstract class AbstractCTAPerspective extends NaturePerspective<CTAProjec
 
 	@Override
 	public ModuleView<?> createModuleViewForObject(FlexoObject object) {
-
-		if (object instanceof CTAProjectNature) {
-			return new CTAProjectNatureModuleView((CTAProjectNature) object, getController(), this);
-		}
 
 		if (object instanceof FMLRTVirtualModelInstance) {
 			if (((FMLRTVirtualModelInstance) object).hasNature(FMLControlledFIBVirtualModelInstanceNature.INSTANCE)) {

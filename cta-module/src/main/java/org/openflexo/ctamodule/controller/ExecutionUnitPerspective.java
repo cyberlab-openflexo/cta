@@ -42,14 +42,13 @@ import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 
-import org.openflexo.ctamodule.CTACst;
 import org.openflexo.ctamodule.CTAIconLibrary;
+import org.openflexo.ctamodule.model.CTAProjectNature;
+import org.openflexo.ctamodule.view.ExecutionUnitPerspectiveModuleView;
 import org.openflexo.ctamodule.widget.ExecutionUnitProjectBrowser;
 import org.openflexo.ctamodule.widget.PimCAModelBrowser;
 import org.openflexo.foundation.FlexoObject;
-import org.openflexo.foundation.fml.VirtualModel;
 import org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstance;
-import org.openflexo.technologyadapter.diagram.fml.FMLControlledDiagramVirtualModelInstanceNature;
 import org.openflexo.view.ModuleView;
 import org.openflexo.view.controller.FlexoController;
 
@@ -94,6 +93,10 @@ public class ExecutionUnitPerspective extends AbstractCTAPerspective {
 	@Override
 	public ModuleView<?> createModuleViewForObject(FlexoObject object) {
 
+		if (object instanceof CTAProjectNature) {
+			return new ExecutionUnitPerspectiveModuleView((CTAProjectNature) object, getController(), this);
+		}
+
 		/*if (object instanceof FMLRTVirtualModelInstance) {
 			if (((FMLRTVirtualModelInstance) object).hasNature(FMLControlledDiagramVirtualModelInstanceNature.INSTANCE)) {
 				FMLRTVirtualModelInstance diagramVMI = (FMLRTVirtualModelInstance) object;
@@ -116,7 +119,7 @@ public class ExecutionUnitPerspective extends AbstractCTAPerspective {
 
 	@Override
 	public boolean hasModuleViewForObject(FlexoObject object) {
-		if (object instanceof FMLRTVirtualModelInstance) {
+		/*if (object instanceof FMLRTVirtualModelInstance) {
 			// FML-controlled diagram
 			if (((FMLRTVirtualModelInstance) object).hasNature(FMLControlledDiagramVirtualModelInstanceNature.INSTANCE)) {
 				FMLRTVirtualModelInstance diagramVMI = (FMLRTVirtualModelInstance) object;
@@ -127,7 +130,7 @@ public class ExecutionUnitPerspective extends AbstractCTAPerspective {
 					}
 				}
 			}
-		}
+		}*/
 		return super.hasModuleViewForObject(object);
 	}
 
