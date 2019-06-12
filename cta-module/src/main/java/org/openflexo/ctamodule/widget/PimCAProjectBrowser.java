@@ -43,16 +43,16 @@ import org.openflexo.rm.ResourceLocator;
 import org.openflexo.view.controller.FlexoController;
 
 /**
- * A browser that present a CTA project<br>
+ * A browser that present a CTA project in the PimCA perspective<br>
  * 
  * @author yourname
  */
 @SuppressWarnings("serial")
-public class CTAProjectBrowser extends AbstractCTAProjectBrowser {
+public class PimCAProjectBrowser extends AbstractCTAProjectBrowser {
 
-	private static final Resource BROWSER_FIB = ResourceLocator.locateResource("Fib/CTAProjectBrowser.fib");
+	private static final Resource BROWSER_FIB = ResourceLocator.locateResource("Fib/PimCAProjectBrowser.fib");
 
-	public CTAProjectBrowser(final FlexoController controller) {
+	public PimCAProjectBrowser(final FlexoController controller) {
 		super(controller, BROWSER_FIB);
 	}
 

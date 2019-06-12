@@ -39,18 +39,13 @@
 package org.openflexo.ctamodule.widget;
 
 import java.io.FileNotFoundException;
-import java.lang.reflect.InvocationTargetException;
 
-import org.openflexo.connie.exception.InvalidBindingException;
-import org.openflexo.connie.exception.NullReferenceException;
-import org.openflexo.connie.exception.TypeMismatchException;
 import org.openflexo.ctamodule.CTACst;
 import org.openflexo.ctamodule.controller.CTAController;
 import org.openflexo.ctamodule.controller.CTAFIBController;
 import org.openflexo.ctamodule.model.CTAProjectNature;
 import org.openflexo.foundation.FlexoException;
 import org.openflexo.foundation.fml.VirtualModel;
-import org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstance;
 import org.openflexo.foundation.resource.ResourceLoadingCancelledException;
 import org.openflexo.gina.model.FIBComponent;
 import org.openflexo.gina.model.FIBContainer;
@@ -77,34 +72,34 @@ public abstract class AbstractCTAProjectBrowser extends FIBBrowserView<CTAProjec
 		getFIBController().setBrowser(this);
 	}
 
-	@Override
-	public void setDataObject(Object dataObject) {
-		super.setDataObject(dataObject);
-		System.out.println("Attention, je viens faire un set de " + dataObject);
-		System.out.println("getDataObject()=" + getDataObject());
-		System.out.println("getFIBController()=" + getFIBController());
-		System.out.println("getDataObject().getCTAInstance().getAccessedVirtualModelInstance()="
-				+ getDataObject().getCTAInstance().getAccessedVirtualModelInstance());
-		FMLRTVirtualModelInstance accessedVirtualModelInstance = getDataObject().getCTAInstance().getAccessedVirtualModelInstance();
-		try {
-			System.out.println("diagrams=" + accessedVirtualModelInstance.execute("diagrams"));
-		} catch (TypeMismatchException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NullReferenceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvalidBindingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		if (getDataObject() != null && getFIBController() != null) {
-			getFIBController().setVariableValue("ctaView", getDataObject().getCTAInstance().getAccessedVirtualModelInstance());
-		}
-	}
+	/*	@Override
+		public void setDataObject(Object dataObject) {
+			super.setDataObject(dataObject);
+			System.out.println("Attention, je viens faire un set de " + dataObject);
+			System.out.println("getDataObject()=" + getDataObject());
+			System.out.println("getFIBController()=" + getFIBController());
+			System.out.println("getDataObject().getCTAInstance().getAccessedVirtualModelInstance()="
+					+ getDataObject().getCTAInstance().getAccessedVirtualModelInstance());
+			FMLRTVirtualModelInstance accessedVirtualModelInstance = getDataObject().getCTAInstance().getAccessedVirtualModelInstance();
+			try {
+				System.out.println("diagrams=" + accessedVirtualModelInstance.execute("diagrams"));
+			} catch (TypeMismatchException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NullReferenceException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvalidBindingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if (getDataObject() != null && getFIBController() != null) {
+				getFIBController().setVariableValue("ctaView", getDataObject().getCTAInstance().getAccessedVirtualModelInstance());
+			}
+		}*/
 
 	@Override
 	public CTAProjectBrowserFIBController getFIBController() {
@@ -137,7 +132,7 @@ public abstract class AbstractCTAProjectBrowser extends FIBBrowserView<CTAProjec
 
 		getFIBComponent().setBindingFactory(new FMLFIBBindingFactory(getCTAViewPoint()));
 
-		browser = retrieveFIBBrowserNamed((FIBContainer) getFIBComponent(), "CTAProjectBrowser");
+		browser = retrieveFIBBrowserNamed((FIBContainer) getFIBComponent(), "PimCAProjectBrowser");
 		if (browser != null) {
 			bindFlexoActionsToBrowser(browser);
 		}

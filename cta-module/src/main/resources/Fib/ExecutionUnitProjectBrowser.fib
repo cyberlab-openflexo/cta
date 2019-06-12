@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Panel id="0" align="left" borderTop="0" borderLeft="0"
+	trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0"
+	border="empty" sizeAdjustment="OriginalSize" layout="twocols"
+	borderRight="0"
+	controllerClassName="org.openflexo.ctamodule.widget.AbstractCTAProjectBrowser$CTAProjectBrowserFIBController"
+	name="Panel">
+	<Browser id="1" backgroundSelectionColor="9,80,208"
+		visibleRowCount="5" boundToSelectionManager="true"
+		backgroundNonSelectionColor="255,255,255"
+		iteratorClassName="java.lang.Object" textSelectionColor="255,255,255"
+		backgroundSecondarySelectionColor="178,215,255" showRootsHandle="true"
+		showFooter="true" textNonSelectionColor="0,0,0" root="data"
+		selectionMode="DiscontiguousTreeSelection" rowHeight="18"
+		localize="true" manageDynamicModel="true"
+		rightClickAction="controller.rightClick(CTAProjectBrowser.selected,event)"
+		doubleClickAction="controller.doubleClick(CTAProjectBrowser.selected)"
+		clickAction="controller.singleClick(CTAProjectBrowser.selected)"
+		constraints="twocols(expandHorizontally=true;expandVertically=true;index=0;insetsBottom=0;insetsLeft=2;insetsRight=2;insetsTop=0;location=center)"
+		index="0" name="CTAProjectBrowser">
+		<BrowserElement id="2"
+			dataClassName="org.openflexo.ctamodule.model.CTAProjectNature"
+			icon="controller.iconForObject(ctaView)" label="nature.owner.name"
+			isEditable="false" defaultVisible="false" name="nature">
+			<!-- <Children data="nature.cTAInstance" name="ctaInstance" /> <Children 
+				data="data.cTAInstance.accessedVirtualModelInstance" name="ctaInstance2" 
+				/> -->
+			<Children data="ctaView.rootNode" name="rootNode" />
+		</BrowserElement>
+		<BrowserElement
+			dataClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml#SystemNode&gt;"
+			icon="controller.iconForObject(node)"
+			label="node.nodeName" isEditable="false" name="node">
+			<Children data="node.machineryAllocations" name="machineryAllocations" />
+		</BrowserElement>
+		<BrowserElement
+				dataClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml#MachineryAllocation&gt;"
+				icon="controller.iconForObject(allocation)" label="allocation.machinery.name"
+				isEditable="false" name="allocation">
+		</BrowserElement>
+	</Browser>
+	<LocalizedDictionary id="5" />
+	<FIBVariable id="6"
+		type="org.openflexo.ctamodule.model.CTAProjectNature" name="data" />
+	<FIBVariable id="7"
+		type="org.openflexo.foundation.fml.VirtualModelInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml&gt;"
+		value="data.CTAInstance.accessedVirtualModelInstance" name="ctaView" />
+</Panel>

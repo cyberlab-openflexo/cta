@@ -1,8 +1,8 @@
 /**
  * 
- * Copyright (c) 2014, Openflexo
+ * Copyright (c) 2019, Openflexo
  * 
- * This file is part of Flexovieweditor, a component of the software infrastructure 
+ * This file is part of Formose prototype, a component of the software infrastructure 
  * developed at Openflexo.
  * 
  * 
@@ -36,38 +36,24 @@
  * 
  */
 
-package org.openflexo.cta.fib;
+package org.openflexo.ctamodule.widget;
 
-import org.junit.Test;
-import org.openflexo.gina.test.GenericFIBTestCase;
-import org.openflexo.rm.FileResourceImpl;
+import org.openflexo.rm.Resource;
 import org.openflexo.rm.ResourceLocator;
+import org.openflexo.view.controller.FlexoController;
 
-public class TestCTAFibs extends GenericFIBTestCase {
+/**
+ * A browser that present a CTA project in the ExecutionUnit perspective<br>
+ * 
+ * @author yourname
+ */
+@SuppressWarnings("serial")
+public class ExecutionUnitProjectBrowser extends AbstractCTAProjectBrowser {
 
-	/*
-	 * Use this method to print all
-	 * Then copy-paste 
-	 */
+	private static final Resource BROWSER_FIB = ResourceLocator.locateResource("Fib/ExecutionUnitProjectBrowser.fib");
 
-	public static void main(String[] args) {
-		System.out.println(generateFIBTestCaseClass(((FileResourceImpl) ResourceLocator.locateResource("Fib")).getFile(), "Fib/"));
-		// System.out.println(generateFIBTestCaseClass(new File(System.getProperty("user.dir") + "/src/main/resources/Fib"), "Fib/"));
-	}
-
-	@Test
-	public void testGenericProjectBrowser() {
-		validateFIB("Fib/GenericProjectBrowser.fib");
-	}
-
-	@Test
-	public void testCTAProjectBrowser() {
-		validateFIB("Fib/PimCAProjectBrowser.fib");
-	}
-
-	@Test
-	public void testCTAProjectNaturePanel() {
-		validateFIB("Fib/CTAProjectNaturePanel.fib");
+	public ExecutionUnitProjectBrowser(final FlexoController controller) {
+		super(controller, BROWSER_FIB);
 	}
 
 }

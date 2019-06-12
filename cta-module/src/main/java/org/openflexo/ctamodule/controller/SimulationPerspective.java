@@ -44,22 +44,18 @@ import javax.swing.ImageIcon;
 
 import org.openflexo.ctamodule.CTACst;
 import org.openflexo.ctamodule.CTAIconLibrary;
-import org.openflexo.ctamodule.view.PimCADiagramModuleView;
-import org.openflexo.ctamodule.widget.AbstractCTAProjectBrowser;
 import org.openflexo.ctamodule.widget.PimCAModelBrowser;
-import org.openflexo.ctamodule.widget.PimCAProjectBrowser;
+import org.openflexo.ctamodule.widget.SimulationProjectBrowser;
 import org.openflexo.foundation.FlexoObject;
 import org.openflexo.foundation.fml.VirtualModel;
 import org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstance;
-import org.openflexo.technologyadapter.diagram.controller.DiagramTechnologyAdapterController;
-import org.openflexo.technologyadapter.diagram.controller.diagrameditor.FMLControlledDiagramEditor;
 import org.openflexo.technologyadapter.diagram.fml.FMLControlledDiagramVirtualModelInstanceNature;
 import org.openflexo.view.ModuleView;
 import org.openflexo.view.controller.FlexoController;
 
-public class PimCAPerspective extends AbstractCTAPerspective {
+public class SimulationPerspective extends AbstractCTAPerspective {
 
-	static final Logger logger = Logger.getLogger(PimCAPerspective.class.getPackage().getName());
+	static final Logger logger = Logger.getLogger(SimulationPerspective.class.getPackage().getName());
 
 	private final PimCAModelBrowser pimCAModelBrowser;
 
@@ -67,8 +63,8 @@ public class PimCAPerspective extends AbstractCTAPerspective {
 	 * @param controller
 	 * @param name
 	 */
-	public PimCAPerspective(FlexoController controller) {
-		super("pimca_perspective", controller);
+	public SimulationPerspective(FlexoController controller) {
+		super("simulation_perspective", controller);
 		pimCAModelBrowser = new PimCAModelBrowser(controller);
 	}
 
@@ -92,13 +88,13 @@ public class PimCAPerspective extends AbstractCTAPerspective {
 
 	@Override
 	public ImageIcon getActiveIcon() {
-		return CTAIconLibrary.PIMCA_PERSPECTIVE_ICON;
+		return CTAIconLibrary.SIMULATION_PERSPECTIVE_ICON;
 	}
 
 	@Override
 	public ModuleView<?> createModuleViewForObject(FlexoObject object) {
 
-		if (object instanceof FMLRTVirtualModelInstance) {
+		/*if (object instanceof FMLRTVirtualModelInstance) {
 			if (((FMLRTVirtualModelInstance) object).hasNature(FMLControlledDiagramVirtualModelInstanceNature.INSTANCE)) {
 				FMLRTVirtualModelInstance diagramVMI = (FMLRTVirtualModelInstance) object;
 				VirtualModel type = diagramVMI.getVirtualModel();
@@ -111,7 +107,7 @@ public class PimCAPerspective extends AbstractCTAPerspective {
 					}
 				}
 			}
-		}
+		}*/
 
 		// In all other cases...
 		return super.createModuleViewForObject(object);
@@ -141,8 +137,8 @@ public class PimCAPerspective extends AbstractCTAPerspective {
 	}
 
 	@Override
-	public AbstractCTAProjectBrowser makeProjectBrowser() {
-		return new PimCAProjectBrowser(getController());
+	public SimulationProjectBrowser makeProjectBrowser() {
+		return new SimulationProjectBrowser(getController());
 	}
 
 }

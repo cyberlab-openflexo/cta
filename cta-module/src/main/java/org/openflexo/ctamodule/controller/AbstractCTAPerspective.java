@@ -46,16 +46,13 @@ import javax.swing.JPanel;
 import org.openflexo.ctamodule.CTAIconLibrary;
 import org.openflexo.ctamodule.model.CTAProjectNature;
 import org.openflexo.ctamodule.view.CTAProjectNatureModuleView;
-import org.openflexo.ctamodule.widget.CTAProjectBrowser;
+import org.openflexo.ctamodule.widget.AbstractCTAProjectBrowser;
 import org.openflexo.ctamodule.widget.GenericProjectBrowser;
 import org.openflexo.foundation.FlexoObject;
 import org.openflexo.foundation.FlexoProject;
 import org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstance;
 import org.openflexo.foundation.fml.rt.FlexoConceptInstance;
 import org.openflexo.module.FlexoModule.WelcomePanel;
-import org.openflexo.technologyadapter.diagram.controller.DiagramTechnologyAdapterController;
-import org.openflexo.technologyadapter.diagram.controller.diagrameditor.FMLControlledDiagramEditor;
-import org.openflexo.technologyadapter.diagram.controller.diagrameditor.FMLControlledDiagramModuleView;
 import org.openflexo.technologyadapter.diagram.fml.FMLControlledDiagramVirtualModelInstanceNature;
 import org.openflexo.technologyadapter.gina.fml.FMLControlledFIBFlexoConceptInstanceNature;
 import org.openflexo.technologyadapter.gina.fml.FMLControlledFIBVirtualModelInstanceNature;
@@ -69,7 +66,7 @@ public abstract class AbstractCTAPerspective extends NaturePerspective<CTAProjec
 
 	static final Logger logger = Logger.getLogger(AbstractCTAPerspective.class.getPackage().getName());
 
-	private CTAProjectBrowser browser;
+	private AbstractCTAProjectBrowser browser;
 	private GenericProjectBrowser genericBrowser;
 
 	/**
@@ -79,7 +76,7 @@ public abstract class AbstractCTAPerspective extends NaturePerspective<CTAProjec
 	public AbstractCTAPerspective(String name, FlexoController controller) {
 		super(name, controller);
 
-		// browser = new CTAProjectBrowser(controller);
+		// browser = new PimCAProjectBrowser(controller);
 
 		// setTopLeftView(browser);
 
@@ -104,6 +101,8 @@ public abstract class AbstractCTAPerspective extends NaturePerspective<CTAProjec
 		updateBrowser(project, true);
 	}
 
+	public abstract AbstractCTAProjectBrowser makeProjectBrowser();
+
 	public void updateBrowser(final FlexoProject<?> project, boolean rebuildBrowser) {
 
 		System.out.println("updating browser " + browser + " with " + project);
@@ -111,7 +110,7 @@ public abstract class AbstractCTAPerspective extends NaturePerspective<CTAProjec
 		if (project != null) {
 			if (project.hasNature(CTAProjectNature.class)) {
 				if (browser == null || rebuildBrowser || browser.getDataObject().getProject() != project) {
-					browser = new CTAProjectBrowser(getController());
+					browser = makeProjectBrowser();
 				}
 				if (browser != null) {
 					browser.setRootObject(project.getNature(CTAProjectNature.class));
@@ -133,7 +132,7 @@ public abstract class AbstractCTAPerspective extends NaturePerspective<CTAProjec
 		}
 	}
 
-	public CTAProjectBrowser getBrowser() {
+	public AbstractCTAProjectBrowser getBrowser() {
 		return browser;
 	}
 
@@ -183,13 +182,13 @@ public abstract class AbstractCTAPerspective extends NaturePerspective<CTAProjec
 				return new FMLControlledFIBVirtualModelInstanceModuleView((FMLRTVirtualModelInstance) object, getController(), this,
 						getController().getModuleLocales());
 			}
-			if (((FMLRTVirtualModelInstance) object).hasNature(FMLControlledDiagramVirtualModelInstanceNature.INSTANCE)) {
+			/*if (((FMLRTVirtualModelInstance) object).hasNature(FMLControlledDiagramVirtualModelInstanceNature.INSTANCE)) {
 				FMLRTVirtualModelInstance diagramVMI = (FMLRTVirtualModelInstance) object;
 				DiagramTechnologyAdapterController diagramTAC = ((CTAController) getController()).getDiagramTAC();
 				FMLControlledDiagramEditor editor = new FMLControlledDiagramEditor(diagramVMI, false, getController(),
 						diagramTAC.getToolFactory());
 				return new FMLControlledDiagramModuleView(editor, this);
-			}
+			}*/
 		}
 
 		if (object instanceof FlexoConceptInstance) {

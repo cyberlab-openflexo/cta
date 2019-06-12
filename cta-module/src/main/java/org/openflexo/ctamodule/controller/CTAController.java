@@ -80,6 +80,8 @@ public class CTAController extends FlexoController {
 	private static final Logger logger = Logger.getLogger(CTAController.class.getPackage().getName());
 
 	private PimCAPerspective pimcaPerspective;
+	private ExecutionUnitPerspective executionUnitPerspective;
+	private SimulationPerspective simulationPerspective;
 
 	private DiagramTechnologyAdapterController diagramTAC = null;
 
@@ -93,6 +95,8 @@ public class CTAController extends FlexoController {
 	@Override
 	protected void initializePerspectives() {
 		this.addToPerspectives(pimcaPerspective = new PimCAPerspective(this));
+		this.addToPerspectives(executionUnitPerspective = new ExecutionUnitPerspective(this));
+		this.addToPerspectives(simulationPerspective = new SimulationPerspective(this));
 	}
 
 	public PimCAPerspective getPimCAPerspective() {

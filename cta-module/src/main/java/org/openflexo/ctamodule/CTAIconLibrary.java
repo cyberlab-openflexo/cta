@@ -70,6 +70,13 @@ public class CTAIconLibrary extends IconLibrary {
 	public static final ImageIcon PIMCA_DIAGRAM_ICON = new ImageIconResource(
 			ResourceLocator.locateResource("Icons/CTA/PimcaDiagram_16x16.png"));
 
+	public static final ImageIcon PIMCA_PERSPECTIVE_ICON = new ImageIconResource(
+			ResourceLocator.locateResource("Icons/CTA/PimcaPerspective_16x16.png"));
+	public static final ImageIcon EXECUTION_UNIT_PERSPECTIVE_ICON = new ImageIconResource(
+			ResourceLocator.locateResource("Icons/CTA/ExecutionUnitPerspective_16x16.png"));
+	public static final ImageIcon SIMULATION_PERSPECTIVE_ICON = new ImageIconResource(
+			ResourceLocator.locateResource("Icons/CTA/SimulationPerspective_16x16.png"));
+
 	public static final IconMarker CTA_BIG_MARKER = new IconMarker(CTA_MEDIUM_ICON, 32, 0);
 
 }
