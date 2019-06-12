@@ -23,6 +23,7 @@ package org.openflexo.ctamodule.view;
 import javax.swing.ImageIcon;
 
 import org.openflexo.ctamodule.CTAIconLibrary;
+import org.openflexo.ctamodule.controller.CTAFIBController;
 import org.openflexo.ctamodule.model.CTAProjectNature;
 import org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstance;
 import org.openflexo.gina.model.FIBComponent;
@@ -34,7 +35,6 @@ import org.openflexo.rm.ResourceLocator;
 import org.openflexo.technologyadapter.gina.model.FMLFIBBindingFactory;
 import org.openflexo.view.FIBModuleView;
 import org.openflexo.view.controller.FlexoController;
-import org.openflexo.view.controller.FlexoFIBController;
 import org.openflexo.view.controller.model.FlexoPerspective;
 
 /**
@@ -81,14 +81,9 @@ public class CTAProjectNatureModuleView extends FIBModuleView<CTAProjectNature> 
 
 	}
 
-	public static class CTAProjectNatureModuleViewFIBController extends FlexoFIBController {
+	public static class CTAProjectNatureModuleViewFIBController extends CTAFIBController {
 		public CTAProjectNatureModuleViewFIBController(FIBComponent component, GinaViewFactory<?> viewFactory) {
 			super(component, viewFactory);
-		}
-
-		public CTAProjectNatureModuleViewFIBController(FIBComponent component, GinaViewFactory<?> viewFactory,
-				FlexoController controller) {
-			super(component, viewFactory, controller);
 		}
 
 		public ImageIcon getProjectIcon() {

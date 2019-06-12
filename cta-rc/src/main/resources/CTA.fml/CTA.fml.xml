@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<VirtualModel id="SYL-5" virtualModelClass="org.openflexo.foundation.fml.VirtualModel" modelVersion="2.0" uri="http://ensta-bretagne.fr/cyber/cta/CTA.fml" version="0.1" bigIconResource="../../../../../cta-module/src/main/resources/Icons/CTA/module-cta-64.png" smallIconResource="../../../../../cta-module/src/main/resources/Icons/CTA/module-cta-16.png" name="CTA" mediumIconResource="../../../../../cta-module/src/main/resources/Icons/CTA/module-cta-32.png" author="sylvain" userID="SYL" flexoID="5">
+<VirtualModel id="SYL-5" virtualModelClass="org.openflexo.foundation.fml.VirtualModel" modelVersion="2.0" version="0.1" uri="http://ensta-bretagne.fr/cyber/cta/CTA.fml" bigIconResource="../../../../../cta-module/src/main/resources/Icons/CTA/module-cta-64.png" smallIconResource="../../../../../cta-module/src/main/resources/Icons/CTA/module-cta-16.png" name="CTA" mediumIconResource="../../../../../cta-module/src/main/resources/Icons/CTA/module-cta-32.png" author="sylvain" userID="SYL" flexoID="5">
   <FlexoConcept id="SYL-36" bigIconResource="../Icons/SystemNode_64x64.png" smallIconResource="../Icons/SystemNode_16x16.png" name="SystemNode" mediumIconResource="../Icons/SystemNode_32x32.png" userID="SYL" flexoID="36">
     <Inspector id="SYL-37" renderer="nodeName" inspectorTitle="SystemNode" userID="SYL" flexoID="37" />
     <EmbeddedFlexoConcept id="SYL-154" name="MachineryAllocation" userID="SYL" flexoID="154">
@@ -36,6 +36,14 @@
     <FMLRTVirtualModelInstanceModelSlot id="SYL-44" virtualModelURI="http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCADiagram.fml" isRequired="true" cloningStrategy="Reference" cardinality="OneMany" name="diagrams" userID="SYL" flexoID="44" />
     <ExpressionProperty id="SYL-90" expression="diagrams.get(0)" name="defaultDiagram" userID="SYL" flexoID="90" />
     <PrimitiveRole id="SYL-111" primitiveType="String" cloningStrategy="Clone" cardinality="ZeroOne" name="nodeName" userID="SYL" flexoID="111" />
+    <GetSetProperty id="SYL-214" name="machineryAllocations" userID="SYL" flexoID="214">
+      <SetControlGraph_EmptyControlGraph id="SYL-218" ownerContext="setControlGraph" userID="SYL" flexoID="218" />
+      <GetControlGraph_ReturnStatement id="SYL-217" ownerContext="getControlGraph" userID="SYL" flexoID="217">
+        <AssignableAction_SelectFlexoConceptInstance id="SYL-216" container="this" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/CTA.fml#MachineryAllocation" receiver="container" userID="SYL" flexoID="216" />
+      </GetControlGraph_ReturnStatement>
+    </GetSetProperty>
+    <FlexoConceptInstanceRole id="SYL-228" virtualModelInstance="container" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/CTA.fml#SystemNode" cloningStrategy="Reference" cardinality="ZeroOne" name="parentNode" userID="SYL" flexoID="228" />
+    <FlexoConceptInstanceRole id="SYL-229" virtualModelInstance="container" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/CTA.fml#SystemNode" cloningStrategy="Reference" cardinality="ZeroMany" name="childrenNodes" userID="SYL" flexoID="229" />
     <CreationScheme id="SYL-47" name="create" width="800" label="create" height="600" userID="SYL" flexoID="47">
       <BehaviourControlGraph_Sequence id="SYL-55" ownerContext="controlGraph2" userID="SYL" flexoID="55">
         <ControlGraph2_Sequence id="SYL-114" ownerContext="controlGraph2" userID="SYL" flexoID="114">
@@ -114,6 +122,12 @@
   <FMLRTVirtualModelInstanceModelSlot id="SYL-9" virtualModelURI="http://ensta-bretagne.fr/cyber/pimca/PimCA.fml" isRequired="true" cloningStrategy="Reference" cardinality="ZeroOne" name="pimca" userID="SYL" flexoID="9" />
   <FlexoConceptInstanceRole id="SYL-95" virtualModelInstance="this" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/CTA.fml#SystemNode" cloningStrategy="Reference" cardinality="One" name="rootNode" userID="SYL" flexoID="95" />
   <FMLRTVirtualModelInstanceModelSlot id="SYL-128" virtualModelURI="http://ensta-bretagne.fr/cyber/cta/TSM.fml" isRequired="true" cloningStrategy="Reference" cardinality="ZeroOne" name="tsm" userID="SYL" flexoID="128" />
+  <GetSetProperty id="SYL-239" name="executions" userID="SYL" flexoID="239">
+    <SetControlGraph_EmptyControlGraph id="SYL-245" ownerContext="setControlGraph" userID="SYL" flexoID="245" />
+    <GetControlGraph_ReturnStatement id="SYL-244" ownerContext="getControlGraph" userID="SYL" flexoID="244">
+      <AssignableAction_SelectVirtualModelInstance id="SYL-243" container="this" virtualModelTypeURI="http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml" receiver="this" userID="SYL" flexoID="243" />
+    </GetControlGraph_ReturnStatement>
+  </GetSetProperty>
   <CreationScheme id="SYL-10" name="init" width="800" label="init" height="600" userID="SYL" flexoID="10">
     <BehaviourControlGraph_Sequence id="SYL-22" userID="SYL" flexoID="22">
       <ControlGraph2_Sequence id="SYL-133" ownerContext="controlGraph2" userID="SYL" flexoID="133">

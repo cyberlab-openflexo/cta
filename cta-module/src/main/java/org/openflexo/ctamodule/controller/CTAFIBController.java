@@ -43,6 +43,7 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 import org.openflexo.ctamodule.model.CTAProjectNature;
+import org.openflexo.foundation.fml.rt.FlexoConceptInstance;
 import org.openflexo.gina.model.FIBComponent;
 import org.openflexo.gina.swing.view.SwingViewFactory;
 import org.openflexo.gina.view.GinaViewFactory;
@@ -90,6 +91,14 @@ public class CTAFIBController extends FlexoFIBController {
 			return getFlexoController().iconForObject(object);
 		}
 		return super.retrieveIconForObject(object);
+	}
+
+	public void newSimulation() {
+		System.out.println("New simulation !");
+	}
+
+	public void openSimulation(FlexoConceptInstance simulation) {
+		System.out.println("Open simulation " + simulation);
 	}
 
 }

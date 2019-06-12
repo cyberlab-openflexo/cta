@@ -11,6 +11,10 @@ public class CTA {
   public PimCA pimca;
   public SystemNode rootNode;
   public TSM tsm;
+  @GetSetProperty(value="executions", access=get)  
+  public List<UndefinedVirtualModelInstanceType> getExecutions {  
+    return this.FML@RT::SelectVirtualModelInstance();  
+  }
 
   @CreationScheme  
   CTA:init() {  
@@ -28,6 +32,12 @@ public class CTA {
       
     public VirtualModelInstanceType<PimCADiagram> defaultDiagram = diagrams.get(0);  
     public String nodeName;  
+    @GetSetProperty(value="machineryAllocations", access=get)    
+    public List<FlexoConceptInstanceType<MachineryAllocation>> getMachineryAllocations {    
+      return container.SelectFlexoConceptInstance(type=MachineryAllocation);    
+    }  
+    public SystemNode parentNode;  
+    public List childrenNodes;  
   
     @CreationScheme    
     SystemNode:create(String nodeName) {    

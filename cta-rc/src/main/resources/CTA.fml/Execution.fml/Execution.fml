@@ -8,6 +8,11 @@
 @VirtualModel(uri="http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml")
 public class Execution {
 
+  @GetSetProperty(value="executors", access=get)  
+  public List<FlexoConceptInstanceType<Executor>> getExecutors {  
+    return this.SelectFlexoConceptInstance(type=Executor);  
+  }
+
   /**  
    * Represent the execution of a ExecutionUnit deployed on a Machinery of a PimCA model  
    *   

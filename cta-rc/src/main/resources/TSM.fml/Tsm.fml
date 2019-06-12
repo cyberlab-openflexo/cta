@@ -21,6 +21,8 @@ public class TSM {
   public class ExecutionUnit {  
   
     public FlexoConcept supportConcept;  
+      
+    public String name = supportConcept.name;  
   
     @ActionScheme    
     Void init(String name) {    

@@ -3,6 +3,7 @@
   <FlexoConcept id="SYL-9" name="ExecutionUnit" userID="SYL" flexoID="9">
     <Inspector id="SYL-10" inspectorTitle="ExecutionUnit" userID="SYL" flexoID="10" />
     <FlexoConceptRole id="SYL-81" container="supportVirtualModel" cloningStrategy="Reference" cardinality="One" name="supportConcept" userID="SYL" flexoID="81" />
+    <ExpressionProperty id="SYL-108" expression="supportConcept.name" name="name" userID="SYL" flexoID="108" />
     <ActionScheme id="SYL-89" name="init" width="800" label="init" height="600" userID="SYL" flexoID="89">
       <BehaviourControlGraph_AssignationAction id="SYL-93" assign="supportConcept" userID="SYL" flexoID="93">
         <AssignableAction_CreateFlexoConcept id="SYL-92" container="supportVirtualModel" conceptName="parameters.name" receiver="supportVirtualModel" userID="SYL" flexoID="92" />
