@@ -44,6 +44,82 @@ public class CTA {
       return newDiagram;    
     }    
   
+    @ActionScheme    
+    public Void allocateExistingExecutionUnit(FlexoConceptInstanceType<Machinery> machinery, FlexoConceptInstanceType<ExecutionUnit> executionUnit) {    
+      this.getMachineryAllocation(parameters.machinery).allocateExistingExecutionUnit(parameters.executionUnit)    
+    }    
+  
+    @ActionScheme    
+    public Void allocateNewGuardActionExecutionUnit(FlexoConceptInstanceType<Machinery> machinery, String executionUnitName) {    
+      this.getMachineryAllocation(parameters.machinery).allocateNewGuardActionExecutionUnit(parameters.executionUnitName)    
+    }    
+  
+    @ActionScheme    
+    FlexoConceptInstanceType<MachineryAllocation> getMachineryAllocation(FlexoConceptInstanceType<Machinery> machinery) {    
+      FlexoConceptInstanceType<MachineryAllocation> returned = container.SelectUniqueFlexoConceptInstance(type=MachineryAllocation,where=where=(selected.machinery = parameters.machinery));      
+      if (returned = null) {      
+        returned = MachineryAllocation.create(parameters.machinery);      
+      }      
+      return returned;    
+    }    
+  
+  
+    @FlexoConcept    
+    public class MachineryAllocation {    
+      
+      public Machinery machinery;    
+      public ExecutionUnit executionUnit;    
+      
+      @CreationScheme      
+      MachineryAllocation:create(FlexoConceptInstanceType<Machinery> aMachinery) {      
+        machinery = parameters.aMachinery;      
+      }      
+      
+      @DeletionScheme      
+      Void delete() {      
+          
+      }      
+      
+      @ActionScheme      
+      public Void allocateExistingExecutionUnit(FlexoConceptInstanceType<ExecutionUnit> executionUnit) {      
+        executionUnit = parameters.executionUnit;      
+      }      
+      
+      @ActionScheme      
+      public Void allocateNewGuardActionExecutionUnit(String executionUnitName) {      
+        executionUnit = GuardActionExecutionUnit.create(parameters.executionUnitName);      
+      }      
+      
+    }    
+  
+  }  
+
+  @FlexoConcept  
+  public class MachineryAllocation {  
+  
+    public Machinery machinery;  
+    public ExecutionUnit executionUnit;  
+  
+    @CreationScheme    
+    MachineryAllocation:create(FlexoConceptInstanceType<Machinery> aMachinery) {    
+      machinery = parameters.aMachinery;    
+    }    
+  
+    @DeletionScheme    
+    Void delete() {    
+      
+    }    
+  
+    @ActionScheme    
+    public Void allocateExistingExecutionUnit(FlexoConceptInstanceType<ExecutionUnit> executionUnit) {    
+      executionUnit = parameters.executionUnit;    
+    }    
+  
+    @ActionScheme    
+    public Void allocateNewGuardActionExecutionUnit(String executionUnitName) {    
+      executionUnit = GuardActionExecutionUnit.create(parameters.executionUnitName);    
+    }    
+  
   }  
 
 }

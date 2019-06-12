@@ -9,21 +9,34 @@ use org.openflexo.foundation.fml.ta.FMLModelSlot;
 @VirtualModel(uri="http://ensta-bretagne.fr/cyber/cta/TSM.fml")
 public class TSM {
 
-  public VirtualModel executionVirtualModel;
+  public VirtualModel supportVirtualModel;
 
   @CreationScheme  
   TSM:init(String virtualModelName) {  
-    executionVirtualModel = CreateTopLevelVirtualModel();    
-    executionVirtualModel.CreateContainedVirtualModel()  
+    supportVirtualModel = CreateTopLevelVirtualModel();  
   }  
 
 
   @FlexoConcept  
   public class ExecutionUnit {  
+  
+    public FlexoConcept supportConcept;  
+  
+    @ActionScheme    
+    Void init(String name) {    
+      supportConcept = supportVirtualModel.CreateFlexoConcept();    
+    }    
+  
   }  
 
   @FlexoConcept  
   public class GuardActionExecutionUnit extends ExecutionUnit  {  
+  
+    @CreationScheme    
+    GuardActionExecutionUnit:create(String name) {    
+      this.init(parameters.name)    
+    }    
+  
   
     @FlexoConcept    
     public class GuardAction {    

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VirtualModel id="SYL-5" virtualModelClass="org.openflexo.foundation.fml.VirtualModel" modelVersion="2.0" uri="http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml" version="0.1" name="Execution" author="sylvain" description="Represent an execution of CTA model" userID="SYL" flexoID="5">
+  <FlexoConcept id="SYL-6" name="Executor" description="Represent the execution of a ExecutionUnit deployed on a Machinery of a PimCA model" userID="SYL" flexoID="6">
+    <Inspector id="SYL-7" inspectorTitle="Executor" userID="SYL" flexoID="7" />
+    <FlexoConceptInstanceRole id="SYL-13" virtualModelInstance="container.container" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/CTA.fml#SystemNode" cloningStrategy="Reference" cardinality="ZeroOne" name="systemNode" userID="SYL" flexoID="13" />
+    <FlexoConceptInstanceRole id="SYL-14" virtualModelInstance="" cloningStrategy="Reference" cardinality="ZeroOne" name="executionUnitInstance" userID="SYL" flexoID="14" />
+    <CreationScheme id="SYL-11" name="create" width="800" label="create" height="600" userID="SYL" flexoID="11">
+      <BehaviourControlGraph_EmptyControlGraph id="SYL-15" userID="SYL" flexoID="15" />
+    </CreationScheme>
+    <DeletionScheme id="SYL-12" name="delete" width="800" label="delete" height="600" userID="SYL" flexoID="12">
+      <BehaviourControlGraph_EmptyControlGraph id="SYL-16" userID="SYL" flexoID="16" />
+    </DeletionScheme>
+  </FlexoConcept>
+  <Inspector id="SYL-1" inspectorTitle="Execution" userID="SYL" flexoID="1" />
+</VirtualModel>

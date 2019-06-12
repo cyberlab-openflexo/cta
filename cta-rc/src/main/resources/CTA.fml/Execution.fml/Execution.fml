@@ -1,0 +1,33 @@
+
+/**
+ * Represent an execution of CTA model
+ * 
+ * @author sylvain
+ * @version 0.1
+ */
+@VirtualModel(uri="http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml")
+public class Execution {
+
+  /**  
+   * Represent the execution of a ExecutionUnit deployed on a Machinery of a PimCA model  
+   *   
+   */  
+  @FlexoConcept  
+  public class Executor {  
+  
+    public SystemNode systemNode;  
+    public FlexoConceptInstance executionUnitInstance;  
+  
+    @CreationScheme    
+    Executor:create() {    
+      
+    }    
+  
+    @DeletionScheme    
+    Void delete() {    
+      
+    }    
+  
+  }  
+
+}
