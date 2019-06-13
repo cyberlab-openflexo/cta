@@ -26,6 +26,7 @@
 				data="data.cTAInstance.accessedVirtualModelInstance" name="ctaInstance2" 
 				/> -->
 			<Children data="ctaView.rootNode" name="rootNode" />
+			<Children data="ctaView.tsm" name="tsm" />
 		</BrowserElement>
 		<BrowserElement
 			dataClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml#SystemNode&gt;"
@@ -35,8 +36,19 @@
 		</BrowserElement>
 		<BrowserElement
 				dataClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml#MachineryAllocation&gt;"
-				icon="controller.iconForObject(allocation)" label="allocation.machinery.name"
+				icon="controller.iconForObject(allocation)" label="allocation.toString"
 				isEditable="false" name="allocation">
+		</BrowserElement>
+		<BrowserElement
+			dataClassName="org.openflexo.foundation.fml.VirtualModelInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml&gt;"
+			icon="controller.iconForObject(tsm)"
+			label="'Execution units'" isEditable="false" name="tsm">
+			<Children data="tsm.executionUnits" name="executionUnits" />
+		</BrowserElement>
+		<BrowserElement
+			dataClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml#ExecutionUnit&gt;"
+			icon="controller.iconForObject(executionUnit)"
+			label="executionUnit.name" isEditable="false" name="executionUnit">
 		</BrowserElement>
 	</Browser>
 	<LocalizedDictionary id="5" />

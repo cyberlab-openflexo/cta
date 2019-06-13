@@ -39,10 +39,15 @@
 
 package org.openflexo.ctamodule.controller;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 
+import org.openflexo.connie.exception.InvalidBindingException;
+import org.openflexo.connie.exception.NullReferenceException;
+import org.openflexo.connie.exception.TypeMismatchException;
+import org.openflexo.ctamodule.CTACst;
 import org.openflexo.ctamodule.CTAIconLibrary;
 import org.openflexo.ctamodule.CTAModule;
 import org.openflexo.ctamodule.controller.action.CTAControllerActionInitializer;
@@ -179,11 +184,15 @@ public class CTAController extends FlexoController {
 
 		if (object instanceof FlexoConceptInstance) {
 			FlexoConcept type = ((FlexoConceptInstance) object).getFlexoConcept();
-			/*if (type != null) {
-				if (type.getName().equals(FMSConstants.ELEMENT_CONCEPT_NAME)) {
-					return FMSIconLibrary.ELEMENT_ICON;
+			if (type != null) {
+				if (type.getName().equals(CTACst.MACHINERY_ALLOCATION_CONCEPT_NAME)) {
+					try {
+						return iconForObject(((FlexoConceptInstance) object).execute("machinery"));
+					} catch (TypeMismatchException | NullReferenceException | InvocationTargetException | InvalidBindingException e) {
+						e.printStackTrace();
+					}
 				}
-			}*/
+			}
 		}
 
 		return super.iconForObject(object);

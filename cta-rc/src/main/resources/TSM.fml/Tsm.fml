@@ -10,6 +10,10 @@ use org.openflexo.foundation.fml.ta.FMLModelSlot;
 public class TSM {
 
   public VirtualModel supportVirtualModel;
+  @GetSetProperty(value="executionUnits", access=get)  
+  public List<FlexoConceptInstanceType<ExecutionUnit>> getExecutionUnits {  
+    return this.SelectFlexoConceptInstance(type=ExecutionUnit);  
+  }
 
   @CreationScheme  
   TSM:init(String virtualModelName) {  

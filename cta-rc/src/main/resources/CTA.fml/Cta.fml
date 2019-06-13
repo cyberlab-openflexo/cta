@@ -12,7 +12,7 @@ public class CTA {
   public SystemNode rootNode;
   public TSM tsm;
   @GetSetProperty(value="executions", access=get)  
-  public List<UndefinedVirtualModelInstanceType> getExecutions {  
+  public List<VirtualModelInstanceType<Execution>> getExecutions {  
     return this.FML@RT::SelectVirtualModelInstance();  
   }
 
@@ -100,6 +100,11 @@ public class CTA {
         executionUnit = GuardActionExecutionUnit.create(parameters.executionUnitName);      
       }      
       
+      @ActionScheme      
+      public Void clearAllocation() {      
+        executionUnit = null;      
+      }      
+      
     }    
   
   }  
@@ -128,6 +133,11 @@ public class CTA {
     @ActionScheme    
     public Void allocateNewGuardActionExecutionUnit(String executionUnitName) {    
       executionUnit = GuardActionExecutionUnit.create(parameters.executionUnitName);    
+    }    
+  
+    @ActionScheme    
+    public Void clearAllocation() {    
+      executionUnit = null;    
     }    
   
   }  

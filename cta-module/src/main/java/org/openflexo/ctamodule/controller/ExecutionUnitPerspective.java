@@ -38,17 +38,24 @@
 
 package org.openflexo.ctamodule.controller;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 
+import org.openflexo.connie.exception.InvalidBindingException;
+import org.openflexo.connie.exception.NullReferenceException;
+import org.openflexo.connie.exception.TypeMismatchException;
 import org.openflexo.ctamodule.CTAIconLibrary;
 import org.openflexo.ctamodule.model.CTAProjectNature;
 import org.openflexo.ctamodule.view.ExecutionUnitPerspectiveModuleView;
 import org.openflexo.ctamodule.widget.ExecutionUnitProjectBrowser;
 import org.openflexo.ctamodule.widget.PimCAModelBrowser;
+import org.openflexo.fml.controller.view.StandardFlexoConceptView;
 import org.openflexo.foundation.FlexoObject;
+import org.openflexo.foundation.fml.FlexoConcept;
 import org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstance;
+import org.openflexo.foundation.fml.rt.FlexoConceptInstance;
 import org.openflexo.view.ModuleView;
 import org.openflexo.view.controller.FlexoController;
 
@@ -112,6 +119,19 @@ public class ExecutionUnitPerspective extends AbstractCTAPerspective {
 			}
 		}*/
 
+		if (object instanceof FlexoConceptInstance) {
+			if (((FlexoConceptInstance) object).getFlexoConcept().getName().equals("GuardActionExecutionUnit")) {
+				FlexoConcept concept;
+				try {
+					concept = ((FlexoConceptInstance) object).execute("supportConcept");
+					return new StandardFlexoConceptView(concept, getController(), this);
+				} catch (TypeMismatchException | NullReferenceException | InvocationTargetException | InvalidBindingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+
 		// In all other cases...
 		return super.createModuleViewForObject(object);
 
@@ -131,6 +151,11 @@ public class ExecutionUnitPerspective extends AbstractCTAPerspective {
 				}
 			}
 		}*/
+		if (object instanceof FlexoConceptInstance) {
+			if (((FlexoConceptInstance) object).getFlexoConcept().getName().equals("GuardActionExecutionUnit")) {
+				return true;
+			}
+		}
 		return super.hasModuleViewForObject(object);
 	}
 

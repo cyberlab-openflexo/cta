@@ -50,6 +50,7 @@ public class CTACst {
 	public static final String PIMCA_VIEWPOINT_URI = "http://ensta-bretagne.fr/cyber/pimca/PimCA.fml";
 
 	public static final String SYSTEM_NODE_CONCEPT_NAME = "SystemNode";
+	public static final String MACHINERY_ALLOCATION_CONCEPT_NAME = "MachineryAllocation";
 
 	public static final String CTA_VIEW_NAME = "CTAView";
 
