@@ -10,9 +10,12 @@
       <FlexoConceptInstanceRole id="SYL-161" virtualModelInstance="pimcaModel" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCAModel.fml#Machinery" cloningStrategy="Reference" cardinality="ZeroOne" name="machinery" userID="SYL" flexoID="161" />
       <FlexoConceptInstanceRole id="SYL-175" virtualModelInstance="tsm" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/TSM.fml#ExecutionUnit" cloningStrategy="Reference" cardinality="ZeroOne" name="executionUnit" userID="SYL" flexoID="175" />
       <CreationScheme id="SYL-158" name="create" width="800" label="create" height="600" userID="SYL" flexoID="158">
-        <BehaviourControlGraph_AssignationAction id="SYL-163" assign="machinery" userID="SYL" flexoID="163">
-          <AssignableAction_ExpressionAction id="SYL-162" expression="parameters.aMachinery" userID="SYL" flexoID="162" />
-        </BehaviourControlGraph_AssignationAction>
+        <BehaviourControlGraph_Sequence id="SYL-324" userID="SYL" flexoID="324">
+          <ControlGraph2_NotifyPropertyChangedAction id="SYL-323" propertyName="machineryAllocations" object="container" ownerContext="controlGraph2" userID="SYL" flexoID="323" />
+          <ControlGraph1_AssignationAction id="SYL-163" assign="machinery" ownerContext="controlGraph1" userID="SYL" flexoID="163">
+            <AssignableAction_ExpressionAction id="SYL-162" expression="parameters.aMachinery" userID="SYL" flexoID="162" />
+          </ControlGraph1_AssignationAction>
+        </BehaviourControlGraph_Sequence>
         <GenericBehaviourParameter id="SYL-164" container="pimcaModel" isRequired="true" widget="CUSTOM_WIDGET" name="aMachinery" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCAModel.fml#Machinery&gt;" userID="SYL" flexoID="164" />
       </CreationScheme>
       <DeletionScheme id="SYL-159" name="delete" width="800" label="delete" height="600" userID="SYL" flexoID="159">
@@ -120,6 +123,38 @@
         </ControlGraph1_DeclarationAction>
       </BehaviourControlGraph_Sequence>
       <GenericBehaviourParameter id="SYL-204" container="pimcaModel" isRequired="true" widget="CUSTOM_WIDGET" name="machinery" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCAModel.fml#Machinery&gt;" userID="SYL" flexoID="204" />
+    </ActionScheme>
+    <ActionScheme id="SYL-302" visibility="Public" name="update" width="800" label="update" height="600" userID="SYL" flexoID="302">
+      <BehaviourControlGraph_Sequence id="SYL-319" userID="SYL" flexoID="319">
+        <ControlGraph2_Sequence id="SYL-320" ownerContext="controlGraph2" userID="SYL" flexoID="320">
+          <ControlGraph2_Sequence id="SYL-321" ownerContext="controlGraph2" userID="SYL" flexoID="321">
+            <ControlGraph2_FinalizeMatching id="SYL-317" container="this" flexoBehaviourURI="http://ensta-bretagne.fr/cyber/cta/CTA.fml#MachineryAllocation.delete()" matchingSet="matchingSet" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/CTA.fml#MachineryAllocation" ownerContext="controlGraph2" userID="SYL" flexoID="317" />
+            <ControlGraph1_IterationAction id="SYL-276" iteratorName="machinery" ownerContext="controlGraph1" userID="SYL" flexoID="276">
+              <Iteration_SelectFlexoConceptInstance id="SYL-278" container="pimcaModel" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCAModel.fml#Machinery" receiver="pimcaModel" ownerContext="iterationControlGraph" userID="SYL" flexoID="278" />
+              <ControlGraph_MatchFlexoConceptInstance id="SYL-280" container="this" creationSchemeURI="http://ensta-bretagne.fr/cyber/cta/CTA.fml#MachineryAllocation.create(aMachinery)" matchingSet="matchingSet" receiver="container" ownerContext="controlGraph" userID="SYL" flexoID="280">
+                <MatchingCriteria id="SYL-282" patternRoleName="machinery" value="machinery" userID="SYL" flexoID="282" />
+                <MatchingCriteria id="SYL-283" patternRoleName="executionUnit" userID="SYL" flexoID="283" />
+                <MatchingCriteria id="SYL-284" patternRoleName="pimcaModel" userID="SYL" flexoID="284" />
+                <MatchingCriteria id="SYL-285" patternRoleName="diagrams" userID="SYL" flexoID="285" />
+                <MatchingCriteria id="SYL-286" patternRoleName="defaultDiagram" userID="SYL" flexoID="286" />
+                <MatchingCriteria id="SYL-287" patternRoleName="nodeName" userID="SYL" flexoID="287" />
+                <MatchingCriteria id="SYL-288" patternRoleName="machineryAllocations" userID="SYL" flexoID="288" />
+                <MatchingCriteria id="SYL-289" patternRoleName="parentNode" userID="SYL" flexoID="289" />
+                <MatchingCriteria id="SYL-290" patternRoleName="childrenNodes" userID="SYL" flexoID="290" />
+                <MatchingCriteria id="SYL-291" patternRoleName="executions" userID="SYL" flexoID="291" />
+                <MatchingCriteria id="SYL-292" patternRoleName="pimca" userID="SYL" flexoID="292" />
+                <MatchingCriteria id="SYL-293" patternRoleName="rootNode" userID="SYL" flexoID="293" />
+                <MatchingCriteria id="SYL-294" patternRoleName="tsm" userID="SYL" flexoID="294" />
+                <CreateFlexoConceptInstanceParameter id="SYL-281" paramName="aMachinery" value="machinery" userID="SYL" flexoID="281" />
+              </ControlGraph_MatchFlexoConceptInstance>
+            </ControlGraph1_IterationAction>
+          </ControlGraph2_Sequence>
+          <ControlGraph1_DeclarationAction id="SYL-271" variable="matchingSet" ownerContext="controlGraph1" userID="SYL" flexoID="271">
+            <AssignableAction_InitiateMatching id="SYL-270" container="this" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/CTA.fml#MachineryAllocation" userID="SYL" flexoID="270" />
+          </ControlGraph1_DeclarationAction>
+        </ControlGraph2_Sequence>
+        <ControlGraph1_LogAction id="SYL-305" logLevel="INFO" logString="(&quot;Updating &quot; + this)" ownerContext="controlGraph1" userID="SYL" flexoID="305" />
+      </BehaviourControlGraph_Sequence>
     </ActionScheme>
   </FlexoConcept>
   <FlexoConcept idref="SYL-154" />

@@ -12,7 +12,7 @@ public class CTA {
   public SystemNode rootNode;
   public TSM tsm;
   @GetSetProperty(value="executions", access=get)  
-  public List<VirtualModelInstanceType<Execution>> getExecutions {  
+  public List<UndefinedVirtualModelInstanceType> getExecutions {  
     return this.FML@RT::SelectVirtualModelInstance();  
   }
 
@@ -73,6 +73,16 @@ public class CTA {
       return returned;    
     }    
   
+    @ActionScheme    
+    public Void update() {    
+      log ("Updating " + this)      
+      MatchingSet matchingSet = this.initiateMatching(MachineryAllocation);      
+      for (machinery : pimcaModel.SelectFlexoConceptInstance(type=Machinery)) {      
+        FML@RT::MatchFlexoConceptInstance as MachineryAllocation match=(machinery=machinery) using MachineryAllocation:create(machinery)      
+      }      
+      matchingSet.finalizeMatching()    
+    }    
+  
   
     @FlexoConcept    
     public class MachineryAllocation {    
@@ -82,7 +92,8 @@ public class CTA {
       
       @CreationScheme      
       MachineryAllocation:create(FlexoConceptInstanceType<Machinery> aMachinery) {      
-        machinery = parameters.aMachinery;      
+        machinery = parameters.aMachinery;        
+        container.firePropertyChange machineryAllocations      
       }      
       
       @DeletionScheme      
@@ -117,7 +128,8 @@ public class CTA {
   
     @CreationScheme    
     MachineryAllocation:create(FlexoConceptInstanceType<Machinery> aMachinery) {    
-      machinery = parameters.aMachinery;    
+      machinery = parameters.aMachinery;      
+      container.firePropertyChange machineryAllocations    
     }    
   
     @DeletionScheme    
