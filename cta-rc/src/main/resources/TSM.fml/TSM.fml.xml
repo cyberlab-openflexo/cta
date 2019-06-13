@@ -2,6 +2,21 @@
 <VirtualModel id="SYL-5" virtualModelClass="org.openflexo.foundation.fml.VirtualModel" modelVersion="2.0" uri="http://ensta-bretagne.fr/cyber/cta/TSM.fml" version="0.1" smallIconResource="../Icons/TSM_16x16.png" name="TSM" author="sylvain" description="Target System Modelling viewpoint" userID="SYL" flexoID="5">
   <FlexoConcept id="SYL-9" name="ExecutionUnit" userID="SYL" flexoID="9">
     <Inspector id="SYL-10" inspectorTitle="ExecutionUnit" userID="SYL" flexoID="10" />
+    <EmbeddedFlexoConcept id="SYL-138" name="Variable" userID="SYL" flexoID="138">
+      <Inspector id="SYL-139" inspectorTitle="Variable" userID="SYL" flexoID="139" />
+      <FlexoPropertyRole id="SYL-147" container="supportVirtualModel" cloningStrategy="Reference" cardinality="ZeroOne" name="property" userID="SYL" flexoID="147" />
+      <ExpressionProperty id="SYL-172" expression="property.name" name="name" userID="SYL" flexoID="172" />
+      <CreationScheme id="SYL-143" name="create" width="800" label="create" height="600" userID="SYL" flexoID="143">
+        <BehaviourControlGraph_AssignationAction id="SYL-171" assign="property" userID="SYL" flexoID="171">
+          <AssignableAction_CreatePrimitiveRole id="SYL-170" container="supportConcept" roleName="parameters.aName" primitiveType="parameters.primitiveType" receiver="supportVirtualModel" ownerContext="controlGraph2" userID="SYL" flexoID="170" />
+        </BehaviourControlGraph_AssignationAction>
+        <GenericBehaviourParameter id="SYL-151" isRequired="true" widget="TEXT_FIELD" name="aName" type="java.lang.String" userID="SYL" flexoID="151" />
+        <GenericBehaviourParameter id="SYL-150" isRequired="true" widget="DROPDOWN" name="primitiveType" type="org.openflexo.connie.type.PrimitiveType" userID="SYL" flexoID="150" />
+      </CreationScheme>
+      <DeletionScheme id="SYL-144" name="delete" width="800" label="delete" height="600" userID="SYL" flexoID="144">
+        <BehaviourControlGraph_EmptyControlGraph id="SYL-173" userID="SYL" flexoID="173" />
+      </DeletionScheme>
+    </EmbeddedFlexoConcept>
     <FlexoConceptRole id="SYL-81" container="supportVirtualModel" cloningStrategy="Reference" cardinality="One" name="supportConcept" userID="SYL" flexoID="81" />
     <ExpressionProperty id="SYL-108" expression="supportConcept.name" name="name" userID="SYL" flexoID="108" />
     <ActionScheme id="SYL-89" name="init" width="800" label="init" height="600" userID="SYL" flexoID="89">
@@ -17,11 +32,15 @@
       <Inspector id="SYL-20" inspectorTitle="GuardAction" userID="SYL" flexoID="20" />
     </EmbeddedFlexoConcept>
     <CreationScheme id="SYL-87" name="create" width="800" label="create" height="600" userID="SYL" flexoID="87">
-      <BehaviourControlGraph_ExpressionAction id="SYL-88" expression="this.init(parameters.name)" userID="SYL" flexoID="88" />
+      <BehaviourControlGraph_Sequence id="SYL-191" userID="SYL" flexoID="191">
+        <ControlGraph2_NotifyPropertyChangedAction id="SYL-190" propertyName="executionUnits" object="container" ownerContext="controlGraph2" userID="SYL" flexoID="190" />
+        <ControlGraph1_ExpressionAction id="SYL-88" expression="this.init(parameters.name)" ownerContext="controlGraph1" userID="SYL" flexoID="88" />
+      </BehaviourControlGraph_Sequence>
       <GenericBehaviourParameter id="SYL-95" isRequired="true" widget="TEXT_FIELD" name="name" type="java.lang.String" userID="SYL" flexoID="95" />
     </CreationScheme>
   </FlexoConcept>
   <FlexoConcept idref="SYL-19" />
+  <FlexoConcept idref="SYL-138" />
   <UseModelSlotDeclaration id="0" modelSlotClass="org.openflexo.foundation.fml.ta.FMLModelSlot" userID="SYL" flexoID="-1" />
   <Inspector id="SYL-1" inspectorTitle="Tsm" userID="SYL" flexoID="1" />
   <FMLModelSlot id="SYL-33" isRequired="true" cloningStrategy="Reference" cardinality="ZeroOne" name="supportVirtualModel" userID="SYL" flexoID="33" />

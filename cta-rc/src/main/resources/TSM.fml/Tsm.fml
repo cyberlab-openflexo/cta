@@ -33,6 +33,26 @@ public class TSM {
       supportConcept = supportVirtualModel.CreateFlexoConcept();    
     }    
   
+  
+    @FlexoConcept    
+    public class Variable {    
+      
+      public FlexoProperty property;    
+          
+      public String name = property.name;    
+      
+      @CreationScheme      
+      Variable:create(String aName, PrimitiveType primitiveType) {      
+        property = supportVirtualModel.CreatePrimitiveRole();      
+      }      
+      
+      @DeletionScheme      
+      Void delete() {      
+          
+      }      
+      
+    }    
+  
   }  
 
   @FlexoConcept  
@@ -40,7 +60,8 @@ public class TSM {
   
     @CreationScheme    
     GuardActionExecutionUnit:create(String name) {    
-      this.init(parameters.name)    
+      this.init(parameters.name)      
+      container.firePropertyChange executionUnits    
     }    
   
   
@@ -52,6 +73,25 @@ public class TSM {
 
   @FlexoConcept  
   public class GuardAction {  
+  }  
+
+  @FlexoConcept  
+  public class Variable {  
+  
+    public FlexoProperty property;  
+      
+    public String name = property.name;  
+  
+    @CreationScheme    
+    Variable:create(String aName, PrimitiveType primitiveType) {    
+      property = supportVirtualModel.CreatePrimitiveRole();    
+    }    
+  
+    @DeletionScheme    
+    Void delete() {    
+      
+    }    
+  
   }  
 
 }

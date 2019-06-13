@@ -1,7 +1,9 @@
+Allocate\ existing\ execution\ unit=Allocate existing execution unit
 Create\ and\ allocate\ new\ Guard/Action\ execution\ unit\n=Create and allocate new Guard/Action execution unit\n
 Une\ description\ ici\ ?\n=Une description ici ?\n
 allocate_existing_execution_unit=allocate_existing_execution_unit
 allocate_new_guard_action_execution_unit=allocate_new_guard_action_execution_unit
+clearAllocation=clearAllocation
 createNewDiagram=createNewDiagram
 diagramName=diagramName
 diagramTitle=diagramTitle
@@ -9,3 +11,4 @@ executionUnit=executionUnit
 executionUnitName=executionUnitName
 invalid_parameter=invalid_parameter
 machinery=machinery
+update=update
