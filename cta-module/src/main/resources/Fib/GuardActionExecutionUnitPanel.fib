@@ -150,7 +150,7 @@
 			</Table>
 			<Browser id="30" backgroundSelectionColor="7,73,217"
 				visibleRowCount="3" backgroundNonSelectionColor="255,255,255"
-				iteratorClassName="org.openflexo.foundation.fml.FMLObject"
+				iteratorClassName="org.openflexo.foundation.fml.editionaction.EditionAction"
 				textSelectionColor="255,255,255"
 				backgroundSecondarySelectionColor="178,215,255"
 				showRootsHandle="true" showFooter="true"
@@ -329,7 +329,7 @@
 				horizontalScrollbarPolicy="HORIZONTAL_SCROLLBAR_AS_NEEDED"
 				name="TextArea2" />
 			<FIBReferencedComponent id="73"
-				dynamicComponent="controller.inspectorForObject(BehaviourBrowser.selected)"
+				dynamicComponent="controller.basicInspectorTabForObject(BehaviourBrowser.selected)"
 				localize="true" manageDynamicModel="true"
 				data="BehaviourBrowser.selected"
 				constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=center)"
