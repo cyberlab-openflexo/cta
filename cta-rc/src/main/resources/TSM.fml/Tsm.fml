@@ -27,6 +27,10 @@ public class TSM {
     public FlexoConcept supportConcept;  
       
     public String name = supportConcept.name;  
+    @GetSetProperty(value="variables", access=get)    
+    public List<FlexoConceptInstanceType<Variable>> getVariables {    
+      return container.SelectFlexoConceptInstance(type=Variable);    
+    }  
   
     @ActionScheme    
     Void init(String name) {    
@@ -43,7 +47,8 @@ public class TSM {
       
       @CreationScheme      
       Variable:create(String aName, PrimitiveType primitiveType) {      
-        property = supportVirtualModel.CreatePrimitiveRole();      
+        property = supportVirtualModel.CreatePrimitiveRole();        
+        container.firePropertyChange variables      
       }      
       
       @DeletionScheme      
@@ -84,7 +89,8 @@ public class TSM {
   
     @CreationScheme    
     Variable:create(String aName, PrimitiveType primitiveType) {    
-      property = supportVirtualModel.CreatePrimitiveRole();    
+      property = supportVirtualModel.CreatePrimitiveRole();      
+      container.firePropertyChange variables    
     }    
   
     @DeletionScheme    
