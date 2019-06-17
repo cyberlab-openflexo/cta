@@ -1,3 +1,5 @@
+action=action
+allocate_execution_unit=allocate_execution_unit
 configure_cta=configure_cta
 configure_new_pimca_diagram=configure_new_pimca_diagram
 convert_your_project=convert_your_project
@@ -34,7 +36,10 @@ machinery=machinery
 methodologies=methodologies
 methodology=methodology
 new=new
+new_execution_unit=new_execution_unit
+new_pimca_diagram=new_pimca_diagram
 new_simulation=new_simulation
+open_pimca_diagram=open_pimca_diagram
 open_simulation=open_simulation
 opening_module_view_for_object=opening_module_view_for_object
 pimca_perspective=pimca_perspective

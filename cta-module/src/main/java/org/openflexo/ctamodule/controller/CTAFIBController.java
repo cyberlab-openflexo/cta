@@ -43,12 +43,12 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 import org.openflexo.ctamodule.model.CTAProjectNature;
+import org.openflexo.fml.controller.FMLFIBController;
 import org.openflexo.foundation.fml.rt.FlexoConceptInstance;
 import org.openflexo.gina.model.FIBComponent;
 import org.openflexo.gina.swing.view.SwingViewFactory;
 import org.openflexo.gina.view.GinaViewFactory;
 import org.openflexo.localization.FlexoLocalization;
-import org.openflexo.view.controller.FlexoFIBController;
 
 /**
  * Represents the controller of a FIBComponent in CTA prototype
@@ -56,7 +56,7 @@ import org.openflexo.view.controller.FlexoFIBController;
  * 
  * @author sylvain
  */
-public class CTAFIBController extends FlexoFIBController {
+public class CTAFIBController extends FMLFIBController {
 
 	@SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(CTAFIBController.class.getPackage().getName());

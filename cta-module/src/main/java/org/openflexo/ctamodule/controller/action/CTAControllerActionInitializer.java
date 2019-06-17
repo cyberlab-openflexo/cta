@@ -43,6 +43,7 @@ import java.util.logging.Logger;
 
 import org.openflexo.ctamodule.controller.CTAController;
 import org.openflexo.ctamodule.controller.CTASelectionManager;
+import org.openflexo.fml.controller.action.CreateEditionActionInitializer;
 import org.openflexo.view.controller.ControllerActionInitializer;
 
 /**
@@ -78,6 +79,9 @@ public class CTAControllerActionInitializer extends ControllerActionInitializer 
 		new CreateNewPimCADiagramInitializer(this);
 
 		new CTASetPropertyInitializer(this);
+
+		// CreateEditionAction is called in the context of CTA module
+		new CreateEditionActionInitializer(this);
 
 	}
 
