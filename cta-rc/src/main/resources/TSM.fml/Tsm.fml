@@ -63,6 +63,11 @@ public class TSM {
   @FlexoConcept  
   public class GuardActionExecutionUnit extends ExecutionUnit  {  
   
+    @GetSetProperty(value="guardActions", access=get)    
+    public List<FlexoConceptInstanceType<GuardAction>> getGuardActions {    
+      return container.SelectFlexoConceptInstance(type=GuardAction);    
+    }  
+  
     @CreationScheme    
     GuardActionExecutionUnit:create(String name) {    
       this.init(parameters.name)      
@@ -72,12 +77,34 @@ public class TSM {
   
     @FlexoConcept    
     public class GuardAction {    
+      
+          
+      public String name = actionScheme.name;    
+      public ActionScheme actionScheme;    
+      
+      @CreationScheme      
+      GuardAction:create(String name) {      
+        actionScheme = supportVirtualModel.CreateFlexoBehaviour();        
+        container.firePropertyChange guardActions      
+      }      
+      
     }    
   
   }  
 
   @FlexoConcept  
   public class GuardAction {  
+  
+      
+    public String name = actionScheme.name;  
+    public ActionScheme actionScheme;  
+  
+    @CreationScheme    
+    GuardAction:create(String name) {    
+      actionScheme = supportVirtualModel.CreateFlexoBehaviour();      
+      container.firePropertyChange guardActions    
+    }    
+  
   }  
 
   @FlexoConcept  
