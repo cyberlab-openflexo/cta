@@ -1,205 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Panel id="0" align="left" borderTop="0" flowAlignment="LEADING"
-	borderLeft="0" imageFile="..Icons/CTABackground.jpg"
-	trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0"
-	border="empty" imageWidth="626" sizeAdjustment="FitToAvailableSize"
-	imageHeight="417" layout="twocols" vGap="5" borderRight="0" hGap="5"
-	controllerClassName="org.openflexo.ctamodule.view.GuardActionExecutionUnitModuleView$GuardActionExecutionUnitModuleViewFIBController"
-	name="Panel">
-	<Panel id="1" align="left" borderTop="0" borderTitle="Panel"
-		flowAlignment="CENTER" borderLeft="0" trackViewPortHeight="true"
-		trackViewPortWidth="true" borderBottom="0" border="empty"
-		sizeAdjustment="OriginalSize" layout="flow" vGap="5" borderRight="0"
-		hGap="5"
-		constraints="twocols(anchor=south;expandHorizontally=true;expandVertically=false;fill=both;gridHeight=1;gridWidth=0;gridX=-1;gridY=-1;insetsBottom=0;insetsLeft=10;insetsRight=10;insetsTop=10;location=center;padX=0;padY=0;weightX=1.0;weightY=0.0)"
-		name="FIBPanel2">
-		<Image id="2" imageWidth="80" sizeAdjustment="OriginalSize"
-			align="left" imageHeight="46" data="controller.projectIcon.image"
-			constraints="flow()" name="Image2" />
-		<Label id="3" label="" align="center" data="data.name"
-			constraints="flow(anchor=center;fill=horizontal;gridHeight=1;gridWidth=0;gridX=-1;gridY=-1;insetsBottom=0;insetsLeft=10;insetsRight=10;insetsTop=50;location=center;padX=0;padY=0;weightX=1.0;weightY=0.0)"
-			font="ArialMT,0,30" name="Label" />
-	</Panel>
-	<Label id="4" label="description" align="left" localize="true"
-		constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=10;location=left)"
-		name="Label2" />
-	<TextArea id="5" rows="6" columns="8" validateOnReturn="true"
-		text="TextArea" data="formoseView.projectDescription"
-		useScrollBar="true"
-		verticalScrollbarPolicy="VERTICAL_SCROLLBAR_AS_NEEDED"
-		constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=20;insetsTop=10;location=right)"
-		horizontalScrollbarPolicy="HORIZONTAL_SCROLLBAR_AS_NEEDED"
-		name="TextArea" />
-	<Label label="variables" align="left"
-		constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)"
-		name="Label4" />
-	<Panel align="left" borderTop="0" flowAlignment="LEADING"
-		borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true"
-		borderBottom="0" border="empty" sizeAdjustment="OriginalSize"
-		layout="twocols" vGap="5" borderRight="0" hGap="5"
-		constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=5;location=right)"
-		name="Panel3">
-		<Table backgroundSelectionColor="7,73,217"
-			visibleRowCount="3" backgroundNonSelectionColor="255,255,255"
-			iteratorClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml#Variable&gt;"
-			textSelectionColor="255,255,255"
-			backgroundSecondarySelectionColor="212,212,212"
-			textSecondarySelectionColor="0,0,0" lookAndFeel="FlatDesign"
-			textNonSelectionColor="0,0,0"
-			selectionMode="MultipleIntervalSelection" rowHeight="18"
-			manageDynamicModel="true" data="data.variables"
-			constraints="twocols(expandHorizontally=false;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)"
-			name="VariableTable">
-			<IconColumn 
-				data="controller.iconForObject(iterator)" resizable="false"
-				title="icon" displayTitle="false" columnWidth="20" showIcon="false"
-				name="icon" />
-			<LabelColumn data="iterator.name"
-				resizable="true" title="variable" displayTitle="true"
-				columnWidth="100" showIcon="false" name="variable" />
-			<LabelColumn 
-				data="iterator.property.typeDescription" resizable="true"
-				title="type" displayTitle="true" columnWidth="200" showIcon="false"
-				name="type" />
-			<AddAction name="add_action" />
-		</Table>
-		<Panel align="left" borderTop="0" borderLeft="0"
-			trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0"
-			border="empty" sizeAdjustment="OriginalSize" layout="twocols"
-			borderRight="0"
-			constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)"
-			name="Panel4">
-			<Label label="name" align="left"
-				constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)"
-				name="Label5" />
-			<TextField columns="7"
-				data="VariableTable.selected.name"
-				constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)"
-				name="TextField" />
-			<Label label="type" align="left"
-				constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)"
-				name="Label6" />
-			<DropDown autoSelectFirstRow="true"
-				iteratorClassName="java.lang.Object" showText="true"
-				showIcon="false" data="VariableTable.selected.property"
-				constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)"
-				name="dropdown" />
-			<Label label="cardinality" align="left"
-				constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)"
-				name="Label8" />
-			<DropDown autoSelectFirstRow="true"
-				iteratorClassName="org.openflexo.foundation.fml.PropertyCardinality"
-				showText="true" showIcon="false"
-				data="VariableTable.selected.property.cardinality"
-				constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)"
-				name="dropdown2" />
-			<Label label="description" align="left"
-				constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)"
-				name="Label7" />
-			<TextArea rows="2" columns="8"
-				validateOnReturn="true" text="TextArea"
-				data="VariableTable.selected.property.description"
-				useScrollBar="true"
-				verticalScrollbarPolicy="VERTICAL_SCROLLBAR_AS_NEEDED"
-				constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)"
-				horizontalScrollbarPolicy="HORIZONTAL_SCROLLBAR_AS_NEEDED"
-				name="TextArea2" />
-		</Panel>
-	</Panel>
-	<Label label="variables" align="left"
-		constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)"
-		name="Label4" />
-	<Panel align="left" borderTop="0" flowAlignment="LEADING"
-		borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true"
-		borderBottom="0" border="empty" sizeAdjustment="OriginalSize"
-		layout="twocols" vGap="5" borderRight="0" hGap="5"
-		constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=5;location=right)"
-		name="Panel3">
-		<Table backgroundSelectionColor="7,73,217"
-			visibleRowCount="3" backgroundNonSelectionColor="255,255,255"
-			iteratorClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml#Variable&gt;"
-			textSelectionColor="255,255,255"
-			backgroundSecondarySelectionColor="212,212,212"
-			textSecondarySelectionColor="0,0,0" lookAndFeel="FlatDesign"
-			textNonSelectionColor="0,0,0"
-			selectionMode="MultipleIntervalSelection" rowHeight="18"
-			manageDynamicModel="true" data="data.variables"
-			constraints="twocols(expandHorizontally=false;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)"
-			name="VariableTable">
-			<IconColumn 
-				data="controller.iconForObject(iterator)" resizable="false"
-				title="icon" displayTitle="false" columnWidth="20" showIcon="false"
-				name="icon" />
-			<LabelColumn data="iterator.name"
-				resizable="true" title="variable" displayTitle="true"
-				columnWidth="100" showIcon="false" name="variable" />
-			<LabelColumn 
-				data="iterator.property.typeDescription" resizable="true"
-				title="type" displayTitle="true" columnWidth="200" showIcon="false"
-				name="type" />
-			<AddAction name="add_action" />
-		</Table>
-		<Panel align="left" borderTop="0" borderLeft="0"
-			trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0"
-			border="empty" sizeAdjustment="OriginalSize" layout="twocols"
-			borderRight="0"
-			constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)"
-			name="Panel4">
-			<Label label="name" align="left"
-				constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)"
-				name="Label5" />
-			<TextField columns="7"
-				data="VariableTable.selected.name"
-				constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)"
-				name="TextField" />
-			<Label label="type" align="left"
-				constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)"
-				name="Label6" />
-			<DropDown autoSelectFirstRow="true"
-				iteratorClassName="java.lang.Object" showText="true"
-				showIcon="false" data="VariableTable.selected.property"
-				constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)"
-				name="dropdown" />
-			<Label label="cardinality" align="left"
-				constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)"
-				name="Label8" />
-			<DropDown autoSelectFirstRow="true"
-				iteratorClassName="org.openflexo.foundation.fml.PropertyCardinality"
-				showText="true" showIcon="false"
-				data="VariableTable.selected.property.cardinality"
-				constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)"
-				name="dropdown2" />
-			<Label label="description" align="left"
-				constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)"
-				name="Label7" />
-			<TextArea rows="2" columns="8"
-				validateOnReturn="true" text="TextArea"
-				data="VariableTable.selected.property.description"
-				useScrollBar="true"
-				verticalScrollbarPolicy="VERTICAL_SCROLLBAR_AS_NEEDED"
-				constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)"
-				horizontalScrollbarPolicy="HORIZONTAL_SCROLLBAR_AS_NEEDED"
-				name="TextArea2" />
-		</Panel>
-	</Panel>
-	<Panel id="33" align="left" borderTop="0" borderTitle="Panel"
-		flowAlignment="CENTER" borderLeft="0" trackViewPortHeight="true"
-		trackViewPortWidth="true" borderBottom="0" border="empty"
-		sizeAdjustment="OriginalSize" layout="flow" vGap="5" borderRight="0"
-		hGap="5"
-		constraints="twocols(anchor=east;expandHorizontally=true;expandVertically=false;fill=both;gridHeight=-1;gridWidth=0;gridX=-1;gridY=-1;insetsBottom=10;insetsLeft=20;insetsRight=20;insetsTop=10;location=center;padX=0;padY=0;weightX=1.0;weightY=0.1)"
-		name="FIBPanel">
-		<Button id="34" buttonType="Trigger"
-			action="controller.newExecutionUnit()" label="new_execution_unit"
-			localize="true" constraints="flow()" name="Button" />
-		<Button id="35" buttonType="Trigger"
-			action="controller.allocateExecutionUnit(SystemNodeBrowser.selected)"
-			label="allocate_execution_unit" localize="true"
-			enable="(SystemNodeBrowser.selected != null)" constraints="flow()"
-			name="Button3" />
-	</Panel>
-	<LocalizedDictionary id="36" />
-	<FIBVariable id="37"
-		type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml#GuardActionExecutionUnit&gt;"
-		name="data" />
+<Panel id="0" align="left" borderTop="0" flowAlignment="LEADING" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="empty" imageWidth="626" sizeAdjustment="FitToAvailableSize" imageHeight="417" layout="twocols" vGap="5" borderRight="0" hGap="5" controllerClassName="org.openflexo.ctamodule.view.GuardActionExecutionUnitModuleView$GuardActionExecutionUnitModuleViewFIBController" name="Panel">
+  <Panel id="1" align="left" borderTop="0" borderTitle="Panel" flowAlignment="CENTER" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="empty" sizeAdjustment="OriginalSize" layout="flow" vGap="5" borderRight="0" hGap="5" constraints="twocols(anchor=south;expandHorizontally=true;expandVertically=false;fill=both;gridHeight=1;gridWidth=0;gridX=-1;gridY=-1;insetsBottom=0;insetsLeft=10;insetsRight=10;insetsTop=10;location=center;padX=0;padY=0;weightX=1.0;weightY=0.0)" name="FIBPanel2">
+    <Image id="2" imageWidth="80" sizeAdjustment="OriginalSize" align="left" imageHeight="46" data="controller.projectIcon.image" constraints="flow()" name="Image2" />
+    <Label id="3" label="" align="center" data="data.name" constraints="flow(anchor=center;fill=horizontal;gridHeight=1;gridWidth=0;gridX=-1;gridY=-1;insetsBottom=0;insetsLeft=10;insetsRight=10;insetsTop=50;location=center;padX=0;padY=0;weightX=1.0;weightY=0.0)" font="ArialMT,0,30" name="Label" />
+  </Panel>
+  <Label id="4" label="description" align="left" localize="true" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=10;location=left)" name="Label2" />
+  <TextArea id="5" rows="6" columns="8" validateOnReturn="true" text="TextArea" data="formoseView.projectDescription" useScrollBar="true" verticalScrollbarPolicy="VERTICAL_SCROLLBAR_AS_NEEDED" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=20;insetsTop=10;location=right)" horizontalScrollbarPolicy="HORIZONTAL_SCROLLBAR_AS_NEEDED" name="TextArea" />
+  <Label id="6" label="variables" align="left" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="Label4" />
+  <Panel id="7" align="left" borderTop="0" flowAlignment="LEADING" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="empty" sizeAdjustment="OriginalSize" layout="twocols" vGap="5" borderRight="0" hGap="5" constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=5;location=right)" name="Panel3">
+    <Table id="8" backgroundSelectionColor="7,73,217" visibleRowCount="3" backgroundNonSelectionColor="255,255,255" iteratorClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml#Variable&gt;" textSelectionColor="255,255,255" backgroundSecondarySelectionColor="212,212,212" autoSelectFirstRow="true" textSecondarySelectionColor="0,0,0" lookAndFeel="FlatDesign" textNonSelectionColor="0,0,0" selectionMode="MultipleIntervalSelection" rowHeight="18" manageDynamicModel="true" data="data.variables" constraints="twocols(expandHorizontally=false;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="VariableTable">
+      <IconColumn id="9" data="controller.iconForObject(iterator)" resizable="false" title="icon" displayTitle="false" columnWidth="20" showIcon="false" name="icon" />
+      <LabelColumn id="10" data="iterator.name" resizable="true" title="variable" displayTitle="true" columnWidth="100" showIcon="false" name="variable" />
+      <LabelColumn id="11" data="iterator.property.typeDescription" resizable="true" title="type" displayTitle="true" columnWidth="200" showIcon="false" name="type" />
+      <AddAction id="12" name="add_action" />
+    </Table>
+    <Panel id="13" align="left" borderTop="0" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="empty" sizeAdjustment="OriginalSize" layout="twocols" borderRight="0" constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)" name="Panel4">
+      <Label id="14" label="name" align="left" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="Label5" />
+      <TextField id="15" columns="7" data="VariableTable.selected.name" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)" name="TextField" />
+      <Label id="16" label="type" align="left" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="Label6" />
+      <DropDown id="17" autoSelectFirstRow="true" iteratorClassName="org.openflexo.connie.type.PrimitiveType" showText="true" showIcon="false" data="VariableTable.selected.property.primitiveType" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)" name="dropdown" />
+      <Label id="18" label="cardinality" align="left" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="Label8" />
+      <DropDown id="19" autoSelectFirstRow="true" iteratorClassName="org.openflexo.foundation.fml.PropertyCardinality" showText="true" showIcon="false" data="VariableTable.selected.property.cardinality" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)" name="dropdown2" />
+      <Label id="20" label="description" align="left" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="Label7" />
+      <TextArea id="21" rows="2" columns="8" validateOnReturn="true" text="TextArea" data="VariableTable.selected.property.description" useScrollBar="true" verticalScrollbarPolicy="VERTICAL_SCROLLBAR_AS_NEEDED" constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)" horizontalScrollbarPolicy="HORIZONTAL_SCROLLBAR_AS_NEEDED" name="TextArea2" />
+    </Panel>
+  </Panel>
+  <Label id="22" label="guard/actions" align="left" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="Label4" />
+  <Panel id="23" align="left" borderTop="0" flowAlignment="LEADING" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="empty" sizeAdjustment="OriginalSize" layout="twocols" vGap="5" borderRight="0" hGap="5" constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=5;location=right)" name="Panel3">
+    <Table id="24" backgroundSelectionColor="7,73,217" visibleRowCount="3" backgroundNonSelectionColor="255,255,255" iteratorClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml#Variable&gt;" textSelectionColor="255,255,255" backgroundSecondarySelectionColor="212,212,212" textSecondarySelectionColor="0,0,0" lookAndFeel="FlatDesign" textNonSelectionColor="0,0,0" selectionMode="MultipleIntervalSelection" rowHeight="18" manageDynamicModel="true" data="data.variables" constraints="twocols(expandHorizontally=false;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="VariableTable">
+      <IconColumn id="25" data="controller.iconForObject(iterator)" resizable="false" title="icon" displayTitle="false" columnWidth="20" showIcon="false" name="icon" />
+      <LabelColumn id="26" data="iterator.name" resizable="true" title="variable" displayTitle="true" columnWidth="100" showIcon="false" name="variable" />
+      <LabelColumn id="27" data="iterator.property.typeDescription" resizable="true" title="type" displayTitle="true" columnWidth="200" showIcon="false" name="type" />
+      <AddAction id="28" name="add_action" />
+    </Table>
+    <Panel id="29" align="left" borderTop="0" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="empty" sizeAdjustment="OriginalSize" layout="twocols" borderRight="0" constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)" name="Panel4">
+      <Label id="30" label="name" align="left" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="Label5" />
+      <TextField id="31" columns="7" data="VariableTable.selected.name" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)" name="TextField" />
+      <Label id="32" label="type" align="left" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="Label6" />
+      <DropDown id="33" autoSelectFirstRow="true" iteratorClassName="java.lang.Object" showText="true" showIcon="false" data="VariableTable.selected.property" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)" name="dropdown" />
+      <Label id="34" label="cardinality" align="left" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="Label8" />
+      <DropDown id="35" autoSelectFirstRow="true" iteratorClassName="org.openflexo.foundation.fml.PropertyCardinality" showText="true" showIcon="false" data="VariableTable.selected.property.cardinality" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)" name="dropdown2" />
+      <Label id="36" label="description" align="left" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="Label7" />
+      <TextArea id="37" rows="2" columns="8" validateOnReturn="true" text="TextArea" data="VariableTable.selected.property.description" useScrollBar="true" verticalScrollbarPolicy="VERTICAL_SCROLLBAR_AS_NEEDED" constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)" horizontalScrollbarPolicy="HORIZONTAL_SCROLLBAR_AS_NEEDED" name="TextArea2" />
+    </Panel>
+  </Panel>
+  <Panel id="38" align="left" borderTop="0" borderTitle="Panel" flowAlignment="CENTER" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="empty" sizeAdjustment="OriginalSize" layout="flow" vGap="5" borderRight="0" hGap="5" constraints="twocols(anchor=east;expandHorizontally=true;expandVertically=false;fill=both;gridHeight=-1;gridWidth=0;gridX=-1;gridY=-1;insetsBottom=10;insetsLeft=20;insetsRight=20;insetsTop=10;location=center;padX=0;padY=0;weightX=1.0;weightY=0.1)" name="FIBPanel">
+    <Button id="39" buttonType="Trigger" action="controller.newExecutionUnit()" label="new_execution_unit" localize="true" constraints="flow()" name="Button" />
+    <Button id="40" buttonType="Trigger" action="controller.allocateExecutionUnit(SystemNodeBrowser.selected)" label="allocate_execution_unit" localize="true" enable="(SystemNodeBrowser.selected != null)" constraints="flow()" name="Button3" />
+  </Panel>
+  <LocalizedDictionary id="41" />
+  <FIBVariable id="42" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml#GuardActionExecutionUnit&gt;" name="data" />
 </Panel>

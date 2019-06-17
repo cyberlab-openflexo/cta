@@ -4,8 +4,8 @@
     <Inspector id="SYL-10" inspectorTitle="ExecutionUnit" userID="SYL" flexoID="10" />
     <EmbeddedFlexoConcept id="SYL-138" name="Variable" userID="SYL" flexoID="138">
       <Inspector id="SYL-139" inspectorTitle="Variable" userID="SYL" flexoID="139" />
-      <FlexoPropertyRole id="SYL-147" container="supportVirtualModel" cloningStrategy="Reference" cardinality="ZeroOne" name="property" userID="SYL" flexoID="147" />
       <ExpressionProperty id="SYL-172" expression="property.name" name="name" userID="SYL" flexoID="172" />
+      <PrimitiveRoleRole id="SYL-230" container="supportConcept" cloningStrategy="Reference" cardinality="ZeroOne" name="property" userID="SYL" flexoID="230" />
       <CreationScheme id="SYL-143" name="create" width="800" label="create" height="600" userID="SYL" flexoID="143">
         <BehaviourControlGraph_Sequence id="SYL-213" userID="SYL" flexoID="213">
           <ControlGraph2_NotifyPropertyChangedAction id="SYL-212" propertyName="variables" object="container" ownerContext="controlGraph2" userID="SYL" flexoID="212" />
