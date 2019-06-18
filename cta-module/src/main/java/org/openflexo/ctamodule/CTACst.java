@@ -52,6 +52,9 @@ public class CTACst {
 	public static final String SYSTEM_NODE_CONCEPT_NAME = "SystemNode";
 	public static final String MACHINERY_ALLOCATION_CONCEPT_NAME = "MachineryAllocation";
 
+	public static final String TSM_VARIABLE_CONCEPT_NAME = "Variable";
+	public static final String TSM_GUARD_ACTION_CONCEPT_NAME = "GuardAction";
+
 	public static final String CTA_VIEW_NAME = "CTAView";
 
 	public static final String PIMCA_DIAGRAM_VM_NAME = "PimCADiagram";

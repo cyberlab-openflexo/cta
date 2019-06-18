@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Panel id="0" align="left" borderTop="0" flowAlignment="LEADING"
-	borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true"
-	borderBottom="0" border="empty" imageWidth="626"
-	sizeAdjustment="FitToAvailableSize" imageHeight="417" layout="twocols"
-	vGap="5" borderRight="0" hGap="5"
-	controllerClassName="org.openflexo.ctamodule.view.GuardActionExecutionUnitModuleView$GuardActionExecutionUnitModuleViewFIBController"
+<Panel id="0" imageFile="../Icons/CTABackground.jpg" align="left"
+	borderTop="0" flowAlignment="LEADING" borderLeft="0"
+	trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0"
+	border="empty" imageWidth="626" sizeAdjustment="FitToAvailableSize"
+	imageHeight="417" layout="twocols" vGap="5" borderRight="0" hGap="5"
+	controllerClassName="org.openflexo.ctamodule.controller.CTAFIBController"
 	name="Panel">
 	<Panel id="1" align="left" borderTop="0" borderTitle="Panel"
 		flowAlignment="CENTER" borderLeft="0" trackViewPortHeight="true"
@@ -97,7 +97,7 @@
 			<Label id="20" label="description" align="left"
 				constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)"
 				name="Label7" />
-			<TextArea id="21" rows="3" columns="8"
+			<TextArea id="21" rows="5" columns="8"
 				validateOnReturn="true" text="TextArea"
 				data="VariableTable.selected.property.description"
 				useScrollBar="true"
@@ -320,7 +320,7 @@
 			<Label id="71" label="description" align="left"
 				constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)"
 				name="Label7" />
-			<TextArea id="72" rows="2" columns="8"
+			<TextArea id="72" rows="5" columns="8"
 				validateOnReturn="true" text="TextArea"
 				data="GuardActionTable.selected.actionScheme.description"
 				useScrollBar="true"
@@ -328,36 +328,43 @@
 				constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)"
 				horizontalScrollbarPolicy="HORIZONTAL_SCROLLBAR_AS_NEEDED"
 				name="TextArea2" />
-			<FIBReferencedComponent id="73"
-				dynamicComponent="controller.basicInspectorTabForObject(BehaviourBrowser.selected)"
-				localize="true" manageDynamicModel="true"
-				data="BehaviourBrowser.selected"
-				constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=center)"
-				opaque="false" index="15" name="InspectedWidget">
-				<ReferenceAssignment id="74"
-					variable="controller.flexoController"
-					value="controller.flexoController" mandatory="true" />
-			</FIBReferencedComponent>
+			<Panel id="73" align="left" borderTop="0" borderTitle=""
+				borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true"
+				borderBottom="0" border="rounded3d" sizeAdjustment="OriginalSize"
+				layout="border" borderRight="0"
+				constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=10;insetsRight=0;insetsTop=5;location=center)"
+				name="Panel5">
+				<FIBReferencedComponent id="74"
+					dynamicComponent="controller.basicInspectorTabForObject(BehaviourBrowser.selected)"
+					localize="true" manageDynamicModel="true"
+					data="BehaviourBrowser.selected"
+					constraints="border(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=center)"
+					opaque="false" index="15" name="InspectedWidget">
+					<ReferenceAssignment id="75"
+						variable="controller.flexoController"
+						value="controller.flexoController" mandatory="true" />
+				</FIBReferencedComponent>
+			</Panel>
 		</Panel>
 	</Panel>
-	<Panel id="75" align="left" borderTop="0" borderTitle="Panel"
+	<Panel id="76" align="left" borderTop="0" borderTitle="Panel"
 		flowAlignment="CENTER" borderLeft="0" trackViewPortHeight="true"
 		trackViewPortWidth="true" borderBottom="0" border="empty"
 		sizeAdjustment="OriginalSize" layout="flow" vGap="5" borderRight="0"
 		hGap="5"
 		constraints="twocols(anchor=east;expandHorizontally=true;expandVertically=false;fill=both;gridHeight=-1;gridWidth=0;gridX=-1;gridY=-1;insetsBottom=10;insetsLeft=20;insetsRight=20;insetsTop=10;location=center;padX=0;padY=0;weightX=1.0;weightY=0.1)"
 		name="FIBPanel">
-		<Button id="76" buttonType="Trigger"
+		<Button id="77" buttonType="Trigger"
 			action="controller.newExecutionUnit()" label="new_execution_unit"
 			localize="true" constraints="flow()" name="Button" />
-		<Button id="77" buttonType="Trigger"
+		<Button id="78" buttonType="Trigger"
 			action="controller.allocateExecutionUnit(SystemNodeBrowser.selected)"
 			label="allocate_execution_unit" localize="true"
 			enable="(SystemNodeBrowser.selected != null)" constraints="flow()"
 			name="Button3" />
 	</Panel>
-	<LocalizedDictionary id="78" />
-	<FIBVariable id="79"
+	<LocalizedDictionary id="79" />
+	<FIBVariable id="80"
 		type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml#GuardActionExecutionUnit&gt;"
 		name="data" />
 </Panel>

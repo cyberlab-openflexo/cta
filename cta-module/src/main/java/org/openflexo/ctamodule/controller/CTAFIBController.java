@@ -42,11 +42,15 @@ import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 
+import org.openflexo.ctamodule.CTAIconLibrary;
 import org.openflexo.ctamodule.model.CTAProjectNature;
 import org.openflexo.fml.controller.FMLFIBController;
+import org.openflexo.foundation.fml.FMLObject;
 import org.openflexo.foundation.fml.rt.FlexoConceptInstance;
+import org.openflexo.gina.controller.FIBController;
 import org.openflexo.gina.model.FIBComponent;
 import org.openflexo.gina.swing.view.SwingViewFactory;
+import org.openflexo.gina.utils.FIBInspector;
 import org.openflexo.gina.view.GinaViewFactory;
 import org.openflexo.localization.FlexoLocalization;
 
@@ -99,6 +103,15 @@ public class CTAFIBController extends FMLFIBController {
 
 	public void openSimulation(FlexoConceptInstance simulation) {
 		System.out.println("Open simulation " + simulation);
+	}
+
+	public ImageIcon getProjectIcon() {
+		return CTAIconLibrary.BIG_EXECUTION_UNIT_ICON;
+	}
+
+	@Override
+	public Class<? extends FIBController> getInspectorControllerClass() {
+		return CTAFIBController.class;
 	}
 
 }

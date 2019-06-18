@@ -20,14 +20,7 @@
 
 package org.openflexo.ctamodule.view;
 
-import javax.swing.ImageIcon;
-
-import org.openflexo.ctamodule.CTAIconLibrary;
-import org.openflexo.ctamodule.controller.CTAFIBController;
-import org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstance;
 import org.openflexo.foundation.fml.rt.FlexoConceptInstance;
-import org.openflexo.gina.model.FIBComponent;
-import org.openflexo.gina.view.GinaViewFactory;
 import org.openflexo.rm.Resource;
 import org.openflexo.rm.ResourceLocator;
 import org.openflexo.technologyadapter.gina.model.FMLFIBBindingFactory;
@@ -80,18 +73,18 @@ public class GuardActionExecutionUnitModuleView extends FIBModuleView<FlexoConce
 
 	}
 
-	public static class GuardActionExecutionUnitModuleViewFIBController extends CTAFIBController {
+	/*public static class GuardActionExecutionUnitModuleViewFIBController extends CTAFIBController {
 		public GuardActionExecutionUnitModuleViewFIBController(FIBComponent component, GinaViewFactory<?> viewFactory) {
 			super(component, viewFactory);
 		}
-
+	
 		public ImageIcon getProjectIcon() {
 			return CTAIconLibrary.BIG_EXECUTION_UNIT_ICON;
 		}
-
+	
 		public void openVMI(FMLRTVirtualModelInstance vmi) {
 			getFlexoController().selectAndFocusObject(vmi);
 		}
-	}
+	}*/
 
 }

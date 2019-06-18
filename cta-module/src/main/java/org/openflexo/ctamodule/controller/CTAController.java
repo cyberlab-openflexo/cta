@@ -192,6 +192,20 @@ public class CTAController extends FlexoController {
 						e.printStackTrace();
 					}
 				}
+				else if (type.getName().equals(CTACst.TSM_VARIABLE_CONCEPT_NAME)) {
+					try {
+						return iconForObject(((FlexoConceptInstance) object).execute("property"));
+					} catch (TypeMismatchException | NullReferenceException | InvocationTargetException | InvalidBindingException e) {
+						e.printStackTrace();
+					}
+				}
+				else if (type.getName().equals(CTACst.TSM_GUARD_ACTION_CONCEPT_NAME)) {
+					try {
+						return iconForObject(((FlexoConceptInstance) object).execute("actionScheme"));
+					} catch (TypeMismatchException | NullReferenceException | InvocationTargetException | InvalidBindingException e) {
+						e.printStackTrace();
+					}
+				}
 			}
 		}
 
