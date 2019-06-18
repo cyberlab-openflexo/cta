@@ -92,7 +92,7 @@ public class CreateNewPimCADiagramWizard extends FlexoActionWizard<CreateNewPimC
 	 * @author sylvain
 	 *
 	 */
-	@FIBPanel("Fib/Wizard/ConfigureNewPimcaDiagram.fib")
+	@FIBPanel("Fib/Wizard/ConfigureNewVariable.fib")
 	public class ConfigureNewPimcaDiagram extends WizardStep {
 
 		public ApplicationContext getServiceManager() {

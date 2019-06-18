@@ -61,7 +61,7 @@
 				data="iterator.property.typeDescription" resizable="true"
 				title="type" displayTitle="true" columnWidth="200" showIcon="false"
 				name="type" />
-			<AddAction id="12" name="add_action" />
+			<AddAction id="12" name="add_action" method="controller.createNewVariable(data)"/>
 		</Table>
 		<Panel id="13" align="left" borderTop="0" borderLeft="0"
 			trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0"

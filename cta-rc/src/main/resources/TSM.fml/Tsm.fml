@@ -37,6 +37,11 @@ public class TSM {
       supportConcept = supportVirtualModel.CreateFlexoConcept();    
     }    
   
+    @ActionScheme    
+    FlexoConceptInstanceType<Variable> createNewVariable(String name, PrimitiveType primitiveType, String description) {    
+      return Variable.create(parameters.name,parameters.primitiveType,parameters.description);    
+    }    
+  
   
     @FlexoConcept    
     public class Variable {    
@@ -46,8 +51,9 @@ public class TSM {
       public PrimitiveRole property;    
       
       @CreationScheme      
-      Variable:create(String aName, PrimitiveType primitiveType) {      
+      Variable:create(String aName, PrimitiveType primitiveType, String description) {      
         property = supportVirtualModel.CreatePrimitiveRole();        
+        property.description = parameters.description;        
         container.firePropertyChange variables      
       }      
       
@@ -115,8 +121,9 @@ public class TSM {
     public PrimitiveRole property;  
   
     @CreationScheme    
-    Variable:create(String aName, PrimitiveType primitiveType) {    
+    Variable:create(String aName, PrimitiveType primitiveType, String description) {    
       property = supportVirtualModel.CreatePrimitiveRole();      
+      property.description = parameters.description;      
       container.firePropertyChange variables    
     }    
   

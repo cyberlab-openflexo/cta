@@ -52,6 +52,7 @@ public class CTACst {
 	public static final String SYSTEM_NODE_CONCEPT_NAME = "SystemNode";
 	public static final String MACHINERY_ALLOCATION_CONCEPT_NAME = "MachineryAllocation";
 
+	public static final String TSM_EXECUTION_UNIT_CONCEPT_NAME = "ExecutionUnit";
 	public static final String TSM_VARIABLE_CONCEPT_NAME = "Variable";
 	public static final String TSM_GUARD_ACTION_CONCEPT_NAME = "GuardAction";
 
