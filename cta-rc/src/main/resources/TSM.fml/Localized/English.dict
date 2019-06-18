@@ -1,3 +1,5 @@
 aName=AName
 createNewVariable=CreateNewVariable
+create_new_guard_action=Create new guard action
+invalid_parameter=Invalid parameter
 primitiveType=PrimitiveType

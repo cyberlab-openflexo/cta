@@ -146,7 +146,7 @@
 					data="iterator.actionScheme.conditional.toString" resizable="true"
 					title="guard" displayTitle="true" columnWidth="200"
 					showIcon="false" name="guard" />
-				<AddAction id="29" name="add_action" />
+				<AddAction id="29" name="add_action" method="controller.createNewGuardAction(data)"/>
 			</Table>
 			<Browser id="30" backgroundSelectionColor="7,73,217"
 				visibleRowCount="3" backgroundNonSelectionColor="255,255,255"
@@ -354,9 +354,6 @@
 		hGap="5"
 		constraints="twocols(anchor=east;expandHorizontally=true;expandVertically=false;fill=both;gridHeight=-1;gridWidth=0;gridX=-1;gridY=-1;insetsBottom=10;insetsLeft=20;insetsRight=20;insetsTop=10;location=center;padX=0;padY=0;weightX=1.0;weightY=0.1)"
 		name="FIBPanel">
-		<Button id="77" buttonType="Trigger"
-			action="controller.newExecutionUnit()" label="new_execution_unit"
-			localize="true" constraints="flow()" name="Button" />
 		<Button id="78" buttonType="Trigger"
 			action="controller.allocateExecutionUnit(SystemNodeBrowser.selected)"
 			label="allocate_execution_unit" localize="true"

@@ -78,6 +78,7 @@ public class CTAControllerActionInitializer extends ControllerActionInitializer 
 
 		new CreateNewPimCADiagramInitializer(this);
 		new CreateNewVariableInitializer(this);
+		new CreateNewGuardActionInitializer(this);
 
 		new CTASetPropertyInitializer(this);
 

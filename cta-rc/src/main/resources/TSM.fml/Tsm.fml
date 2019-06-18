@@ -80,6 +80,11 @@ public class TSM {
       container.firePropertyChange executionUnits    
     }    
   
+    @ActionScheme    
+    public FlexoConceptInstanceType<GuardAction> createNewGuardAction(String name, String description) {    
+      return GuardAction.create(parameters.name,parameters.description);    
+    }    
+  
   
     @FlexoConcept    
     public class GuardAction {    
@@ -89,8 +94,9 @@ public class TSM {
       public ActionScheme actionScheme;    
       
       @CreationScheme      
-      GuardAction:create(String name) {      
+      GuardAction:create(String name, String description) {      
         actionScheme = supportVirtualModel.CreateFlexoBehaviour();        
+        actionScheme.description = parameters.description;        
         container.firePropertyChange guardActions      
       }      
       
@@ -106,8 +112,9 @@ public class TSM {
     public ActionScheme actionScheme;  
   
     @CreationScheme    
-    GuardAction:create(String name) {    
+    GuardAction:create(String name, String description) {    
       actionScheme = supportVirtualModel.CreateFlexoBehaviour();      
+      actionScheme.description = parameters.description;      
       container.firePropertyChange guardActions    
     }    
   

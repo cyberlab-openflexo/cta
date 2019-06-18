@@ -44,6 +44,7 @@ import javax.swing.ImageIcon;
 
 import org.openflexo.ctamodule.CTAIconLibrary;
 import org.openflexo.ctamodule.model.CTAProjectNature;
+import org.openflexo.ctamodule.model.action.CreateNewGuardAction;
 import org.openflexo.ctamodule.model.action.CreateNewVariable;
 import org.openflexo.fml.controller.FMLFIBController;
 import org.openflexo.foundation.fml.rt.FlexoConceptInstance;
@@ -117,6 +118,12 @@ public class CTAFIBController extends FMLFIBController {
 		CreateNewVariable createNewVariable = CreateNewVariable.ACTION_TYPE.makeNewAction(executionUnit, null, getEditor());
 		createNewVariable.doAction();
 		return createNewVariable.getNewVariable();
+	}
+
+	public FlexoConceptInstance createNewGuardAction(FlexoConceptInstance executionUnit) {
+		CreateNewGuardAction createNewGuardAction = CreateNewGuardAction.ACTION_TYPE.makeNewAction(executionUnit, null, getEditor());
+		createNewGuardAction.doAction();
+		return createNewGuardAction.getNewGuardAction();
 	}
 
 }
