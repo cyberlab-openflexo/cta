@@ -54,13 +54,13 @@
 			dataClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCAModel.fml#Machinery&gt;"
 			icon="controller.iconForObject(machinery)"
 			label="machinery.name" isEditable="true" name="machinery">
-			<Children data="machinery.relations" name="relations" />
+			<!--  <Children data="machinery.relations" name="relations" /> -->
 		</BrowserElement>
 		<BrowserElement
 			dataClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCAModel.fml#Resource&gt;"
 			icon="controller.iconForObject(resource)"
 			label="resource.name" isEditable="true" name="resource">
-			<Children data="resource.relations" name="relations" />
+			<!--  <Children data="resource.relations" name="relations" /> -->
 		</BrowserElement>
 		<BrowserElement
 			dataClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCAModel.fml#Relation&gt;"
