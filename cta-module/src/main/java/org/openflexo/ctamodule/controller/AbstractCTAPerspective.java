@@ -52,7 +52,6 @@ import org.openflexo.foundation.FlexoProject;
 import org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstance;
 import org.openflexo.foundation.fml.rt.FlexoConceptInstance;
 import org.openflexo.module.FlexoModule.WelcomePanel;
-import org.openflexo.technologyadapter.diagram.fml.FMLControlledDiagramVirtualModelInstanceNature;
 import org.openflexo.technologyadapter.gina.fml.FMLControlledFIBFlexoConceptInstanceNature;
 import org.openflexo.technologyadapter.gina.fml.FMLControlledFIBVirtualModelInstanceNature;
 import org.openflexo.technologyadapter.gina.view.FMLControlledFIBFlexoConceptInstanceModuleView;
@@ -212,10 +211,6 @@ public abstract class AbstractCTAPerspective extends NaturePerspective<CTAProjec
 		if (object instanceof FMLRTVirtualModelInstance) {
 			// FML-controlled FIB
 			if (((FMLRTVirtualModelInstance) object).hasNature(FMLControlledFIBVirtualModelInstanceNature.INSTANCE)) {
-				return true;
-			}
-			// FML-controlled diagram
-			if (((FMLRTVirtualModelInstance) object).hasNature(FMLControlledDiagramVirtualModelInstanceNature.INSTANCE)) {
 				return true;
 			}
 			return false;
