@@ -186,6 +186,8 @@ public class PimCADiagramModuleView extends FMLControlledDiagramModuleView {
 				// Transferable transferable = (Transferable) dragNode.getUserObject();
 				Transferable transferable = dragNode;
 
+				getEditor().setObjectBeingTransfered(transferable);
+
 				try {
 					// initial cursor, transferable, dsource listener
 					e.startDrag(dropKO, transferable, dsListener);
@@ -261,10 +263,6 @@ public class PimCADiagramModuleView extends FMLControlledDiagramModuleView {
 		public void dragOver(DragSourceDragEvent e) {
 			// interface
 			// getController().getPalette().setDragSourceContext(e.getDragSourceContext());
-
-			System.out.println("Hop, dragOver with " + e.getDragSourceContext());
-			Thread.dumpStack();
-
 			getEditor().setDragSourceContext(e.getDragSourceContext());
 		}
 
