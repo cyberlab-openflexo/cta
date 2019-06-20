@@ -11,4 +11,5 @@ executionUnit=ExecutionUnit
 executionUnitName=ExecutionUnitName
 invalid_parameter=Invalid parameter
 machinery=Machinery
+newMachinery=NewMachinery
 update=Update

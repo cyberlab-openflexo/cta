@@ -12,7 +12,7 @@ public class CTA {
   public SystemNode rootNode;
   public TSM tsm;
   @GetSetProperty(value="executions", access=get)  
-  public List<UndefinedVirtualModelInstanceType> getExecutions {  
+  public List<VirtualModelInstanceType<Execution>> getExecutions {  
     return this.FML@RT::SelectVirtualModelInstance();  
   }
 
@@ -81,6 +81,16 @@ public class CTA {
         FML@RT::MatchFlexoConceptInstance as MachineryAllocation match=(machinery=machinery) using MachineryAllocation:create(machinery)      
       }      
       matchingSet.finalizeMatching()    
+    }    
+  
+    @EventListener    
+    Void newMachinery() {    
+      this.update()    
+    }    
+  
+    @EventListener    
+    Void deletedMachinery() {    
+      this.update()    
     }    
   
   

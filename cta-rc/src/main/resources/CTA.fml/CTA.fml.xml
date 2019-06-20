@@ -156,6 +156,12 @@
         <ControlGraph1_LogAction id="SYL-305" logLevel="INFO" logString="(&quot;Updating &quot; + this)" ownerContext="controlGraph1" userID="SYL" flexoID="305" />
       </BehaviourControlGraph_Sequence>
     </ActionScheme>
+    <EventListener id="SYL-334" listenedVirtualModelInstance="pimcaModel" flexoEventTypeURI="http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCAModel.fml#NewMachinery" name="newMachinery" width="800" label="newMachinery" height="600" userID="SYL" flexoID="334">
+      <BehaviourControlGraph_ExpressionAction id="SYL-335" expression="this.update()" userID="SYL" flexoID="335" />
+    </EventListener>
+    <EventListener id="SYL-336" listenedVirtualModelInstance="pimcaModel" flexoEventTypeURI="http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCAModel.fml#DeletedMachinery" name="deletedMachinery" width="800" label="newMachinery" height="600" userID="SYL" flexoID="336">
+      <BehaviourControlGraph_ExpressionAction id="SYL-337" expression="this.update()" userID="SYL" flexoID="337" />
+    </EventListener>
   </FlexoConcept>
   <FlexoConcept idref="SYL-154" />
   <UseModelSlotDeclaration id="0" modelSlotClass="org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstanceModelSlot" userID="SYL" flexoID="-1" />
