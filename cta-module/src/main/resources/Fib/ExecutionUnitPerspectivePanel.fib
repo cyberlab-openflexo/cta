@@ -112,12 +112,12 @@
 		constraints="twocols(anchor=east;expandHorizontally=true;expandVertically=false;fill=both;gridHeight=-1;gridWidth=0;gridX=-1;gridY=-1;insetsBottom=10;insetsLeft=20;insetsRight=20;insetsTop=10;location=center;padX=0;padY=0;weightX=1.0;weightY=0.1)"
 		name="FIBPanel">
 		<Button buttonType="Trigger"
-			action="controller.newExecutionUnit()"
+			action="controller.newExecutionUnitDefinition()"
 			label="new_execution_unit" localize="true"
 			constraints="flow()"
 			name="Button" />
 		<Button buttonType="Trigger"
-			action="controller.allocateExecutionUnit(SystemNodeBrowser.selected)"
+			action="controller.allocateExecutionUnitDefinition(SystemNodeBrowser.selected)"
 			label="allocate_execution_unit" localize="true"
 			enable="(SystemNodeBrowser.selected != null)" constraints="flow()"
 			name="Button3" />

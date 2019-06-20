@@ -11,8 +11,8 @@ public class TSM {
 
   public VirtualModel supportVirtualModel;
   @GetSetProperty(value="executionUnits", access=get)  
-  public List<FlexoConceptInstanceType<ExecutionUnit>> getExecutionUnits {  
-    return this.SelectFlexoConceptInstance(type=ExecutionUnit);  
+  public List<FlexoConceptInstanceType<ExecutionUnitDefinition>> getExecutionUnits {  
+    return this.SelectFlexoConceptInstance(type=ExecutionUnitDefinition);  
   }
 
   @CreationScheme  
@@ -22,7 +22,7 @@ public class TSM {
 
 
   @FlexoConcept  
-  public class ExecutionUnit {  
+  public class ExecutionUnitDefinition {  
   
     public FlexoConcept supportConcept;  
       
@@ -67,7 +67,7 @@ public class TSM {
   }  
 
   @FlexoConcept  
-  public class GuardActionExecutionUnit extends ExecutionUnit  {  
+  public class GuardActionExecutionUnitDefinition extends ExecutionUnitDefinition  {  
   
     @GetSetProperty(value="guardActions", access=get)    
     public List<FlexoConceptInstanceType<GuardAction>> getGuardActions {    
@@ -75,7 +75,7 @@ public class TSM {
     }  
   
     @CreationScheme    
-    GuardActionExecutionUnit:create(String name) {    
+    GuardActionExecutionUnitDefinition:create(String name) {    
       this.init(parameters.name)      
       container.firePropertyChange executionUnits    
     }    

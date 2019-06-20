@@ -46,7 +46,7 @@
 			<Children data="tsm.executionUnits" name="executionUnits" />
 		</BrowserElement>
 		<BrowserElement
-			dataClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml#ExecutionUnit&gt;"
+			dataClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml#ExecutionUnitDefinition&gt;"
 			icon="controller.iconForObject(executionUnit)"
 			label="executionUnit.name" isEditable="false" name="executionUnit">
 		</BrowserElement>

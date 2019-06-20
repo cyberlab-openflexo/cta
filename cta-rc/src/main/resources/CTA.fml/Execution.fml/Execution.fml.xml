@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<VirtualModel id="SYL-5" virtualModelClass="org.openflexo.foundation.fml.VirtualModel" modelVersion="2.0" version="0.1" uri="http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml" name="Execution" author="sylvain" description="Represent an execution of CTA model" userID="SYL" flexoID="5">
+<VirtualModel id="SYL-5" virtualModelClass="org.openflexo.foundation.fml.VirtualModel" modelVersion="2.0" uri="http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml" version="0.1" name="Execution" author="sylvain" description="Represent an execution of CTA model" userID="SYL" flexoID="5">
   <FlexoConcept id="SYL-6" name="Executor" description="Represent the execution of a ExecutionUnit deployed on a Machinery of a PimCA model" userID="SYL" flexoID="6">
     <Inspector id="SYL-7" inspectorTitle="Executor" userID="SYL" flexoID="7" />
     <FlexoConceptInstanceRole id="SYL-13" virtualModelInstance="container.container" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/CTA.fml#SystemNode" cloningStrategy="Reference" cardinality="ZeroOne" name="systemNode" userID="SYL" flexoID="13" />

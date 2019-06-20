@@ -12,7 +12,7 @@ public class CTA {
   public SystemNode rootNode;
   public TSM tsm;
   @GetSetProperty(value="executions", access=get)  
-  public List<VirtualModelInstanceType<Execution>> getExecutions {  
+  public List<UndefinedVirtualModelInstanceType> getExecutions {  
     return this.FML@RT::SelectVirtualModelInstance();  
   }
 
@@ -55,7 +55,7 @@ public class CTA {
     }    
   
     @ActionScheme    
-    public Void allocateExistingExecutionUnit(FlexoConceptInstanceType<Machinery> machinery, FlexoConceptInstanceType<ExecutionUnit> executionUnit) {    
+    public Void allocateExistingExecutionUnit(FlexoConceptInstanceType<Machinery> machinery, UndefinedFlexoConceptInstanceType executionUnit) {    
       this.getMachineryAllocation(parameters.machinery).allocateExistingExecutionUnit(parameters.executionUnit)    
     }    
   
@@ -98,7 +98,7 @@ public class CTA {
     public class MachineryAllocation {    
       
       public Machinery machinery;    
-      public ExecutionUnit executionUnit;    
+      public ExecutionUnitDefinition executionUnitDefinition;    
       
       @CreationScheme      
       MachineryAllocation:create(FlexoConceptInstanceType<Machinery> aMachinery) {      
@@ -112,18 +112,18 @@ public class CTA {
       }      
       
       @ActionScheme      
-      public Void allocateExistingExecutionUnit(FlexoConceptInstanceType<ExecutionUnit> executionUnit) {      
-        executionUnit = parameters.executionUnit;      
+      public Void allocateExistingExecutionUnit(UndefinedFlexoConceptInstanceType executionUnitDefinition) {      
+        executionUnitDefinition = parameters.executionUnitDefinition;      
       }      
       
       @ActionScheme      
       public Void allocateNewGuardActionExecutionUnit(String executionUnitName) {      
-        executionUnit = GuardActionExecutionUnit.create(parameters.executionUnitName);      
+        executionUnitDefinition = GuardActionExecutionUnitDefinition.create(parameters.executionUnitName);      
       }      
       
       @ActionScheme      
       public Void clearAllocation() {      
-        executionUnit = null;      
+        executionUnitDefinition = null;      
       }      
       
     }    
@@ -134,7 +134,7 @@ public class CTA {
   public class MachineryAllocation {  
   
     public Machinery machinery;  
-    public ExecutionUnit executionUnit;  
+    public ExecutionUnitDefinition executionUnitDefinition;  
   
     @CreationScheme    
     MachineryAllocation:create(FlexoConceptInstanceType<Machinery> aMachinery) {    
@@ -148,18 +148,18 @@ public class CTA {
     }    
   
     @ActionScheme    
-    public Void allocateExistingExecutionUnit(FlexoConceptInstanceType<ExecutionUnit> executionUnit) {    
-      executionUnit = parameters.executionUnit;    
+    public Void allocateExistingExecutionUnit(UndefinedFlexoConceptInstanceType executionUnitDefinition) {    
+      executionUnitDefinition = parameters.executionUnitDefinition;    
     }    
   
     @ActionScheme    
     public Void allocateNewGuardActionExecutionUnit(String executionUnitName) {    
-      executionUnit = GuardActionExecutionUnit.create(parameters.executionUnitName);    
+      executionUnitDefinition = GuardActionExecutionUnitDefinition.create(parameters.executionUnitName);    
     }    
   
     @ActionScheme    
     public Void clearAllocation() {    
-      executionUnit = null;    
+      executionUnitDefinition = null;    
     }    
   
   }  

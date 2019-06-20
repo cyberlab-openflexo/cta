@@ -68,7 +68,7 @@ public class CreateNewGuardAction extends CTAAction<CreateNewGuardAction, FlexoC
 		@Override
 		public boolean isVisibleForSelection(final FlexoConceptInstance executionUnit, final Vector<FlexoObject> globalSelection) {
 			return executionUnit != null && executionUnit.getFlexoConcept() != null
-					&& executionUnit.getFlexoConcept().getName().equals(CTACst.TSM_GUARD_ACTION_EXECUTION_UNIT_CONCEPT_NAME);
+					&& executionUnit.getFlexoConcept().getName().equals(CTACst.TSM_GUARD_ACTION_EXECUTION_UNIT_DEFINITION_CONCEPT_NAME);
 		}
 
 		@Override
@@ -84,7 +84,7 @@ public class CreateNewGuardAction extends CTAAction<CreateNewGuardAction, FlexoC
 	private String actionName;
 	private String description;
 
-	private FlexoConceptInstance executionUnit;
+	private FlexoConceptInstance executionUnitDefinition;
 
 	public CreateNewGuardAction(final FlexoConceptInstance focusedObject, final Vector<FlexoObject> globalSelection,
 			final FlexoEditor editor) {
@@ -106,29 +106,31 @@ public class CreateNewGuardAction extends CTAAction<CreateNewGuardAction, FlexoC
 
 		System.out.println("Create new guard_action...");
 
-		FlexoConceptInstance executionUnit = getExecutionUnit();
-		System.out.println("executionUnit=" + executionUnit);
+		FlexoConceptInstance executionUnitDefinition = getExecutionUnitDefinition();
+		System.out.println("executionUnitDefinition=" + executionUnitDefinition);
 
 		try {
-			newGuardAction = executionUnit.execute("this.createNewGuardAction({$name},{$description})", getActionName(), getDescription());
+			newGuardAction = executionUnitDefinition.execute("this.createNewGuardAction({$name},{$description})", getActionName(),
+					getDescription());
 		} catch (Exception e) {
 			throw new FlexoException(e);
 		}
 
 	}
 
-	public FlexoConceptInstance getExecutionUnit() {
-		if (executionUnit == null) {
+	public FlexoConceptInstance getExecutionUnitDefinition() {
+		if (executionUnitDefinition == null) {
 			return getFocusedObject();
 		}
-		return executionUnit;
+		return executionUnitDefinition;
 	}
 
-	public void setExecutionUnit(FlexoConceptInstance executionUnit) {
-		if ((executionUnit == null && this.executionUnit != null) || (executionUnit != null && !executionUnit.equals(this.executionUnit))) {
-			FlexoConceptInstance oldValue = this.executionUnit;
-			this.executionUnit = executionUnit;
-			getPropertyChangeSupport().firePropertyChange("executionUnit", oldValue, executionUnit);
+	public void setExecutionUnitDefinition(FlexoConceptInstance executionUnitDefinition) {
+		if ((executionUnitDefinition == null && this.executionUnitDefinition != null)
+				|| (executionUnitDefinition != null && !executionUnitDefinition.equals(this.executionUnitDefinition))) {
+			FlexoConceptInstance oldValue = this.executionUnitDefinition;
+			this.executionUnitDefinition = executionUnitDefinition;
+			getPropertyChangeSupport().firePropertyChange("executionUnitDefinition", oldValue, executionUnitDefinition);
 		}
 	}
 

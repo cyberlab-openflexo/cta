@@ -355,13 +355,13 @@
 		constraints="twocols(anchor=east;expandHorizontally=true;expandVertically=false;fill=both;gridHeight=-1;gridWidth=0;gridX=-1;gridY=-1;insetsBottom=10;insetsLeft=20;insetsRight=20;insetsTop=10;location=center;padX=0;padY=0;weightX=1.0;weightY=0.1)"
 		name="FIBPanel">
 		<Button id="78" buttonType="Trigger"
-			action="controller.allocateExecutionUnit(SystemNodeBrowser.selected)"
+			action="controller.allocateExecutionUnitDefinition(SystemNodeBrowser.selected)"
 			label="allocate_execution_unit" localize="true"
 			enable="(SystemNodeBrowser.selected != null)" constraints="flow()"
 			name="Button3" />
 	</Panel>
 	<LocalizedDictionary id="79" />
 	<FIBVariable id="80"
-		type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml#GuardActionExecutionUnit&gt;"
+		type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml#GuardActionExecutionUnitDefinition&gt;"
 		name="data" />
 </Panel>

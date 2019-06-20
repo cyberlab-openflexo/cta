@@ -3,12 +3,12 @@
   <FlexoConcept id="SYL-36" bigIconResource="../Icons/SystemNode_64x64.png" smallIconResource="../Icons/SystemNode_16x16.png" name="SystemNode" mediumIconResource="../Icons/SystemNode_32x32.png" userID="SYL" flexoID="36">
     <Inspector id="SYL-37" renderer="nodeName" inspectorTitle="SystemNode" userID="SYL" flexoID="37" />
     <EmbeddedFlexoConcept id="SYL-154" name="MachineryAllocation" userID="SYL" flexoID="154">
-      <Inspector id="SYL-153" renderer="(machinery.name + ((executionUnit != null) ? ((&quot;[&quot; + executionUnit.name) + &quot;]&quot;) : &quot;&quot;))" inspectorTitle="MachineryAllocation" userID="SYL" flexoID="153">
+      <Inspector id="SYL-153" renderer="(machinery.name + ((executionUnitDefinition != null) ? ((&quot;[&quot; + executionUnitDefinition.name) + &quot;]&quot;) : &quot;&quot;))" inspectorTitle="MachineryAllocation" userID="SYL" flexoID="153">
         <InspectorEntry id="SYL-160" container="pimcaModel" widget="CUSTOM_WIDGET" data="machinery" name="machinery" label="machinery" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCAModel.fml#Machinery&gt;" userID="SYL" flexoID="160" />
-        <InspectorEntry id="SYL-255" container="tsm" widget="CUSTOM_WIDGET" data="executionUnit" name="executionUnit" label="executionUnit" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml#ExecutionUnit&gt;" userID="SYL" flexoID="255" />
+        <InspectorEntry id="SYL-255" container="tsm" widget="CUSTOM_WIDGET" data="executionUnitDefinition" name="executionUnit" label="executionUnit" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml#ExecutionUnit&gt;" userID="SYL" flexoID="255" />
       </Inspector>
       <FlexoConceptInstanceRole id="SYL-161" virtualModelInstance="pimcaModel" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCAModel.fml#Machinery" cloningStrategy="Reference" cardinality="ZeroOne" name="machinery" userID="SYL" flexoID="161" />
-      <FlexoConceptInstanceRole id="SYL-175" virtualModelInstance="tsm" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/TSM.fml#ExecutionUnit" cloningStrategy="Reference" cardinality="ZeroOne" name="executionUnit" userID="SYL" flexoID="175" />
+      <FlexoConceptInstanceRole id="SYL-175" virtualModelInstance="tsm" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/TSM.fml#ExecutionUnitDefinition" cloningStrategy="Reference" cardinality="ZeroOne" name="executionUnitDefinition" userID="SYL" flexoID="175" />
       <CreationScheme id="SYL-158" name="create" width="800" label="create" height="600" userID="SYL" flexoID="158">
         <BehaviourControlGraph_Sequence id="SYL-324" userID="SYL" flexoID="324">
           <ControlGraph2_NotifyPropertyChangedAction id="SYL-323" propertyName="machineryAllocations" object="container" ownerContext="controlGraph2" userID="SYL" flexoID="323" />
@@ -21,22 +21,22 @@
       <DeletionScheme id="SYL-159" name="delete" width="800" label="delete" height="600" userID="SYL" flexoID="159">
         <BehaviourControlGraph_EmptyControlGraph id="SYL-165" userID="SYL" flexoID="165" />
       </DeletionScheme>
-      <ActionScheme id="SYL-176" conditional="(executionUnit = null)" visibility="Public" name="allocateExistingExecutionUnit" width="800" label="allocate_existing_execution_unit" height="600" description="Allocate existing execution unit" userID="SYL" flexoID="176">
-        <BehaviourControlGraph_AssignationAction id="SYL-178" assign="executionUnit" userID="SYL" flexoID="178">
-          <AssignableAction_ExpressionAction id="SYL-177" expression="parameters.executionUnit" userID="SYL" flexoID="177" />
+      <ActionScheme id="SYL-176" conditional="(executionUnitDefinition = null)" visibility="Public" name="allocateExistingExecutionUnit" width="800" label="allocate_existing_execution_unit" height="600" description="Allocate existing execution unit" userID="SYL" flexoID="176">
+        <BehaviourControlGraph_AssignationAction id="SYL-178" assign="executionUnitDefinition" userID="SYL" flexoID="178">
+          <AssignableAction_ExpressionAction id="SYL-177" expression="parameters.executionUnitDefinition" userID="SYL" flexoID="177" />
         </BehaviourControlGraph_AssignationAction>
-        <GenericBehaviourParameter id="SYL-179" container="tsm" isRequired="true" widget="CUSTOM_WIDGET" name="executionUnit" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml#ExecutionUnit&gt;" userID="SYL" flexoID="179" />
+        <GenericBehaviourParameter id="SYL-179" container="tsm" isRequired="true" widget="CUSTOM_WIDGET" name="executionUnitDefinition" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml#ExecutionUnit&gt;" userID="SYL" flexoID="179" />
       </ActionScheme>
-      <ActionScheme id="SYL-184" conditional="(executionUnit = null)" visibility="Public" name="allocateNewGuardActionExecutionUnit" width="800" label="allocate_new_guard_action_execution_unit" height="600" description="Une description ici ?&#xA;" userID="SYL" flexoID="184">
-        <BehaviourControlGraph_AssignationAction id="SYL-182" assign="executionUnit" userID="SYL" flexoID="182">
-          <AssignableAction_AddFlexoConceptInstance id="SYL-181" creationSchemeURI="http://ensta-bretagne.fr/cyber/cta/TSM.fml#GuardActionExecutionUnit.create(name)" receiver="tsm" userID="SYL" flexoID="181">
+      <ActionScheme id="SYL-184" conditional="(executionUnitDefinition = null)" visibility="Public" name="allocateNewGuardActionExecutionUnit" width="800" label="allocate_new_guard_action_execution_unit" height="600" description="Une description ici ?&#xA;" userID="SYL" flexoID="184">
+        <BehaviourControlGraph_AssignationAction id="SYL-182" assign="executionUnitDefinition" userID="SYL" flexoID="182">
+          <AssignableAction_AddFlexoConceptInstance id="SYL-181" creationSchemeURI="http://ensta-bretagne.fr/cyber/cta/TSM.fml#GuardActionExecutionUnitDefinition.create(name)" receiver="tsm" userID="SYL" flexoID="181">
             <AddFlexoConceptInstanceParameter id="SYL-180" paramName="name" value="parameters.executionUnitName" userID="SYL" flexoID="180" />
           </AssignableAction_AddFlexoConceptInstance>
         </BehaviourControlGraph_AssignationAction>
         <GenericBehaviourParameter id="SYL-183" isRequired="true" widget="TEXT_FIELD" name="executionUnitName" type="java.lang.String" userID="SYL" flexoID="183" />
       </ActionScheme>
       <ActionScheme id="SYL-256" conditional="(executionUnit != null)" visibility="Public" name="clearAllocation" width="800" label="clearAllocation" height="600" userID="SYL" flexoID="256">
-        <BehaviourControlGraph_AssignationAction id="SYL-258" assign="executionUnit" userID="SYL" flexoID="258">
+        <BehaviourControlGraph_AssignationAction id="SYL-258" assign="executionUnitDefinition" userID="SYL" flexoID="258">
           <AssignableAction_ExpressionAction id="SYL-257" expression="null" userID="SYL" flexoID="257" />
         </BehaviourControlGraph_AssignationAction>
       </ActionScheme>
@@ -133,7 +133,7 @@
               <Iteration_SelectFlexoConceptInstance id="SYL-278" container="pimcaModel" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCAModel.fml#Machinery" receiver="pimcaModel" ownerContext="iterationControlGraph" userID="SYL" flexoID="278" />
               <ControlGraph_MatchFlexoConceptInstance id="SYL-280" container="this" creationSchemeURI="http://ensta-bretagne.fr/cyber/cta/CTA.fml#MachineryAllocation.create(aMachinery)" matchingSet="matchingSet" receiver="container" ownerContext="controlGraph" userID="SYL" flexoID="280">
                 <MatchingCriteria id="SYL-282" patternRoleName="machinery" value="machinery" userID="SYL" flexoID="282" />
-                <MatchingCriteria id="SYL-283" patternRoleName="executionUnit" userID="SYL" flexoID="283" />
+                <MatchingCriteria id="SYL-283" patternRoleName="executionUnitDefinition" userID="SYL" flexoID="283" />
                 <MatchingCriteria id="SYL-284" patternRoleName="pimcaModel" userID="SYL" flexoID="284" />
                 <MatchingCriteria id="SYL-285" patternRoleName="diagrams" userID="SYL" flexoID="285" />
                 <MatchingCriteria id="SYL-286" patternRoleName="defaultDiagram" userID="SYL" flexoID="286" />

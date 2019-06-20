@@ -115,7 +115,7 @@ public class ExecutionUnitPerspective extends AbstractCTAPerspective {
 		}*/
 
 		if (object instanceof FlexoConceptInstance) {
-			if (((FlexoConceptInstance) object).getFlexoConcept().getName().equals("GuardActionExecutionUnit")) {
+			if (((FlexoConceptInstance) object).getFlexoConcept().getName().equals("GuardActionExecutionUnitDefinition")) {
 				/*FlexoConcept concept;
 				try {
 					concept = ((FlexoConceptInstance) object).execute("supportConcept");
@@ -148,7 +148,7 @@ public class ExecutionUnitPerspective extends AbstractCTAPerspective {
 			}
 		}*/
 		if (object instanceof FlexoConceptInstance) {
-			if (((FlexoConceptInstance) object).getFlexoConcept().getName().equals("GuardActionExecutionUnit")) {
+			if (((FlexoConceptInstance) object).getFlexoConcept().getName().equals("GuardActionExecutionUnitDefinition")) {
 				return true;
 			}
 		}

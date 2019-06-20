@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <VirtualModel id="SYL-5" virtualModelClass="org.openflexo.foundation.fml.VirtualModel" modelVersion="2.0" uri="http://ensta-bretagne.fr/cyber/cta/TSM.fml" version="0.1" smallIconResource="../Icons/TSM_16x16.png" name="TSM" author="sylvain" description="Target System Modelling viewpoint" userID="SYL" flexoID="5">
-  <FlexoConcept id="SYL-9" name="ExecutionUnit" userID="SYL" flexoID="9">
+  <FlexoConcept id="SYL-9" name="ExecutionUnitDefinition" userID="SYL" flexoID="9">
     <Inspector id="SYL-10" inspectorTitle="ExecutionUnit" userID="SYL" flexoID="10" />
     <EmbeddedFlexoConcept id="SYL-138" name="Variable" userID="SYL" flexoID="138">
       <Inspector id="SYL-139" inspectorTitle="Variable" userID="SYL" flexoID="139" />
@@ -53,7 +53,7 @@
       <GenericBehaviourParameter id="SYL-328" widget="TEXT_AREA" name="description" type="java.lang.String" userID="SYL" flexoID="328" />
     </ActionScheme>
   </FlexoConcept>
-  <FlexoConcept id="SYL-14" smallIconResource="../Icons/ExecutionUnit_16x16.png" parentFlexoConceptsList="http://ensta-bretagne.fr/cyber/cta/TSM.fml#ExecutionUnit" name="GuardActionExecutionUnit" userID="SYL" flexoID="14">
+  <FlexoConcept id="SYL-14" smallIconResource="../Icons/ExecutionUnit_16x16.png" parentFlexoConceptsList="http://ensta-bretagne.fr/cyber/cta/TSM.fml#ExecutionUnitDefinition" name="GuardActionExecutionUnitDefinition" userID="SYL" flexoID="14">
     <Inspector id="SYL-15" renderer="name" inspectorTitle="GuardActionExecutionUnit" userID="SYL" flexoID="15" />
     <EmbeddedFlexoConcept id="SYL-19" name="GuardAction" userID="SYL" flexoID="19">
       <Inspector id="SYL-20" inspectorTitle="GuardAction" userID="SYL" flexoID="20" />
@@ -107,7 +107,7 @@
   <GetSetProperty id="SYL-121" name="executionUnits" userID="SYL" flexoID="121">
     <SetControlGraph_EmptyControlGraph id="SYL-125" ownerContext="setControlGraph" userID="SYL" flexoID="125" />
     <GetControlGraph_ReturnStatement id="SYL-124" ownerContext="getControlGraph" userID="SYL" flexoID="124">
-      <AssignableAction_SelectFlexoConceptInstance id="SYL-123" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/TSM.fml#ExecutionUnit" receiver="this" userID="SYL" flexoID="123" />
+      <AssignableAction_SelectFlexoConceptInstance id="SYL-123" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/TSM.fml#ExecutionUnitDefinition" receiver="this" userID="SYL" flexoID="123" />
     </GetControlGraph_ReturnStatement>
   </GetSetProperty>
   <CreationScheme id="SYL-34" name="init" width="800" label="init" height="600" userID="SYL" flexoID="34">
