@@ -1,6 +1,6 @@
 dependencies {
    
-  runtime group: 'org.openflexo', name: 'pimca-rc', version: '2.0.0'
+  runtime group: 'org.openflexo', name: 'pimca-rc', version: '2.0.0-SNAPSHOT'
    
   compile flexoFoundation()
   compile flexoUi()
