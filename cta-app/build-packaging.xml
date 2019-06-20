@@ -15,7 +15,7 @@
 	<!-- ./target/../License -->
 	<property name="license.dir" value="${resources.dir}/License" />
 	<!-- deployment dir for packagings -->
-		<property name="deployment.root.folder" value="~/downloads/Geve" />
+		<property name="deployment.root.folder" value="~/downloads/CTA" />
 
 	<import>
 		<javaresource name="build-packaging.xml">
