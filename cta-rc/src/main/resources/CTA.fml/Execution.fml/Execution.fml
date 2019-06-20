@@ -9,8 +9,8 @@
 public class Execution {
 
   @GetSetProperty(value="executors", access=get)  
-  public List<FlexoConceptInstanceType<Executor>> getExecutors {  
-    return this.SelectFlexoConceptInstance(type=Executor);  
+  public List<FlexoConceptInstanceType<SystemNodeExecutor>> getExecutors {  
+    return this.SelectFlexoConceptInstance(type=SystemNodeExecutor);  
   }
 
   /**  
@@ -18,10 +18,52 @@ public class Execution {
    *   
    */  
   @FlexoConcept  
-  public class Executor {  
+  public class SystemNodeExecutor {  
   
     public SystemNode systemNode;  
-    public FlexoConceptInstance executionUnitInstance;  
+  
+    @CreationScheme    
+    SystemNodeExecutor:create() {    
+      
+    }    
+  
+    @DeletionScheme    
+    Void delete() {    
+      
+    }    
+  
+  
+    /**    
+     * This is an executor of a MachineryAllocation    
+     *     
+     */    
+    @FlexoConcept    
+    public class Executor {    
+      
+      public MachineryAllocation machineryAllocation;    
+      
+      @CreationScheme      
+      Executor:create() {      
+          
+      }      
+      
+      @DeletionScheme      
+      Void delete() {      
+          
+      }      
+      
+    }    
+  
+  }  
+
+  /**  
+   * This is an executor of a MachineryAllocation  
+   *   
+   */  
+  @FlexoConcept  
+  public class Executor {  
+  
+    public MachineryAllocation machineryAllocation;  
   
     @CreationScheme    
     Executor:create() {    
