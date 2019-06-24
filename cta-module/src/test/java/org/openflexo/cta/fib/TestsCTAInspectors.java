@@ -2,7 +2,7 @@
  * 
  * Copyright (c) 2014, Openflexo
  * 
- * This file is part of Flexovieweditor, a component of the software infrastructure 
+ * This file is part of Cartoeditor, a component of the software infrastructure 
  * developed at Openflexo.
  * 
  * 
@@ -38,20 +38,39 @@
 
 package org.openflexo.cta.fib;
 
-import org.openflexo.gina.test.GenericFIBTestCase;
-import org.openflexo.rm.FileResourceImpl;
+import java.util.Collection;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.openflexo.gina.test.FIBInspectorTestCase;
+import org.openflexo.rm.Resource;
 import org.openflexo.rm.ResourceLocator;
+import org.openflexo.rm.Resources;
 
-public class TestCTAWidgetFibs extends GenericFIBTestCase {
+/**
+ * A parameterized suite of unit tests iterating on inspectors, and testing it
+ * 
+ * @author sylvain
+ *
+ */
+@RunWith(Parameterized.class)
+public class TestsCTAInspectors extends FIBInspectorTestCase {
 
-	/*
-	 * Use this method to print all
-	 * Then copy-paste 
-	 */
+	@Parameterized.Parameters(name = "{1}")
+	public static Collection<Object[]> generateData() {
+		return Resources.getMatchingResource(ResourceLocator.locateResource("Inspectors/CTA"), ".inspector");
+	}
 
-	public static void main(String[] args) {
-		System.out.println(
-				generateFIBTestCaseClass(((FileResourceImpl) ResourceLocator.locateResource("Fib/Widget")).getFile(), "Fib/Widget/"));
+	private Resource inspectorResource;
+
+	public TestsCTAInspectors(Resource inspectorResource, String name) {
+		this.inspectorResource = inspectorResource;
+	}
+
+	@Test
+	public void validateFib() {
+		validateFIB(inspectorResource);
 	}
 
 }
