@@ -1,0 +1,8 @@
+
+/**
+ * 
+ * @version 0.1
+ */
+@VirtualModel(uri="http://ensta-bretagne.fr/cyber/cta/ExecutionModel.fml")
+public class ExecutionModel {
+}

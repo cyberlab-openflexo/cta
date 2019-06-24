@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VirtualModel id="SYL-5" virtualModelClass="org.openflexo.foundation.fml.VirtualModel" modelVersion="2.0" uri="http://ensta-bretagne.fr/cyber/cta/ExecutionModel.fml" version="0.1" name="ExecutionModel" userID="SYL" flexoID="5">
+  <Inspector id="SYL-1" inspectorTitle="ExecutionModel" userID="SYL" flexoID="1" />
+</VirtualModel>
