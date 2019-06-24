@@ -10,10 +10,6 @@ use org.openflexo.foundation.fml.ta.FMLModelSlot;
 public class TSM {
 
   public VirtualModel supportVirtualModel;
-  @GetSetProperty(value="executionUnits", access=get)  
-  public List<FlexoConceptInstanceType<ExecutionUnitDefinition>> getExecutionUnits {  
-    return this.SelectFlexoConceptInstance(type=ExecutionUnitDefinition);  
-  }
 
   @CreationScheme  
   TSM:init(String virtualModelName) {  
@@ -29,7 +25,7 @@ public class TSM {
     public String name = supportConcept.name;  
     @GetSetProperty(value="variables", access=get)    
     public List<FlexoConceptInstanceType<Variable>> getVariables {    
-      return container.SelectFlexoConceptInstance(type=Variable);    
+      return container.container.SelectFlexoConceptInstance(type=Variable);    
     }  
   
     @ActionScheme    
@@ -67,11 +63,32 @@ public class TSM {
   }  
 
   @FlexoConcept  
+  public class Variable {  
+  
+      
+    public String name = property.name;  
+    public PrimitiveRole property;  
+  
+    @CreationScheme    
+    Variable:create(String aName, PrimitiveType primitiveType, String description) {    
+      property = supportVirtualModel.CreatePrimitiveRole();      
+      property.description = parameters.description;      
+      container.firePropertyChange variables    
+    }    
+  
+    @DeletionScheme    
+    Void delete() {    
+      
+    }    
+  
+  }  
+
+  @FlexoConcept  
   public class GuardActionExecutionUnitDefinition extends ExecutionUnitDefinition  {  
   
     @GetSetProperty(value="guardActions", access=get)    
     public List<FlexoConceptInstanceType<GuardAction>> getGuardActions {    
-      return container.SelectFlexoConceptInstance(type=GuardAction);    
+      return container.container.SelectFlexoConceptInstance(type=GuardAction);    
     }  
   
     @CreationScheme    
@@ -121,21 +138,105 @@ public class TSM {
   }  
 
   @FlexoConcept  
-  public class Variable {  
+  public class SystemNodeExecutionDefinition {  
   
-      
-    public String name = property.name;  
-    public PrimitiveRole property;  
+    @GetSetProperty(value="executionUnits", access=get)    
+    public List<FlexoConceptInstanceType<ExecutionUnitDefinition>> getExecutionUnits {    
+      return container.SelectFlexoConceptInstance(type=ExecutionUnitDefinition);    
+    }  
+    public FlexoConcept supportContainerConcept;  
   
     @CreationScheme    
-    Variable:create(String aName, PrimitiveType primitiveType, String description) {    
-      property = supportVirtualModel.CreatePrimitiveRole();      
-      property.description = parameters.description;      
-      container.firePropertyChange variables    
+    SystemNodeExecutionDefinition:create(String name) {    
+      supportContainerConcept = supportVirtualModel.CreateFlexoConcept();    
     }    
   
     @DeletionScheme    
     Void delete() {    
+      
+    }    
+  
+  
+    @FlexoConcept    
+    public class ExecutionUnitDefinition {    
+      
+      public FlexoConcept supportConcept;    
+          
+      public String name = supportConcept.name;    
+      @GetSetProperty(value="variables", access=get)      
+      public List<FlexoConceptInstanceType<Variable>> getVariables {      
+        return container.container.SelectFlexoConceptInstance(type=Variable);      
+      }    
+      
+      @ActionScheme      
+      Void init(String name) {      
+        supportConcept = supportVirtualModel.CreateFlexoConcept();      
+      }      
+      
+      @ActionScheme      
+      FlexoConceptInstanceType<Variable> createNewVariable(String name, PrimitiveType primitiveType, String description) {      
+        return Variable.create(parameters.name,parameters.primitiveType,parameters.description);      
+      }      
+      
+      
+      @FlexoConcept      
+      public class Variable {      
+          
+              
+        public String name = property.name;      
+        public PrimitiveRole property;      
+          
+        @CreationScheme        
+        Variable:create(String aName, PrimitiveType primitiveType, String description) {        
+          property = supportVirtualModel.CreatePrimitiveRole();          
+          property.description = parameters.description;          
+          container.firePropertyChange variables        
+        }        
+          
+        @DeletionScheme        
+        Void delete() {        
+              
+        }        
+          
+      }      
+      
+    }    
+  
+    @FlexoConcept    
+    public class GuardActionExecutionUnitDefinition extends ExecutionUnitDefinition  {    
+      
+      @GetSetProperty(value="guardActions", access=get)      
+      public List<FlexoConceptInstanceType<GuardAction>> getGuardActions {      
+        return container.container.SelectFlexoConceptInstance(type=GuardAction);      
+      }    
+      
+      @CreationScheme      
+      GuardActionExecutionUnitDefinition:create(String name) {      
+        this.init(parameters.name)        
+        container.firePropertyChange executionUnits      
+      }      
+      
+      @ActionScheme      
+      public FlexoConceptInstanceType<GuardAction> createNewGuardAction(String name, String description) {      
+        return GuardAction.create(parameters.name,parameters.description);      
+      }      
+      
+      
+      @FlexoConcept      
+      public class GuardAction {      
+          
+              
+        public String name = actionScheme.name;      
+        public ActionScheme actionScheme;      
+          
+        @CreationScheme        
+        GuardAction:create(String name, String description) {        
+          actionScheme = supportVirtualModel.CreateFlexoBehaviour();          
+          actionScheme.description = parameters.description;          
+          container.firePropertyChange guardActions        
+        }        
+          
+      }      
       
     }    
   

@@ -33,6 +33,7 @@
 			icon="controller.iconForObject(node)"
 			label="node.nodeName" isEditable="false" name="node">
 			<Children data="node.machineryAllocations" name="machineryAllocations" />
+			<Children data="node.systemNodeExecutionDefinition" name="systemNodeExecutionDefinition" />
 		</BrowserElement>
 		<BrowserElement
 				dataClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml#MachineryAllocation&gt;"
@@ -40,10 +41,10 @@
 				isEditable="false" name="allocation">
 		</BrowserElement>
 		<BrowserElement
-			dataClassName="org.openflexo.foundation.fml.VirtualModelInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml&gt;"
-			icon="controller.iconForObject(tsm)"
-			label="'Execution units'" isEditable="false" name="tsm">
-			<Children data="tsm.executionUnits" name="executionUnits" />
+			dataClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml#SystemNodeExecutionDefinition&gt;"
+			icon="controller.iconForObject(systemNodeExecutionDefinition)"
+			label="'Execution units'" isEditable="false" name="systemNodeExecutionDefinition">
+			<Children data="systemNodeExecutionDefinition.executionUnits" name="executionUnits" />
 		</BrowserElement>
 		<BrowserElement
 			dataClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml#ExecutionUnitDefinition&gt;"

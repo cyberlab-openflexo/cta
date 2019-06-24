@@ -29,7 +29,7 @@
       </ActionScheme>
       <ActionScheme id="SYL-184" conditional="(executionUnitDefinition = null)" visibility="Public" name="allocateNewGuardActionExecutionUnit" width="800" label="allocate_new_guard_action_execution_unit" height="600" description="Une description ici ?&#xA;" userID="SYL" flexoID="184">
         <BehaviourControlGraph_AssignationAction id="SYL-182" assign="executionUnitDefinition" userID="SYL" flexoID="182">
-          <AssignableAction_AddFlexoConceptInstance id="SYL-181" creationSchemeURI="http://ensta-bretagne.fr/cyber/cta/TSM.fml#GuardActionExecutionUnitDefinition.create(name)" receiver="tsm" userID="SYL" flexoID="181">
+          <AssignableAction_AddFlexoConceptInstance id="SYL-181" container="systemNodeExecutionDefinition" creationSchemeURI="http://ensta-bretagne.fr/cyber/cta/TSM.fml#GuardActionExecutionUnitDefinition.create(name)" receiver="tsm" userID="SYL" flexoID="181">
             <AddFlexoConceptInstanceParameter id="SYL-180" paramName="name" value="parameters.executionUnitName" userID="SYL" flexoID="180" />
           </AssignableAction_AddFlexoConceptInstance>
         </BehaviourControlGraph_AssignationAction>
@@ -53,10 +53,18 @@
     </GetSetProperty>
     <FlexoConceptInstanceRole id="SYL-228" virtualModelInstance="container" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/CTA.fml#SystemNode" cloningStrategy="Reference" cardinality="ZeroOne" name="parentNode" userID="SYL" flexoID="228" />
     <FlexoConceptInstanceRole id="SYL-229" virtualModelInstance="container" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/CTA.fml#SystemNode" cloningStrategy="Reference" cardinality="ZeroMany" name="childrenNodes" userID="SYL" flexoID="229" />
+    <FlexoConceptInstanceRole id="SYL-347" virtualModelInstance="tsm" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/TSM.fml#SystemNodeExecutionDefinition" cloningStrategy="Reference" cardinality="ZeroOne" name="systemNodeExecutionDefinition" userID="SYL" flexoID="347" />
     <CreationScheme id="SYL-47" name="create" width="800" label="create" height="600" userID="SYL" flexoID="47">
       <BehaviourControlGraph_Sequence id="SYL-55" ownerContext="controlGraph2" userID="SYL" flexoID="55">
         <ControlGraph2_Sequence id="SYL-114" ownerContext="controlGraph2" userID="SYL" flexoID="114">
-          <ControlGraph2_ExpressionAction id="SYL-91" expression="this.createNewDiagram((&quot;DefaultDiagramFor&quot; + pimcaModel.name),&quot;Default diagram&quot;,&quot;&quot;)" ownerContext="controlGraph2" userID="SYL" flexoID="91" />
+          <ControlGraph2_Sequence id="SYL-351" ownerContext="controlGraph2" userID="SYL" flexoID="351">
+            <ControlGraph2_AssignationAction id="SYL-350" assign="systemNodeExecutionDefinition" ownerContext="controlGraph2" userID="SYL" flexoID="350">
+              <AssignableAction_AddFlexoConceptInstance id="SYL-349" creationSchemeURI="http://ensta-bretagne.fr/cyber/cta/TSM.fml#SystemNodeExecutionDefinition.create(name)" receiver="tsm" userID="SYL" flexoID="349">
+                <AddFlexoConceptInstanceParameter id="SYL-352" paramName="name" value="nodeName" userID="SYL" flexoID="352" />
+              </AssignableAction_AddFlexoConceptInstance>
+            </ControlGraph2_AssignationAction>
+            <ControlGraph1_ExpressionAction id="SYL-91" expression="this.createNewDiagram((&quot;DefaultDiagramFor&quot; + pimcaModel.name),&quot;Default diagram&quot;,&quot;&quot;)" ownerContext="controlGraph1" userID="SYL" flexoID="91" />
+          </ControlGraph2_Sequence>
           <ControlGraph1_AssignationAction id="SYL-113" assign="nodeName" ownerContext="controlGraph1" userID="SYL" flexoID="113">
             <AssignableAction_ExpressionAction id="SYL-112" expression="parameters.nodeName" userID="SYL" flexoID="112" />
           </ControlGraph1_AssignationAction>

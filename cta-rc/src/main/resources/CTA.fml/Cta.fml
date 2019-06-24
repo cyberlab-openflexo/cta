@@ -38,12 +38,14 @@ public class CTA {
     }  
     public SystemNode parentNode;  
     public List childrenNodes;  
+    public SystemNodeExecutionDefinition systemNodeExecutionDefinition;  
   
     @CreationScheme    
     SystemNode:create(String nodeName) {    
       pimcaModel = PimCAModel.create();      
       nodeName = parameters.nodeName;      
-      this.createNewDiagram(("DefaultDiagramFor" + pimcaModel.name),"Default diagram","")    
+      this.createNewDiagram(("DefaultDiagramFor" + pimcaModel.name),"Default diagram","")      
+      systemNodeExecutionDefinition = SystemNodeExecutionDefinition.create(nodeName);    
     }    
   
     @ActionScheme    
