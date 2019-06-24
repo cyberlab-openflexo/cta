@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VirtualModel id="SYL-5" virtualModelClass="org.openflexo.foundation.fml.VirtualModel" modelVersion="2.0" uri="http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml" version="0.1" name="TSMExecutionModel" userID="SYL" flexoID="5">
+  <FlexoConcept id="SYL-9" name="SystemNodeExecution" author="sylvain" userID="SYL" flexoID="9">
+    <Inspector id="SYL-10" inspectorTitle="SystemNodeExecutionModel" userID="SYL" flexoID="10" />
+    <EmbeddedFlexoConcept id="SYL-18" name="ExecutionUnit" author="sylvain" userID="SYL" flexoID="18">
+      <Inspector id="SYL-19" inspectorTitle="ExecutionUnit" userID="SYL" flexoID="19" />
+      <PrimitiveRole id="SYL-36" primitiveType="Integer" cloningStrategy="Clone" cardinality="One" name="pc" description="Program counter" userID="SYL" flexoID="36" />
+      <CreationScheme id="SYL-23" name="create" width="800" label="create" height="600" userID="SYL" flexoID="23">
+        <BehaviourControlGraph_EmptyControlGraph id="SYL-25" userID="SYL" flexoID="25" />
+      </CreationScheme>
+      <DeletionScheme id="SYL-24" name="delete" width="800" label="delete" height="600" userID="SYL" flexoID="24">
+        <BehaviourControlGraph_EmptyControlGraph id="SYL-26" userID="SYL" flexoID="26" />
+      </DeletionScheme>
+    </EmbeddedFlexoConcept>
+    <CreationScheme id="SYL-14" name="create" width="800" label="create" height="600" userID="SYL" flexoID="14">
+      <BehaviourControlGraph_EmptyControlGraph id="SYL-16" userID="SYL" flexoID="16" />
+    </CreationScheme>
+    <DeletionScheme id="SYL-15" name="delete" width="800" label="delete" height="600" userID="SYL" flexoID="15">
+      <BehaviourControlGraph_EmptyControlGraph id="SYL-17" userID="SYL" flexoID="17" />
+    </DeletionScheme>
+  </FlexoConcept>
+  <FlexoConcept idref="SYL-18" />
+  <Inspector id="SYL-1" inspectorTitle="ExecutionModel" userID="SYL" flexoID="1" />
+</VirtualModel>

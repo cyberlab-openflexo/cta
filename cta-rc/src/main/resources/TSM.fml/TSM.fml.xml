@@ -42,7 +42,7 @@
       </GetSetProperty>
       <ActionScheme id="SYL-89" name="init" width="800" label="init" height="600" userID="SYL" flexoID="89">
         <BehaviourControlGraph_AssignationAction id="SYL-93" assign="supportConcept" userID="SYL" flexoID="93">
-          <AssignableAction_CreateFlexoConcept id="SYL-92" container="supportContainerConcept" conceptName="parameters.name" receiver="supportVirtualModel" userID="SYL" flexoID="92" />
+          <AssignableAction_CreateFlexoConcept id="SYL-92" container="supportContainerConcept" conceptName="parameters.name" parentFlexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml#ExecutionUnit" receiver="supportVirtualModel" userID="SYL" flexoID="92" />
         </BehaviourControlGraph_AssignationAction>
         <GenericBehaviourParameter id="SYL-94" isRequired="true" widget="TEXT_FIELD" name="name" type="java.lang.String" userID="SYL" flexoID="94" />
       </ActionScheme>
@@ -114,7 +114,7 @@
     <FlexoConceptRole id="SYL-418" container="supportVirtualModel" cloningStrategy="Reference" cardinality="One" name="supportContainerConcept" userID="SYL" flexoID="418" />
     <CreationScheme id="SYL-392" name="create" width="800" label="create" height="600" userID="SYL" flexoID="392">
       <BehaviourControlGraph_AssignationAction id="SYL-419" assign="supportContainerConcept" userID="SYL" flexoID="419">
-        <AssignableAction_CreateFlexoConcept id="SYL-420" container="supportVirtualModel" conceptName="parameters.name" receiver="supportVirtualModel" userID="SYL" flexoID="420" />
+        <AssignableAction_CreateFlexoConcept id="SYL-420" container="supportVirtualModel" conceptName="parameters.name" parentFlexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml#SystemNodeExecution" receiver="supportVirtualModel" userID="SYL" flexoID="420" />
       </BehaviourControlGraph_AssignationAction>
       <GenericBehaviourParameter id="SYL-421" widget="TEXT_FIELD" name="name" type="java.lang.String" userID="SYL" flexoID="421" />
     </CreationScheme>
@@ -127,7 +127,7 @@
   <FMLModelSlot id="SYL-33" isRequired="true" cloningStrategy="Reference" cardinality="ZeroOne" name="supportVirtualModel" userID="SYL" flexoID="33" />
   <CreationScheme id="SYL-34" name="init" width="800" label="init" height="600" userID="SYL" flexoID="34">
     <BehaviourControlGraph_AssignationAction id="SYL-53" assign="supportVirtualModel" ownerContext="controlGraph1" userID="SYL" flexoID="53">
-      <AssignableAction_CreateTopLevelVirtualModel id="SYL-52" resourceCenter="this.resourceCenter" relativePath="" dynamicRelativePath="(this.resource.parentPathRelativeToResourceCenter(this.resourceCenter) + &quot;/ExecutionModel&quot;)" resourceName="parameters.virtualModelName" userID="SYL" flexoID="52" />
+      <AssignableAction_CreateTopLevelVirtualModel id="SYL-52" parentVirtualModelTypeURI="http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml" resourceCenter="this.resourceCenter" relativePath="" dynamicRelativePath="(this.resource.parentPathRelativeToResourceCenter(this.resourceCenter) + &quot;/ExecutionModel&quot;)" resourceName="parameters.virtualModelName" userID="SYL" flexoID="52" />
     </BehaviourControlGraph_AssignationAction>
     <GenericBehaviourParameter id="SYL-38" widget="TEXT_FIELD" name="virtualModelName" type="java.lang.String" userID="SYL" flexoID="38" />
   </CreationScheme>

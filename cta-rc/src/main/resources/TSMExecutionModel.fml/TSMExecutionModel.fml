@@ -1,0 +1,59 @@
+
+/**
+ * 
+ * @version 0.1
+ */
+@VirtualModel(uri="http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml")
+public class TSMExecutionModel {
+
+  @FlexoConcept  
+  public class SystemNodeExecution {  
+  
+    @CreationScheme    
+    SystemNodeExecution:create() {    
+      
+    }    
+  
+    @DeletionScheme    
+    Void delete() {    
+      
+    }    
+  
+  
+    @FlexoConcept    
+    public class ExecutionUnit {    
+      
+      public int pc;    
+      
+      @CreationScheme      
+      ExecutionUnit:create() {      
+          
+      }      
+      
+      @DeletionScheme      
+      Void delete() {      
+          
+      }      
+      
+    }    
+  
+  }  
+
+  @FlexoConcept  
+  public class ExecutionUnit {  
+  
+    public int pc;  
+  
+    @CreationScheme    
+    ExecutionUnit:create() {    
+      
+    }    
+  
+    @DeletionScheme    
+    Void delete() {    
+      
+    }    
+  
+  }  
+
+}
