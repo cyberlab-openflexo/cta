@@ -23,6 +23,11 @@ public class CTA {
     rootNode = SystemNode.create("System");  
   }  
 
+  @ActionScheme  
+  VirtualModelInstanceType<Execution> startNewSimulation(String simulationName, String description) {  
+    return Execution.create(parameters.simulationName,parameters.description);  
+  }  
+
 
   @FlexoConcept  
   public class SystemNode {  

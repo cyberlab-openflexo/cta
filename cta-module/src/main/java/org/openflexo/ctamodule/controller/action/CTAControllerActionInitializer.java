@@ -84,6 +84,8 @@ public class CTAControllerActionInitializer extends ControllerActionInitializer 
 		// CreateEditionAction is called in the context of CTA module
 		new CreateCTAEditionActionInitializer(this);
 
+		new StartNewSimulationInitializer(this);
+
 	}
 
 }

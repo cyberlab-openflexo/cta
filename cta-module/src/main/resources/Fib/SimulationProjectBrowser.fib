@@ -29,8 +29,8 @@
 		</BrowserElement>
 		<BrowserElement
 			dataClassName="org.openflexo.foundation.fml.VirtualModelInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml&gt;"
-			icon="controller.iconForObject(node)"
-			label="node.nodeName" isEditable="false" name="node">
+			icon="controller.iconForObject(simulation)"
+			label="simulation.simulationName" isEditable="false" name="simulation">
 		</BrowserElement>
 	</Browser>
 	<LocalizedDictionary id="5" />

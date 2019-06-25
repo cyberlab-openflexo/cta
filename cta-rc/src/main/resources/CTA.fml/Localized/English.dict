@@ -12,4 +12,6 @@ executionUnitName=ExecutionUnitName
 invalid_parameter=Invalid parameter
 machinery=Machinery
 newMachinery=NewMachinery
+simulationName=SimulationName
+startNewSimulation=StartNewSimulation
 update=Update

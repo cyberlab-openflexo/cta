@@ -1,3 +1,4 @@
+use org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstanceModelSlot;
 
 /**
  * Represent an execution of CTA model
@@ -8,10 +9,22 @@
 @VirtualModel(uri="http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml")
 public class Execution {
 
-  @GetSetProperty(value="executors", access=get)  
-  public List<FlexoConceptInstanceType<SystemNodeExecutor>> getExecutors {  
+  @GetSetProperty(value="systemNodeExecutors", access=get)  
+  public List<FlexoConceptInstanceType<SystemNodeExecutor>> getSystemNodeExecutors {  
     return this.SelectFlexoConceptInstance(type=SystemNodeExecutor);  
   }
+  public String simulationName;
+  public TSMExecutionModel executionModel;
+  public String description;
+
+  @CreationScheme  
+  Execution:create(String simulationName, String description) {  
+    simulationName = parameters.simulationName;    
+    description = parameters.description;    
+    executionModel = this.AddVirtualModelInstance();    
+    container.firePropertyChange executions  
+  }  
+
 
   /**  
    * Represent the execution of a ExecutionUnit deployed on a Machinery of a PimCA model  
@@ -23,7 +36,7 @@ public class Execution {
     public SystemNode systemNode;  
   
     @CreationScheme    
-    SystemNodeExecutor:create() {    
+    SystemNodeExecutor:create(FlexoConceptInstanceType<SystemNode> systemNode) {    
       
     }    
   

@@ -80,6 +80,10 @@ public class CTAIconLibrary extends IconLibrary {
 	public static final ImageIcon BIG_EXECUTION_UNIT_ICON = new ImageIconResource(
 			ResourceLocator.locateResource("Icons/CTA/ExecutionUnit_64x64.png"));
 
+	public static final ImageIcon BIG_SIMULATION_ICON = new ImageIconResource(
+			ResourceLocator.locateResource("Icons/CTA/Simulation_64x64.png"));
+	public static final ImageIcon SIMULATION_ICON = new ImageIconResource(ResourceLocator.locateResource("Icons/CTA/Simulation_16x16.png"));
+
 	public static final IconMarker CTA_BIG_MARKER = new IconMarker(CTA_MEDIUM_ICON, 32, 0);
 
 }

@@ -108,6 +108,14 @@ public class CTAController extends FlexoController {
 		return pimcaPerspective;
 	}
 
+	public ExecutionUnitPerspective getExecutionUnitPerspective() {
+		return executionUnitPerspective;
+	}
+
+	public SimulationPerspective getSimulationPerspective() {
+		return simulationPerspective;
+	}
+
 	@Override
 	protected MouseSelectionManager createSelectionManager() {
 		return new CTASelectionManager(this);

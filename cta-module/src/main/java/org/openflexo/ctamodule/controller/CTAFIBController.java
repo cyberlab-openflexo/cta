@@ -46,7 +46,9 @@ import org.openflexo.ctamodule.CTAIconLibrary;
 import org.openflexo.ctamodule.model.CTAProjectNature;
 import org.openflexo.ctamodule.model.action.CreateNewGuardAction;
 import org.openflexo.ctamodule.model.action.CreateNewVariable;
+import org.openflexo.ctamodule.model.action.StartNewSimulation;
 import org.openflexo.fml.controller.FMLFIBController;
+import org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstance;
 import org.openflexo.foundation.fml.rt.FlexoConceptInstance;
 import org.openflexo.gina.controller.FIBController;
 import org.openflexo.gina.model.FIBComponent;
@@ -106,8 +108,11 @@ public class CTAFIBController extends FMLFIBController {
 		return CTAFIBController.class;
 	}
 
-	public void newSimulation() {
+	public FMLRTVirtualModelInstance startNewSimulation(CTAProjectNature nature) {
 		System.out.println("New simulation !");
+		StartNewSimulation startNewSimulation = StartNewSimulation.ACTION_TYPE.makeNewAction(nature, null, getEditor());
+		startNewSimulation.doAction();
+		return startNewSimulation.getNewSimulation();
 	}
 
 	public void openSimulation(FlexoConceptInstance simulation) {
