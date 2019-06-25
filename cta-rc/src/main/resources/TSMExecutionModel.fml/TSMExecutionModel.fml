@@ -1,3 +1,4 @@
+use org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstanceModelSlot;
 
 /**
  * 
@@ -6,12 +7,25 @@
 @VirtualModel(uri="http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml")
 public class TSMExecutionModel {
 
+  public int globalCounter;
+  public CTA cta;
+
+  @CreationScheme  
+  TSMExecutionModel:init() {  
+    log ("Initialize TSMExecutionModel " + this.name)    
+    globalCounter = 0;  
+  }  
+
+
   @FlexoConcept  
-  public class SystemNodeExecution {  
+  public class SystemNodeExecutionUnit {  
+  
+    public int systemNodeCounter;  
   
     @CreationScheme    
-    SystemNodeExecution:create() {    
-      
+    SystemNodeExecutionUnit:init() {    
+      log "Init SystemNodeExecution"      
+      systemNodeCounter = 0;    
     }    
   
     @DeletionScheme    
@@ -23,11 +37,12 @@ public class TSMExecutionModel {
     @FlexoConcept    
     public class ExecutionUnit {    
       
-      public int pc;    
+      public int counter;    
       
       @CreationScheme      
-      ExecutionUnit:create() {      
-          
+      ExecutionUnit:init() {      
+        log "Init ExecutionUnit"        
+        counter = 0;      
       }      
       
       @DeletionScheme      
@@ -42,11 +57,12 @@ public class TSMExecutionModel {
   @FlexoConcept  
   public class ExecutionUnit {  
   
-    public int pc;  
+    public int counter;  
   
     @CreationScheme    
-    ExecutionUnit:create() {    
-      
+    ExecutionUnit:init() {    
+      log "Init ExecutionUnit"      
+      counter = 0;    
     }    
   
     @DeletionScheme    

@@ -114,7 +114,7 @@
     <FlexoConceptRole id="SYL-418" container="supportVirtualModel" cloningStrategy="Reference" cardinality="One" name="supportContainerConcept" userID="SYL" flexoID="418" />
     <CreationScheme id="SYL-392" name="create" width="800" label="create" height="600" userID="SYL" flexoID="392">
       <BehaviourControlGraph_AssignationAction id="SYL-419" assign="supportContainerConcept" userID="SYL" flexoID="419">
-        <AssignableAction_CreateFlexoConcept id="SYL-420" container="supportVirtualModel" conceptName="parameters.name" parentFlexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml#SystemNodeExecution" receiver="supportVirtualModel" userID="SYL" flexoID="420" />
+        <AssignableAction_CreateFlexoConcept id="SYL-420" container="supportVirtualModel" conceptName="parameters.name" parentFlexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml#SystemNodeExecutionUnit" receiver="supportVirtualModel" userID="SYL" flexoID="420" />
       </BehaviourControlGraph_AssignationAction>
       <GenericBehaviourParameter id="SYL-421" widget="TEXT_FIELD" name="name" type="java.lang.String" userID="SYL" flexoID="421" />
     </CreationScheme>

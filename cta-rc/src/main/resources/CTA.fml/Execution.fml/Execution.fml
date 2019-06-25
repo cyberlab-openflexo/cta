@@ -16,12 +16,15 @@ public class Execution {
   public String simulationName;
   public TSMExecutionModel executionModel;
   public String description;
+  public SystemNodeExecutor rootSystemNodeExecutor;
 
   @CreationScheme  
   Execution:create(String simulationName, String description) {  
     simulationName = parameters.simulationName;    
     description = parameters.description;    
     executionModel = this.AddVirtualModelInstance();    
+    executionModel.cta = container;    
+    rootSystemNodeExecutor = SystemNodeExecutor.create(container.rootNode);    
     container.firePropertyChange executions  
   }  
 
@@ -34,10 +37,19 @@ public class Execution {
   public class SystemNodeExecutor {  
   
     public SystemNode systemNode;  
+    public SystemNodeExecutionUnit systemNodeExecutionUnit;  
+    @GetSetProperty(value="executors", access=get)    
+    public Void getExecutors {    
+      container.SelectFlexoConceptInstance(type=Executor)    
+    }  
   
     @CreationScheme    
     SystemNodeExecutor:create(FlexoConceptInstanceType<SystemNode> systemNode) {    
-      
+      systemNode = parameters.systemNode;      
+      systemNodeExecutionUnit = executionModel.AddFlexoConceptInstance();      
+      for (machineryAllocation : systemNode.machineryAllocations) {      
+        Executor.create(machineryAllocation)      
+      }    
     }    
   
     @DeletionScheme    
@@ -54,10 +66,12 @@ public class Execution {
     public class Executor {    
       
       public MachineryAllocation machineryAllocation;    
+      public ExecutionUnit executionUnit;    
       
       @CreationScheme      
-      Executor:create() {      
-          
+      Executor:create(FlexoConceptInstanceType<MachineryAllocation> machineryAllocation) {      
+        machineryAllocation = parameters.machineryAllocation;        
+        executionUnit = executionModel.AddFlexoConceptInstance();      
       }      
       
       @DeletionScheme      
@@ -77,10 +91,12 @@ public class Execution {
   public class Executor {  
   
     public MachineryAllocation machineryAllocation;  
+    public ExecutionUnit executionUnit;  
   
     @CreationScheme    
-    Executor:create() {    
-      
+    Executor:create(FlexoConceptInstanceType<MachineryAllocation> machineryAllocation) {    
+      machineryAllocation = parameters.machineryAllocation;      
+      executionUnit = executionModel.AddFlexoConceptInstance();    
     }    
   
     @DeletionScheme    
