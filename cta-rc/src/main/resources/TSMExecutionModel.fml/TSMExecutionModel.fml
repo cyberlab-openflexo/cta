@@ -21,6 +21,9 @@ public class TSMExecutionModel {
   public class SystemNodeExecutionUnit {  
   
     public int systemNodeCounter;  
+    public SystemNode systemNode;  
+      
+    public FlexoConceptInstanceType<SystemNodeExecutionDefinition> systemNodeExecutionDefinition = systemNode.systemNodeExecutionDefinition;  
   
     @CreationScheme    
     SystemNodeExecutionUnit:init() {    
@@ -38,6 +41,9 @@ public class TSMExecutionModel {
     public class ExecutionUnit {    
       
       public int counter;    
+      public MachineryAllocation machineryAllocation;    
+          
+      public FlexoConceptInstanceType<ExecutionUnitDefinition> executionUnitDefinition = machineryAllocation.executionUnitDefinition;    
       
       @CreationScheme      
       ExecutionUnit:init() {      
@@ -58,6 +64,9 @@ public class TSMExecutionModel {
   public class ExecutionUnit {  
   
     public int counter;  
+    public MachineryAllocation machineryAllocation;  
+      
+    public FlexoConceptInstanceType<ExecutionUnitDefinition> executionUnitDefinition = machineryAllocation.executionUnitDefinition;  
   
     @CreationScheme    
     ExecutionUnit:init() {    
@@ -70,6 +79,10 @@ public class TSMExecutionModel {
       
     }    
   
+  }  
+
+  @FlexoConcept  
+  public class GuardActionExecutionUnit extends ExecutionUnit  {  
   }  
 
 }

@@ -40,12 +40,6 @@
           <AssignableAction_SelectFlexoConceptInstance id="SYL-209" container="this" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/TSM.fml#Variable" receiver="container.container" userID="SYL" flexoID="209" />
         </GetControlGraph_ReturnStatement>
       </GetSetProperty>
-      <ActionScheme id="SYL-89" name="init" width="800" label="init" height="600" userID="SYL" flexoID="89">
-        <BehaviourControlGraph_AssignationAction id="SYL-93" assign="supportConcept" userID="SYL" flexoID="93">
-          <AssignableAction_CreateFlexoConcept id="SYL-92" container="supportContainerConcept" conceptName="parameters.name" parentFlexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml#ExecutionUnit" receiver="supportVirtualModel" userID="SYL" flexoID="92" />
-        </BehaviourControlGraph_AssignationAction>
-        <GenericBehaviourParameter id="SYL-94" isRequired="true" widget="TEXT_FIELD" name="name" type="java.lang.String" userID="SYL" flexoID="94" />
-      </ActionScheme>
       <ActionScheme id="SYL-305" name="createNewVariable" width="800" label="createNewVariable" height="600" userID="SYL" flexoID="305">
         <BehaviourControlGraph_ReturnStatement id="SYL-312" userID="SYL" flexoID="312">
           <AssignableAction_AddFlexoConceptInstance id="SYL-309" container="this" creationSchemeURI="http://ensta-bretagne.fr/cyber/cta/TSM.fml#Variable.create(aName,primitiveType,description)" receiver="container.container" userID="SYL" flexoID="309">
@@ -89,8 +83,13 @@
       </GetSetProperty>
       <CreationScheme id="SYL-87" name="create" width="800" label="create" height="600" userID="SYL" flexoID="87">
         <BehaviourControlGraph_Sequence id="SYL-191" userID="SYL" flexoID="191">
-          <ControlGraph2_NotifyPropertyChangedAction id="SYL-190" propertyName="executionUnits" object="container" ownerContext="controlGraph2" userID="SYL" flexoID="190" />
-          <ControlGraph1_ExpressionAction id="SYL-88" expression="this.init(parameters.name)" ownerContext="controlGraph1" userID="SYL" flexoID="88" />
+          <ControlGraph2_Sequence id="SYL-442" ownerContext="controlGraph2" userID="SYL" flexoID="442">
+            <ControlGraph2_NotifyPropertyChangedAction id="SYL-190" propertyName="executionUnits" object="container" ownerContext="controlGraph2" userID="SYL" flexoID="190" />
+            <ControlGraph1_AssignationAction id="SYL-440" assign="supportConcept" ownerContext="controlGraph1" userID="SYL" flexoID="440">
+              <AssignableAction_CreateFlexoConcept id="SYL-441" container="supportContainerConcept" conceptName="parameters.name" parentFlexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml#GuardActionExecutionUnit" receiver="supportVirtualModel" userID="SYL" flexoID="441" />
+            </ControlGraph1_AssignationAction>
+          </ControlGraph2_Sequence>
+          <ControlGraph1_ExpressionAction id="SYL-88" expression="this.null()" ownerContext="controlGraph1" userID="SYL" flexoID="88" />
         </BehaviourControlGraph_Sequence>
         <GenericBehaviourParameter id="SYL-95" isRequired="true" widget="TEXT_FIELD" name="name" type="java.lang.String" userID="SYL" flexoID="95" />
       </CreationScheme>

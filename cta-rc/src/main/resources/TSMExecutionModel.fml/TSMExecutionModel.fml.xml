@@ -2,9 +2,11 @@
 <VirtualModel id="SYL-5" virtualModelClass="org.openflexo.foundation.fml.VirtualModel" modelVersion="2.0" uri="http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml" version="0.1" name="TSMExecutionModel" userID="SYL" flexoID="5">
   <FlexoConcept id="SYL-9" name="SystemNodeExecutionUnit" author="sylvain" userID="SYL" flexoID="9">
     <Inspector id="SYL-10" inspectorTitle="SystemNodeExecutionModel" userID="SYL" flexoID="10" />
-    <EmbeddedFlexoConcept id="SYL-18" name="ExecutionUnit" author="sylvain" userID="SYL" flexoID="18">
+    <EmbeddedFlexoConcept id="SYL-18" isAbstract="true" name="ExecutionUnit" author="sylvain" userID="SYL" flexoID="18">
       <Inspector id="SYL-19" inspectorTitle="ExecutionUnit" userID="SYL" flexoID="19" />
       <PrimitiveRole id="SYL-36" primitiveType="Integer" cloningStrategy="Clone" cardinality="One" name="counter" description="Program counter" userID="SYL" flexoID="36" />
+      <FlexoConceptInstanceRole id="SYL-88" virtualModelInstance="cta" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/CTA.fml#MachineryAllocation" cloningStrategy="Reference" cardinality="ZeroOne" name="machineryAllocation" userID="SYL" flexoID="88" />
+      <ExpressionProperty id="SYL-89" expression="machineryAllocation.executionUnitDefinition" name="executionUnitDefinition" userID="SYL" flexoID="89" />
       <CreationScheme id="SYL-23" name="init" width="800" label="init" height="600" userID="SYL" flexoID="23">
         <BehaviourControlGraph_Sequence id="SYL-62" userID="SYL" flexoID="62">
           <ControlGraph2_AssignationAction id="SYL-61" assign="counter" ownerContext="controlGraph2" userID="SYL" flexoID="61">
@@ -18,6 +20,8 @@
       </DeletionScheme>
     </EmbeddedFlexoConcept>
     <PrimitiveRole id="SYL-54" primitiveType="Integer" cloningStrategy="Clone" cardinality="ZeroOne" name="systemNodeCounter" userID="SYL" flexoID="54" />
+    <FlexoConceptInstanceRole id="SYL-75" virtualModelInstance="cta" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/CTA.fml#SystemNode" container="cta" cloningStrategy="Reference" cardinality="ZeroOne" name="systemNode" userID="SYL" flexoID="75" />
+    <ExpressionProperty id="SYL-76" expression="systemNode.systemNodeExecutionDefinition" name="systemNodeExecutionDefinition" userID="SYL" flexoID="76" />
     <CreationScheme id="SYL-14" name="init" width="800" label="init" height="600" userID="SYL" flexoID="14">
       <BehaviourControlGraph_Sequence id="SYL-63" userID="SYL" flexoID="63">
         <ControlGraph2_AssignationAction id="SYL-56" assign="systemNodeCounter" ownerContext="controlGraph2" userID="SYL" flexoID="56">
@@ -31,6 +35,9 @@
     </DeletionScheme>
   </FlexoConcept>
   <FlexoConcept idref="SYL-18" />
+  <FlexoConcept id="SYL-77" parentFlexoConceptsList="http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml#ExecutionUnit" name="GuardActionExecutionUnit" userID="SYL" flexoID="77">
+    <Inspector id="SYL-78" inspectorTitle="GuardActionExecutionUnit" userID="SYL" flexoID="78" />
+  </FlexoConcept>
   <UseModelSlotDeclaration id="0" modelSlotClass="org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstanceModelSlot" userID="SYL" flexoID="-1" />
   <Inspector id="SYL-1" inspectorTitle="ExecutionModel" userID="SYL" flexoID="1" />
   <PrimitiveRole id="SYL-46" primitiveType="Integer" cloningStrategy="Clone" cardinality="ZeroOne" name="globalCounter" userID="SYL" flexoID="46" />
