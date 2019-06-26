@@ -73,7 +73,8 @@ public class Execution {
       Executor:create(FlexoConceptInstanceType<MachineryAllocation> machineryAllocation) {      
         machineryAllocation = parameters.machineryAllocation;        
         executionUnit = executionModel.AddFlexoConceptInstance();        
-        executionUnit.machineryAllocation = parameters.machineryAllocation;      
+        executionUnit.machineryAllocation = parameters.machineryAllocation;        
+        executionUnit.execute()      
       }      
       
       @DeletionScheme      
@@ -99,7 +100,8 @@ public class Execution {
     Executor:create(FlexoConceptInstanceType<MachineryAllocation> machineryAllocation) {    
       machineryAllocation = parameters.machineryAllocation;      
       executionUnit = executionModel.AddFlexoConceptInstance();      
-      executionUnit.machineryAllocation = parameters.machineryAllocation;    
+      executionUnit.machineryAllocation = parameters.machineryAllocation;      
+      executionUnit.execute()    
     }    
   
     @DeletionScheme    

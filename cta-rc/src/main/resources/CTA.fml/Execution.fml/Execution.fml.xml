@@ -9,9 +9,12 @@
       <CreationScheme id="SYL-39" name="create" width="800" label="create" height="600" userID="SYL" flexoID="39">
         <BehaviourControlGraph_Sequence id="SYL-139" userID="SYL" flexoID="139">
           <ControlGraph2_Sequence id="SYL-157" ownerContext="controlGraph2" userID="SYL" flexoID="157">
-            <ControlGraph2_AssignationAction id="SYL-156" assign="executionUnit.machineryAllocation" ownerContext="controlGraph2" userID="SYL" flexoID="156">
-              <AssignableAction_ExpressionAction id="SYL-155" expression="parameters.machineryAllocation" userID="SYL" flexoID="155" />
-            </ControlGraph2_AssignationAction>
+            <ControlGraph2_Sequence id="SYL-169" ownerContext="controlGraph2" userID="SYL" flexoID="169">
+              <ControlGraph2_ExpressionAction id="SYL-168" expression="executionUnit.execute()" ownerContext="controlGraph2" userID="SYL" flexoID="168" />
+              <ControlGraph1_AssignationAction id="SYL-156" assign="executionUnit.machineryAllocation" ownerContext="controlGraph1" userID="SYL" flexoID="156">
+                <AssignableAction_ExpressionAction id="SYL-155" expression="parameters.machineryAllocation" userID="SYL" flexoID="155" />
+              </ControlGraph1_AssignationAction>
+            </ControlGraph2_Sequence>
             <ControlGraph1_AssignationAction id="SYL-138" assign="executionUnit" ownerContext="controlGraph1" userID="SYL" flexoID="138">
               <AssignableAction_AddFlexoConceptInstance id="SYL-137" container="systemNodeExecutionUnit" dynamicInstantiation="true" dynamicFlexoConceptType="machineryAllocation.executionUnitDefinition.supportConcept" receiver="executionModel" userID="SYL" flexoID="137" />
             </ControlGraph1_AssignationAction>

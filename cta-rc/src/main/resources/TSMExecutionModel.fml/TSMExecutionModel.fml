@@ -11,7 +11,7 @@ public class TSMExecutionModel {
   public CTA cta;
 
   @CreationScheme  
-  TSMExecutionModel:init() {  
+  TSMExecutionModel:initExecutionModel() {  
     log ("Initialize TSMExecutionModel " + this.name)    
     globalCounter = 0;  
   }  
@@ -26,7 +26,7 @@ public class TSMExecutionModel {
     public FlexoConceptInstanceType<SystemNodeExecutionDefinition> systemNodeExecutionDefinition = systemNode.systemNodeExecutionDefinition;  
   
     @CreationScheme    
-    SystemNodeExecutionUnit:init() {    
+    SystemNodeExecutionUnit:initSystemNodeExecutionUnit() {    
       log "Init SystemNodeExecution"      
       systemNodeCounter = 0;    
     }    
@@ -44,15 +44,107 @@ public class TSMExecutionModel {
       public MachineryAllocation machineryAllocation;    
           
       public FlexoConceptInstanceType<ExecutionUnitDefinition> executionUnitDefinition = machineryAllocation.executionUnitDefinition;    
+      @GetSetProperty(value="fireableTransitions", access=get)      
+      public List<FlexoConceptInstanceType<Transition>> getFireableTransitions {      
+        return container.container.SelectFlexoConceptInstance(type=Transition,where=where=selected.isFireable);      
+      }    
       
-      @CreationScheme      
-      ExecutionUnit:init() {      
+      @ActionScheme      
+      Void initExecutionUnit() {      
         log "Init ExecutionUnit"        
         counter = 0;      
       }      
       
-      @DeletionScheme      
-      Void delete() {      
+      @ActionScheme      
+      Void execute() {      
+        log "On devrait pas passer ici"      
+      }      
+      
+      
+      @FlexoConcept      
+      public class Transition {      
+          
+              
+        abstract Boolean isFireable;      
+              
+        abstract String label;      
+          
+        @ActionScheme        
+        Void fire() {        
+              
+        }        
+          
+        @ActionScheme        
+        Void update() {        
+              
+        }        
+          
+      }      
+      
+    }    
+  
+    @FlexoConcept    
+    public class GuardActionExecutionUnit extends ExecutionUnit  {    
+      
+      public GuardActionExecutionUnitDefinition guardActionExecutionUnitDefinition;    
+      
+      @CreationScheme      
+      GuardActionExecutionUnit:create() {      
+        this.initExecutionUnit()      
+      }      
+      
+      @ActionScheme      
+      Void execute() {      
+        log ("Starting execution of GuardActionExecutionUnit " + this)        
+        log ("executionUnitDefinition=" + executionUnitDefinition)        
+        guardActionExecutionUnitDefinition = executionUnitDefinition;        
+        log ("Juste avant, container=" + container.container)        
+        for (guardAction : guardActionExecutionUnitDefinition.guardActions) {        
+          GuardActionTransition.create(guardAction)        
+        }        
+        List<FlexoConceptInstanceType<GuardActionTransition>> allTransitions = container.container.SelectFlexoConceptInstance(type=GuardActionTransition);        
+        log ("allTransitions=" + allTransitions)        
+        log ("fireableTransitions=" + fireableTransitions)      
+      }      
+      
+      @ActionScheme      
+      public Void updateFireableTransitions() {      
+        log "updateFireableTransitions"        
+        MatchingSet aMatchingSet = this.initiateMatching(GuardActionTransition);        
+        for (guardAction : guardActionExecutionUnitDefinition.guardActions) {        
+          FlexoConceptInstanceType<GuardActionTransition> transition = FML@RT::MatchFlexoConceptInstance as GuardActionTransition match=(guardAction=guardAction) using GuardActionTransition:create(guardAction);          
+          log ("Match transition " + transition)          
+          transition.update()        
+        }        
+        aMatchingSet.finalizeMatching()      
+      }      
+      
+      
+      @FlexoConcept      
+      public class GuardActionTransition extends Transition  {      
+          
+        public GuardAction guardAction;      
+        @GetSetProperty(value="isFireable", access=get)        
+        public Boolean getIsFireable {        
+          return guardAction.actionScheme.conditional.getBindingValue(this);        
+        }      
+              
+        public String label = ((guardAction.actionScheme.conditional.toString + "/") + guardAction.actionScheme.name);      
+          
+        @CreationScheme        
+        GuardActionTransition:create(FlexoConceptInstanceType<GuardAction> guardAction) {        
+          guardAction = parameters.guardAction;        
+        }        
+          
+        @ActionScheme        
+        Void fire() {        
+          log ("Hop, je declenche la transition pour " + guardAction)        
+        }        
+          
+        @ActionScheme        
+        Void update() {        
+          this.firePropertyChange isFireable        
+        }        
           
       }      
       
@@ -67,15 +159,40 @@ public class TSMExecutionModel {
     public MachineryAllocation machineryAllocation;  
       
     public FlexoConceptInstanceType<ExecutionUnitDefinition> executionUnitDefinition = machineryAllocation.executionUnitDefinition;  
+    @GetSetProperty(value="fireableTransitions", access=get)    
+    public List<FlexoConceptInstanceType<Transition>> getFireableTransitions {    
+      return container.container.SelectFlexoConceptInstance(type=Transition,where=where=selected.isFireable);    
+    }  
   
-    @CreationScheme    
-    ExecutionUnit:init() {    
+    @ActionScheme    
+    Void initExecutionUnit() {    
       log "Init ExecutionUnit"      
       counter = 0;    
     }    
   
-    @DeletionScheme    
-    Void delete() {    
+    @ActionScheme    
+    Void execute() {    
+      log "On devrait pas passer ici"    
+    }    
+  
+  
+    @FlexoConcept    
+    public class Transition {    
+      
+          
+      abstract Boolean isFireable;    
+          
+      abstract String label;    
+      
+      @ActionScheme      
+      Void fire() {      
+          
+      }      
+      
+      @ActionScheme      
+      Void update() {      
+          
+      }      
       
     }    
   
@@ -83,6 +200,117 @@ public class TSMExecutionModel {
 
   @FlexoConcept  
   public class GuardActionExecutionUnit extends ExecutionUnit  {  
+  
+    public GuardActionExecutionUnitDefinition guardActionExecutionUnitDefinition;  
+  
+    @CreationScheme    
+    GuardActionExecutionUnit:create() {    
+      this.initExecutionUnit()    
+    }    
+  
+    @ActionScheme    
+    Void execute() {    
+      log ("Starting execution of GuardActionExecutionUnit " + this)      
+      log ("executionUnitDefinition=" + executionUnitDefinition)      
+      guardActionExecutionUnitDefinition = executionUnitDefinition;      
+      log ("Juste avant, container=" + container.container)      
+      for (guardAction : guardActionExecutionUnitDefinition.guardActions) {      
+        GuardActionTransition.create(guardAction)      
+      }      
+      List<FlexoConceptInstanceType<GuardActionTransition>> allTransitions = container.container.SelectFlexoConceptInstance(type=GuardActionTransition);      
+      log ("allTransitions=" + allTransitions)      
+      log ("fireableTransitions=" + fireableTransitions)    
+    }    
+  
+    @ActionScheme    
+    public Void updateFireableTransitions() {    
+      log "updateFireableTransitions"      
+      MatchingSet aMatchingSet = this.initiateMatching(GuardActionTransition);      
+      for (guardAction : guardActionExecutionUnitDefinition.guardActions) {      
+        FlexoConceptInstanceType<GuardActionTransition> transition = FML@RT::MatchFlexoConceptInstance as GuardActionTransition match=(guardAction=guardAction) using GuardActionTransition:create(guardAction);        
+        log ("Match transition " + transition)        
+        transition.update()      
+      }      
+      aMatchingSet.finalizeMatching()    
+    }    
+  
+  
+    @FlexoConcept    
+    public class GuardActionTransition extends Transition  {    
+      
+      public GuardAction guardAction;    
+      @GetSetProperty(value="isFireable", access=get)      
+      public Boolean getIsFireable {      
+        return guardAction.actionScheme.conditional.getBindingValue(this);      
+      }    
+          
+      public String label = ((guardAction.actionScheme.conditional.toString + "/") + guardAction.actionScheme.name);    
+      
+      @CreationScheme      
+      GuardActionTransition:create(FlexoConceptInstanceType<GuardAction> guardAction) {      
+        guardAction = parameters.guardAction;      
+      }      
+      
+      @ActionScheme      
+      Void fire() {      
+        log ("Hop, je declenche la transition pour " + guardAction)      
+      }      
+      
+      @ActionScheme      
+      Void update() {      
+        this.firePropertyChange isFireable      
+      }      
+      
+    }    
+  
+  }  
+
+  @FlexoConcept  
+  public class Transition {  
+  
+      
+    abstract Boolean isFireable;  
+      
+    abstract String label;  
+  
+    @ActionScheme    
+    Void fire() {    
+      
+    }    
+  
+    @ActionScheme    
+    Void update() {    
+      
+    }    
+  
+  }  
+
+  @FlexoConcept  
+  public class GuardActionTransition extends Transition  {  
+  
+    public GuardAction guardAction;  
+    @GetSetProperty(value="isFireable", access=get)    
+    public Boolean getIsFireable {    
+      return guardAction.actionScheme.conditional.getBindingValue(this);    
+    }  
+      
+    public String label = ((guardAction.actionScheme.conditional.toString + "/") + guardAction.actionScheme.name);  
+  
+    @CreationScheme    
+    GuardActionTransition:create(FlexoConceptInstanceType<GuardAction> guardAction) {    
+      guardAction = parameters.guardAction;    
+    }    
+  
+    @ActionScheme    
+    Void fire() {    
+      log ("Hop, je declenche la transition pour " + guardAction)    
+    }    
+  
+    @ActionScheme    
+    Void update() {    
+      this.firePropertyChange isFireable    
+    }    
+  
   }  
 
 }
