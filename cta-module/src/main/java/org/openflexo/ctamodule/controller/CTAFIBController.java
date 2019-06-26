@@ -99,6 +99,13 @@ public class CTAFIBController extends FMLFIBController {
 		return super.retrieveIconForObject(object);
 	}
 
+	public FIBComponent inspectorForFlexoConceptInstance(FlexoConceptInstance fci) {
+		if (getFlexoController() != null && getFlexoController().getModuleInspectorController() != null && fci != null) {
+			return getFlexoController().getModuleInspectorController().getFIBInspectorPanel(fci.getFlexoConcept());
+		}
+		return null;
+	}
+
 	public ImageIcon getProjectIcon() {
 		return CTAIconLibrary.BIG_EXECUTION_UNIT_ICON;
 	}

@@ -39,8 +39,8 @@ public class Execution {
     public SystemNode systemNode;  
     public SystemNodeExecutionUnit systemNodeExecutionUnit;  
     @GetSetProperty(value="executors", access=get)    
-    public Void getExecutors {    
-      container.SelectFlexoConceptInstance(type=Executor)    
+    public List<FlexoConceptInstanceType<Executor>> getExecutors {    
+      return container.SelectFlexoConceptInstance(type=Executor);    
     }  
   
     @CreationScheme    
@@ -74,7 +74,8 @@ public class Execution {
         machineryAllocation = parameters.machineryAllocation;        
         executionUnit = executionModel.AddFlexoConceptInstance();        
         executionUnit.machineryAllocation = parameters.machineryAllocation;        
-        executionUnit.execute()      
+        executionUnit.execute()        
+        container.firePropertyChange executors      
       }      
       
       @DeletionScheme      
@@ -101,7 +102,8 @@ public class Execution {
       machineryAllocation = parameters.machineryAllocation;      
       executionUnit = executionModel.AddFlexoConceptInstance();      
       executionUnit.machineryAllocation = parameters.machineryAllocation;      
-      executionUnit.execute()    
+      executionUnit.execute()      
+      container.firePropertyChange executors    
     }    
   
     @DeletionScheme    

@@ -48,6 +48,7 @@ public class CTACst {
 
 	public static final String CTA_VIEWPOINT_URI = "http://ensta-bretagne.fr/cyber/cta/CTA.fml";
 	public static final String PIMCA_VIEWPOINT_URI = "http://ensta-bretagne.fr/cyber/pimca/PimCA.fml";
+	public static final String EXECUTION_VIRTUAL_MODEL_URI = "http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml";
 
 	public static final String SYSTEM_NODE_CONCEPT_NAME = "SystemNode";
 	public static final String MACHINERY_ALLOCATION_CONCEPT_NAME = "MachineryAllocation";

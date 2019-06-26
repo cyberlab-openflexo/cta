@@ -44,8 +44,9 @@ import javax.swing.ImageIcon;
 
 import org.openflexo.ctamodule.CTAIconLibrary;
 import org.openflexo.ctamodule.model.CTAProjectNature;
+import org.openflexo.ctamodule.view.ExecutionModuleView;
 import org.openflexo.ctamodule.view.SimulationPerspectiveModuleView;
-import org.openflexo.ctamodule.widget.PimCAModelBrowser;
+import org.openflexo.ctamodule.widget.SimulationBrowser;
 import org.openflexo.ctamodule.widget.SimulationProjectBrowser;
 import org.openflexo.foundation.FlexoObject;
 import org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstance;
@@ -56,7 +57,7 @@ public class SimulationPerspective extends AbstractCTAPerspective {
 
 	static final Logger logger = Logger.getLogger(SimulationPerspective.class.getPackage().getName());
 
-	private final PimCAModelBrowser pimCAModelBrowser;
+	private final SimulationBrowser simulationBrowser;
 
 	/**
 	 * @param controller
@@ -64,19 +65,19 @@ public class SimulationPerspective extends AbstractCTAPerspective {
 	 */
 	public SimulationPerspective(FlexoController controller) {
 		super("simulation_perspective", controller);
-		pimCAModelBrowser = new PimCAModelBrowser(controller);
+		simulationBrowser = new SimulationBrowser(controller);
 	}
 
-	public PimCAModelBrowser getPimCAModelBrowser() {
-		return pimCAModelBrowser;
+	public SimulationBrowser getSimulationBrowser() {
+		return simulationBrowser;
 	}
 
-	public void showPimCAModelBrowser(FMLRTVirtualModelInstance pimCAModel) {
-		setBottomLeftView(getPimCAModelBrowser());
-		getPimCAModelBrowser().setDataObject(pimCAModel);
+	public void showSimulationBrowser(FMLRTVirtualModelInstance simulation) {
+		setBottomLeftView(getSimulationBrowser());
+		getSimulationBrowser().setDataObject(simulation);
 	}
 
-	public void hidePimCAModelBrowser() {
+	public void hideSimulationBrowser() {
 		setBottomLeftView(null);
 	}
 
@@ -97,20 +98,11 @@ public class SimulationPerspective extends AbstractCTAPerspective {
 			return new SimulationPerspectiveModuleView((CTAProjectNature) object, getController(), this);
 		}
 
-		/*if (object instanceof FMLRTVirtualModelInstance) {
-			if (((FMLRTVirtualModelInstance) object).hasNature(FMLControlledDiagramVirtualModelInstanceNature.INSTANCE)) {
-				FMLRTVirtualModelInstance diagramVMI = (FMLRTVirtualModelInstance) object;
-				VirtualModel type = diagramVMI.getVirtualModel();
-				if (type != null) {
-					if (type.getName().equals(CTACst.PIMCA_DIAGRAM_VM_NAME)) {
-						DiagramTechnologyAdapterController diagramTAC = ((CTAController) getController()).getDiagramTAC();
-						FMLControlledDiagramEditor editor = new FMLControlledDiagramEditor(diagramVMI, false, getController(),
-								diagramTAC.getToolFactory());
-						return new PimCADiagramModuleView(editor, this);
-					}
-				}
+		if (object instanceof FMLRTVirtualModelInstance) {
+			if (((FMLRTVirtualModelInstance) object).getVirtualModel().getName().equals("Execution")) {
+				return new ExecutionModuleView((FMLRTVirtualModelInstance) object, getController(), this);
 			}
-		}*/
+		}
 
 		// In all other cases...
 		return super.createModuleViewForObject(object);
@@ -119,18 +111,11 @@ public class SimulationPerspective extends AbstractCTAPerspective {
 
 	@Override
 	public boolean hasModuleViewForObject(FlexoObject object) {
-		/*if (object instanceof FMLRTVirtualModelInstance) {
-			// FML-controlled diagram
-			if (((FMLRTVirtualModelInstance) object).hasNature(FMLControlledDiagramVirtualModelInstanceNature.INSTANCE)) {
-				FMLRTVirtualModelInstance diagramVMI = (FMLRTVirtualModelInstance) object;
-				VirtualModel type = diagramVMI.getVirtualModel();
-				if (type != null) {
-					if (type.getName().equals(CTACst.PIMCA_DIAGRAM_VM_NAME)) {
-						return true;
-					}
-				}
+		if (object instanceof FMLRTVirtualModelInstance) {
+			if (((FMLRTVirtualModelInstance) object).getVirtualModel().getName().equals("Execution")) {
+				return true;
 			}
-		}*/
+		}
 		return super.hasModuleViewForObject(object);
 	}
 

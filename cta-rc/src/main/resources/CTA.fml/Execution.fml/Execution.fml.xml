@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <VirtualModel id="SYL-5" virtualModelClass="org.openflexo.foundation.fml.VirtualModel" modelVersion="2.0" uri="http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml" version="0.1" smallIconResource="../../Icons/Simulation_16x16.png" name="Execution" author="sylvain" description="Represent an execution of CTA model" userID="SYL" flexoID="5">
-  <FlexoConcept id="SYL-6" name="SystemNodeExecutor" description="Represent the execution of a ExecutionUnit deployed on a Machinery of a PimCA model" userID="SYL" flexoID="6">
-    <Inspector id="SYL-7" inspectorTitle="Executor" userID="SYL" flexoID="7" />
-    <EmbeddedFlexoConcept id="SYL-34" name="Executor" description="This is an executor of a MachineryAllocation&#xA;" userID="SYL" flexoID="34">
-      <Inspector id="SYL-35" inspectorTitle="Executor" userID="SYL" flexoID="35" />
+  <FlexoConcept id="SYL-6" smallIconResource="../../Icons/SystemNode_16x16.png" name="SystemNodeExecutor" description="Represent the execution of a ExecutionUnit deployed on a Machinery of a PimCA model" userID="SYL" flexoID="6">
+    <Inspector id="SYL-7" renderer="systemNode.nodeName" inspectorTitle="SystemNodeExecutor" author="" userID="SYL" flexoID="7">
+      <InspectorEntry id="SYL-204" readOnly="true" widget="TEXT_FIELD" data="systemNodeExecutionUnit.systemNodeExecutionDefinition.supportContainerConcept.name" name="executionUnit" label="executionUnit" type="java.lang.String" userID="SYL" flexoID="204" />
+      <InspectorEntry id="SYL-205" readOnly="true" widget="TEXT_FIELD" data="systemNodeExecutionUnit.systemNodeExecutionDefinition.concept.name" name="type" label="type" type="java.lang.String" userID="SYL" flexoID="205" />
+      <InspectorEntry id="SYL-192" widget="INTEGER" data="systemNodeExecutionUnit.systemNodeCounter" name="systemNodeCounter" label="systemNodeCounter" type="java.lang.Integer" userID="SYL" flexoID="192" />
+    </Inspector>
+    <EmbeddedFlexoConcept id="SYL-34" smallIconResource="../../Icons/ExecutionUnit_16x16.png" name="Executor" description="This is an executor of a MachineryAllocation&#xA;" userID="SYL" flexoID="34">
+      <Inspector id="SYL-35" renderer="executionUnit.executionUnitDefinition.supportConcept.name" inspectorTitle="Executor" userID="SYL" flexoID="35">
+        <InspectorEntry id="SYL-216" readOnly="true" widget="TEXT_FIELD" data="executionUnit.executionUnitDefinition.supportConcept.name" name="executionUnit" label="executionUnit" type="java.lang.String" userID="SYL" flexoID="216" />
+        <InspectorEntry id="SYL-215" readOnly="true" widget="TEXT_FIELD" data="executionUnit.executionUnitDefinition.concept.name" name="type" label="type" type="java.lang.String" userID="SYL" flexoID="215" />
+        <InspectorEntry id="SYL-193" widget="INTEGER" data="executionUnit.counter" name="counter" label="counter" type="java.lang.Integer" userID="SYL" flexoID="193" />
+      </Inspector>
       <FlexoConceptInstanceRole id="SYL-41" virtualModelInstance="container.container.container" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/CTA.fml#MachineryAllocation" container="systemNode" cloningStrategy="Reference" cardinality="ZeroOne" name="machineryAllocation" userID="SYL" flexoID="41" />
       <FlexoConceptInstanceRole id="SYL-135" virtualModelInstance="executionModel" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml#ExecutionUnit" cloningStrategy="Reference" cardinality="ZeroOne" name="executionUnit" userID="SYL" flexoID="135" />
       <CreationScheme id="SYL-39" name="create" width="800" label="create" height="600" userID="SYL" flexoID="39">
         <BehaviourControlGraph_Sequence id="SYL-139" userID="SYL" flexoID="139">
           <ControlGraph2_Sequence id="SYL-157" ownerContext="controlGraph2" userID="SYL" flexoID="157">
             <ControlGraph2_Sequence id="SYL-169" ownerContext="controlGraph2" userID="SYL" flexoID="169">
-              <ControlGraph2_ExpressionAction id="SYL-168" expression="executionUnit.execute()" ownerContext="controlGraph2" userID="SYL" flexoID="168" />
+              <ControlGraph2_Sequence id="SYL-181" ownerContext="controlGraph2" userID="SYL" flexoID="181">
+                <ControlGraph2_NotifyPropertyChangedAction id="SYL-180" propertyName="executors" object="container" ownerContext="controlGraph2" userID="SYL" flexoID="180" />
+                <ControlGraph1_ExpressionAction id="SYL-168" expression="executionUnit.execute()" ownerContext="controlGraph1" userID="SYL" flexoID="168" />
+              </ControlGraph2_Sequence>
               <ControlGraph1_AssignationAction id="SYL-156" assign="executionUnit.machineryAllocation" ownerContext="controlGraph1" userID="SYL" flexoID="156">
                 <AssignableAction_ExpressionAction id="SYL-155" expression="parameters.machineryAllocation" userID="SYL" flexoID="155" />
               </ControlGraph1_AssignationAction>
@@ -33,7 +44,9 @@
     <FlexoConceptInstanceRole id="SYL-111" virtualModelInstance="executionModel" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml#SystemNodeExecutionUnit" cloningStrategy="Reference" cardinality="ZeroOne" name="systemNodeExecutionUnit" userID="SYL" flexoID="111" />
     <GetSetProperty id="SYL-132" name="executors" userID="SYL" flexoID="132">
       <SetControlGraph_EmptyControlGraph id="SYL-141" ownerContext="setControlGraph" userID="SYL" flexoID="141" />
-      <GetControlGraph_SelectFlexoConceptInstance id="SYL-134" container="this" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml#Executor" receiver="container" ownerContext="getControlGraph" userID="SYL" flexoID="134" />
+      <GetControlGraph_ReturnStatement id="SYL-182" ownerContext="getControlGraph" userID="SYL" flexoID="182">
+        <AssignableAction_SelectFlexoConceptInstance id="SYL-134" container="this" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml#Executor" receiver="container" ownerContext="getControlGraph" userID="SYL" flexoID="134" />
+      </GetControlGraph_ReturnStatement>
     </GetSetProperty>
     <CreationScheme id="SYL-11" name="create" width="800" label="create" height="600" userID="SYL" flexoID="11">
       <BehaviourControlGraph_Sequence id="SYL-113" userID="SYL" flexoID="113">
