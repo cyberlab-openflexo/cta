@@ -70,7 +70,7 @@ public class TSMExecutionModel {
         abstract String label;      
           
         @ActionScheme        
-        Void fire() {        
+        public Void fire() {        
               
         }        
           
@@ -137,8 +137,9 @@ public class TSMExecutionModel {
         }        
           
         @ActionScheme        
-        Void fire() {        
-          log ("Hop, je declenche la transition pour " + guardAction)        
+        public Object fire() {        
+          log ("Hop, je declenche la transition pour " + guardAction)          
+          return container.ExecuteFlexoBehaviour();        
         }        
           
         @ActionScheme        
@@ -185,7 +186,7 @@ public class TSMExecutionModel {
       abstract String label;    
       
       @ActionScheme      
-      Void fire() {      
+      public Void fire() {      
           
       }      
       
@@ -252,8 +253,9 @@ public class TSMExecutionModel {
       }      
       
       @ActionScheme      
-      Void fire() {      
-        log ("Hop, je declenche la transition pour " + guardAction)      
+      public Object fire() {      
+        log ("Hop, je declenche la transition pour " + guardAction)        
+        return container.ExecuteFlexoBehaviour();      
       }      
       
       @ActionScheme      
@@ -274,7 +276,7 @@ public class TSMExecutionModel {
     abstract String label;  
   
     @ActionScheme    
-    Void fire() {    
+    public Void fire() {    
       
     }    
   
@@ -302,8 +304,9 @@ public class TSMExecutionModel {
     }    
   
     @ActionScheme    
-    Void fire() {    
-      log ("Hop, je declenche la transition pour " + guardAction)    
+    public Object fire() {    
+      log ("Hop, je declenche la transition pour " + guardAction)      
+      return container.ExecuteFlexoBehaviour();    
     }    
   
     @ActionScheme    

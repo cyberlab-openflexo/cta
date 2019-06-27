@@ -1,4 +1,5 @@
 counter=Counter
+fire=Fire
 fireableTransitions=FireableTransitions
 globalCounter=GlobalCounter
 is_fireable=Is fireable
@@ -6,4 +7,5 @@ label=Label
 systemNode=SystemNode
 systemNodeCounter=SystemNodeCounter
 transition=Transition
+update=Update
 update_fireable_transitions=Update fireable transitions

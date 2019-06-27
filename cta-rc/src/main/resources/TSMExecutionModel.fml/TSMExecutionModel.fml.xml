@@ -17,7 +17,7 @@
         </Inspector>
         <AbstractProperty id="SYL-152" type="java.lang.Boolean" name="isFireable" userID="SYL" flexoID="152" />
         <AbstractProperty id="SYL-312" type="java.lang.String" name="label" userID="SYL" flexoID="312" />
-        <ActionScheme id="SYL-153" name="fire" width="800" label="fire" height="600" userID="SYL" flexoID="153">
+        <ActionScheme id="SYL-153" visibility="Public" name="fire" width="800" label="fire" height="600" userID="SYL" flexoID="153">
           <BehaviourControlGraph_EmptyControlGraph id="SYL-172" userID="SYL" flexoID="172" />
         </ActionScheme>
         <ActionScheme id="SYL-363" name="update" width="800" label="update" height="600" userID="SYL" flexoID="363">
@@ -65,8 +65,13 @@
           </BehaviourControlGraph_AssignationAction>
           <GenericBehaviourParameter id="SYL-176" widget="CUSTOM_WIDGET" name="guardAction" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml#GuardAction&gt;" userID="SYL" flexoID="176" />
         </CreationScheme>
-        <ActionScheme id="SYL-149" name="fire" width="800" label="fire" height="600" userID="SYL" flexoID="149">
-          <BehaviourControlGraph_LogAction id="SYL-151" logLevel="INFO" logString="(&quot;Hop, je declenche la transition pour &quot; + guardAction)" userID="SYL" flexoID="151" />
+        <ActionScheme id="SYL-149" visibility="Public" name="fire" width="800" label="fire" height="600" userID="SYL" flexoID="149">
+          <BehaviourControlGraph_Sequence id="SYL-402" userID="SYL" flexoID="402">
+            <ControlGraph2_ReturnStatement id="SYL-401" ownerContext="controlGraph2" userID="SYL" flexoID="401">
+              <AssignableAction_ExecuteFlexoBehaviour id="SYL-400" flexoBehaviour="guardAction.actionScheme" receiver="container" ownerContext="controlGraph2" userID="SYL" flexoID="400" />
+            </ControlGraph2_ReturnStatement>
+            <ControlGraph1_LogAction id="SYL-151" logLevel="INFO" logString="(&quot;Hop, je declenche la transition pour &quot; + guardAction)" ownerContext="controlGraph1" userID="SYL" flexoID="151" />
+          </BehaviourControlGraph_Sequence>
         </ActionScheme>
         <ActionScheme id="SYL-377" name="update" width="800" label="update" height="600" userID="SYL" flexoID="377">
           <BehaviourControlGraph_NotifyPropertyChangedAction id="SYL-379" propertyName="isFireable" object="this" userID="SYL" flexoID="379" />
