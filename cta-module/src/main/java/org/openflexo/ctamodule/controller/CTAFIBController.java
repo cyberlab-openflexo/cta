@@ -50,11 +50,11 @@ import org.openflexo.ctamodule.model.action.StartNewSimulation;
 import org.openflexo.fml.controller.FMLFIBController;
 import org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstance;
 import org.openflexo.foundation.fml.rt.FlexoConceptInstance;
-import org.openflexo.gina.controller.FIBController;
 import org.openflexo.gina.model.FIBComponent;
 import org.openflexo.gina.swing.view.SwingViewFactory;
 import org.openflexo.gina.view.GinaViewFactory;
 import org.openflexo.localization.FlexoLocalization;
+import org.openflexo.view.controller.FlexoFIBController;
 
 /**
  * Represents the controller of a FIBComponent in CTA prototype
@@ -99,19 +99,12 @@ public class CTAFIBController extends FMLFIBController {
 		return super.retrieveIconForObject(object);
 	}
 
-	public FIBComponent inspectorForFlexoConceptInstance(FlexoConceptInstance fci) {
-		if (getFlexoController() != null && getFlexoController().getModuleInspectorController() != null && fci != null) {
-			return getFlexoController().getModuleInspectorController().getFIBInspectorPanel(fci.getFlexoConcept());
-		}
-		return null;
-	}
-
 	public ImageIcon getProjectIcon() {
 		return CTAIconLibrary.BIG_EXECUTION_UNIT_ICON;
 	}
 
 	@Override
-	public Class<? extends FIBController> getInspectorControllerClass() {
+	public Class<? extends FlexoFIBController> getInspectorControllerClass() {
 		return CTAFIBController.class;
 	}
 
