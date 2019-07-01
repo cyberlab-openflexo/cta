@@ -129,7 +129,7 @@ public class TSMExecutionModel {
           return guardAction.actionScheme.conditional.getBindingValue(this);        
         }      
               
-        public String label = ((guardAction.actionScheme.conditional.toString + "/") + guardAction.actionScheme.name);      
+        public String label = (((guardAction.actionScheme.conditional.toString + "/") + guardAction.actionScheme.name) + "()");      
           
         @CreationScheme        
         GuardActionTransition:create(FlexoConceptInstanceType<GuardAction> guardAction) {        
@@ -245,7 +245,7 @@ public class TSMExecutionModel {
         return guardAction.actionScheme.conditional.getBindingValue(this);      
       }    
           
-      public String label = ((guardAction.actionScheme.conditional.toString + "/") + guardAction.actionScheme.name);    
+      public String label = (((guardAction.actionScheme.conditional.toString + "/") + guardAction.actionScheme.name) + "()");    
       
       @CreationScheme      
       GuardActionTransition:create(FlexoConceptInstanceType<GuardAction> guardAction) {      
@@ -296,7 +296,7 @@ public class TSMExecutionModel {
       return guardAction.actionScheme.conditional.getBindingValue(this);    
     }  
       
-    public String label = ((guardAction.actionScheme.conditional.toString + "/") + guardAction.actionScheme.name);  
+    public String label = (((guardAction.actionScheme.conditional.toString + "/") + guardAction.actionScheme.name) + "()");  
   
     @CreationScheme    
     GuardActionTransition:create(FlexoConceptInstanceType<GuardAction> guardAction) {    

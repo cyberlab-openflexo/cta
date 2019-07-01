@@ -7,7 +7,7 @@
       <InspectorEntry id="SYL-192" widget="INTEGER" data="systemNodeExecutionUnit.systemNodeCounter" name="systemNodeCounter" label="systemNodeCounter" type="java.lang.Integer" userID="SYL" flexoID="192" />
     </Inspector>
     <EmbeddedFlexoConcept id="SYL-34" smallIconResource="../../Icons/ExecutionUnit_16x16.png" name="Executor" description="This is an executor of a MachineryAllocation&#xA;" userID="SYL" flexoID="34">
-      <Inspector id="SYL-35" renderer="executionUnit.executionUnitDefinition.supportConcept.name" inspectorTitle="Executor" userID="SYL" flexoID="35">
+      <Inspector id="SYL-35" renderer="machineryAllocation.toString" inspectorTitle="Executor" userID="SYL" flexoID="35">
         <InspectorEntry id="SYL-216" readOnly="true" widget="TEXT_FIELD" data="executionUnit.executionUnitDefinition.supportConcept.name" name="executionUnit" label="executionUnit" type="java.lang.String" userID="SYL" flexoID="216" />
         <InspectorEntry id="SYL-215" readOnly="true" widget="TEXT_FIELD" data="executionUnit.executionUnitDefinition.concept.name" name="type" label="type" type="java.lang.String" userID="SYL" flexoID="215" />
         <InspectorEntry id="SYL-193" widget="INTEGER" data="executionUnit.counter" name="counter" label="counter" type="java.lang.Integer" userID="SYL" flexoID="193" />

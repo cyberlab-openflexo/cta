@@ -55,9 +55,9 @@
 				showRootsHandle="true" showFooter="true"
 				textNonSelectionColor="0,0,0" root="data"
 				selectionMode="DiscontiguousTreeSelection" rowHeight="18"
-				rightClickAction="controller.rightClick(SystemNodeBrowser.selected,event)"
-				doubleClickAction="controller.doubleClick(SystemNodeBrowser.selected)"
-				clickAction="controller.singleClick(SystemNodeBrowser.selected)"
+				rightClickAction="controller.rightClick(ExecutorBrowser.selected,event)"
+				doubleClickAction="controller.doubleClick(ExecutorBrowser.selected)"
+				clickAction="controller.singleClick(ExecutorBrowser.selected)"
 				manageDynamicModel="true" constraints="border(location=center)"
 				name="ExecutorBrowser" height="100" width="250">
 				<BrowserElement id="6"
@@ -81,6 +81,13 @@
 					icon="controller.iconForObject(executor)"
 					label="executor.stringRepresentation" isEditable="false"
 					name="executor">
+						<Children data="executor.executionUnit.fireableTransitions" name="fireableTransitions" />
+				</BrowserElement>
+				<BrowserElement
+					dataClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml#Transition&gt;"
+					icon="controller.iconForObject(transition)"
+					label="transition.stringRepresentation" isEditable="false"
+					name="transition">
 				</BrowserElement>
 			</Browser>
 		</Panel>
@@ -90,30 +97,65 @@
 			borderRight="0"
 			constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)"
 			name="Panel4">
-			<Panel id="73" align="left" borderTop="0" borderTitle=""
+			<Panel align="left" borderTop="0" borderTitle=""
 				borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true"
 				borderBottom="0" border="rounded3d" sizeAdjustment="OriginalSize"
 				layout="border" borderRight="0"
 				constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=10;insetsRight=0;insetsTop=5;location=center)"
-				name="Panel5">
+				name="ExecutionPanel" visible="ExecutorBrowser.selected.flexoConcept.name='Execution'">
 				<FIBReferencedComponent
 					dynamicComponent="controller.inspectorForFlexoConceptInstance(ExecutorBrowser.selected)"
 					localize="true" manageDynamicModel="true"
 					data="ExecutorBrowser.selected" opaque="false" index="15"
 					constraints="border(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=center)"
-					width="200" height="200" name="FCIInspector">
+					width="200" height="200" name="FCIInspector1">
 					<ReferenceAssignment
 						variable="controller.flexoController"
 						value="controller.flexoController" mandatory="true" />
 				</FIBReferencedComponent>
-
-
-				<!-- <FIBReferencedComponent id="74" dynamicComponent="controller.basicInspectorTabForObject(BehaviourBrowser.selected)" 
-					localize="true" manageDynamicModel="true" data="BehaviourBrowser.selected" 
-					constraints="border(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=center)" 
-					opaque="false" index="15" name="InspectedWidget"> <ReferenceAssignment id="75" 
-					variable="controller.flexoController" value="controller.flexoController" 
-					mandatory="true" /> </FIBReferencedComponent> -->
+				<FIBVariable
+					type="org.openflexo.foundation.fml.VirtualModelInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml&gt;"
+					name="execution" value="ExecutorBrowser.selected"/>
+			</Panel>
+			<Panel align="left" borderTop="0" borderTitle=""
+				borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true"
+				borderBottom="0" border="rounded3d" sizeAdjustment="OriginalSize"
+				layout="border" borderRight="0"
+				constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=10;insetsRight=0;insetsTop=5;location=center)"
+				name="SystemNodeExecutorPanel" visible="ExecutorBrowser.selected.flexoConcept.name='SystemNodeExecutor'">
+				<FIBReferencedComponent
+					dynamicComponent="controller.inspectorForFlexoConceptInstance(SystemNodeExecutorPanel.systemNodeExecutor.systemNodeExecutionUnit)"
+					localize="true" manageDynamicModel="true"
+					data="SystemNodeExecutorPanel.systemNodeExecutor.systemNodeExecutionUnit" opaque="false" index="15"
+					constraints="border(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=center)"
+					width="200" height="200" name="FCIInspector2">
+					<ReferenceAssignment
+						variable="controller.flexoController"
+						value="controller.flexoController" mandatory="true" />
+				</FIBReferencedComponent>
+				<FIBVariable
+					type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml#SystemNodeExecutor&gt;"
+					name="systemNodeExecutor" value="ExecutorBrowser.selected"/>
+			</Panel>
+			<Panel align="left" borderTop="0" borderTitle=""
+				borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true"
+				borderBottom="0" border="rounded3d" sizeAdjustment="OriginalSize"
+				layout="border" borderRight="0"
+				constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=10;insetsRight=0;insetsTop=5;location=center)"
+				name="ExecutorPanel" visible="ExecutorBrowser.selected.flexoConcept.name='Executor'">
+				<FIBReferencedComponent
+					dynamicComponent="controller.inspectorForFlexoConceptInstance(ExecutorPanel.executor.executionUnit)"
+					localize="true" manageDynamicModel="true"
+					data="ExecutorPanel.executor.executionUnit" opaque="false" index="15"
+					constraints="border(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=center)"
+					width="200" height="200" name="FCIInspector3">
+					<ReferenceAssignment
+						variable="controller.flexoController"
+						value="controller.flexoController" mandatory="true" />
+				</FIBReferencedComponent>
+				<FIBVariable
+					type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml#Executor&gt;"
+					name="executor" value="ExecutorBrowser.selected"/>
 			</Panel>
 		</Panel>
 	</Panel>

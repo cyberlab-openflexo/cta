@@ -50,7 +50,7 @@
     <EmbeddedFlexoConcept id="SYL-77" isAbstract="true" parentFlexoConceptsList="http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml#ExecutionUnit" name="GuardActionExecutionUnit" userID="SYL" flexoID="77">
       <Inspector id="SYL-78" inspectorTitle="GuardActionExecutionUnit" userID="SYL" flexoID="78" />
       <EmbeddedFlexoConcept id="SYL-111" isAbstract="true" parentFlexoConceptsList="http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml#Transition" name="GuardActionTransition" userID="SYL" flexoID="111">
-        <Inspector id="SYL-112" inspectorTitle="GuardActionTransition" userID="SYL" flexoID="112" />
+        <Inspector id="SYL-112" renderer="label" inspectorTitle="GuardActionTransition" userID="SYL" flexoID="112" />
         <FlexoConceptInstanceRole id="SYL-143" virtualModelInstance="cta.tsm" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/TSM.fml#GuardAction" cloningStrategy="Reference" cardinality="ZeroOne" name="guardAction" userID="SYL" flexoID="143" />
         <GetSetProperty id="SYL-146" name="isFireable" userID="SYL" flexoID="146">
           <SetControlGraph_EmptyControlGraph id="SYL-175" ownerContext="setControlGraph" userID="SYL" flexoID="175" />
@@ -58,7 +58,7 @@
             <AssignableAction_ExpressionAction id="SYL-147" expression="guardAction.actionScheme.conditional.getBindingValue(this)" ownerContext="getControlGraph" userID="SYL" flexoID="147" />
           </GetControlGraph_ReturnStatement>
         </GetSetProperty>
-        <ExpressionProperty id="SYL-313" expression="((guardAction.actionScheme.conditional.toString + &quot;/&quot;) + guardAction.actionScheme.name)" name="label" userID="SYL" flexoID="313" />
+        <ExpressionProperty id="SYL-313" expression="(((guardAction.actionScheme.conditional.toString + &quot;/&quot;) + guardAction.actionScheme.name) + &quot;()&quot;)" name="label" userID="SYL" flexoID="313" />
         <CreationScheme id="SYL-116" name="create" width="800" label="create" height="600" userID="SYL" flexoID="116">
           <BehaviourControlGraph_AssignationAction id="SYL-145" assign="guardAction" userID="SYL" flexoID="145">
             <AssignableAction_ExpressionAction id="SYL-144" expression="parameters.guardAction" userID="SYL" flexoID="144" />
