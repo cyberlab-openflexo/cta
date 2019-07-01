@@ -1,73 +1,274 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Panel id="0" align="left" borderTop="0" flowAlignment="LEADING" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="empty" imageWidth="626" sizeAdjustment="FitToAvailableSize" imageHeight="417" layout="twocols" vGap="5" borderRight="0" hGap="5" controllerClassName="org.openflexo.ctamodule.controller.CTAFIBController" name="Panel">
-  <Panel id="1" align="left" borderTop="0" borderTitle="Panel" flowAlignment="CENTER" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="empty" sizeAdjustment="OriginalSize" layout="flow" vGap="5" borderRight="0" hGap="5" constraints="twocols(anchor=south;expandHorizontally=true;expandVertically=false;fill=both;gridHeight=1;gridWidth=0;gridX=-1;gridY=-1;insetsBottom=0;insetsLeft=10;insetsRight=10;insetsTop=10;location=center;padX=0;padY=0;weightX=1.0;weightY=0.0)" name="FIBPanel2">
-    <Image id="2" imageWidth="80" sizeAdjustment="OriginalSize" align="left" imageHeight="46" data="controller.projectIcon.image" constraints="flow()" name="Image2" />
-    <Label id="3" label="" align="center" data="data.name" constraints="flow(anchor=center;fill=horizontal;gridHeight=1;gridWidth=0;gridX=-1;gridY=-1;insetsBottom=0;insetsLeft=10;insetsRight=10;insetsTop=50;location=center;padX=0;padY=0;weightX=1.0;weightY=0.0)" font="ArialMT,0,30" name="Label" />
-  </Panel>
-  <Label id="4" label="description" align="left" localize="true" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=10;location=left)" name="Label2" />
-  <TextArea id="5" rows="5" columns="8" validateOnReturn="true" text="TextArea" data="formoseView.projectDescription" useScrollBar="true" verticalScrollbarPolicy="VERTICAL_SCROLLBAR_AS_NEEDED" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=10;insetsTop=10;location=right)" horizontalScrollbarPolicy="HORIZONTAL_SCROLLBAR_AS_NEEDED" name="TextArea" />
-  <Label id="6" label="executors" align="left" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=10;location=left)" name="Label4" />
-  <Panel id="7" align="left" borderTop="0" flowAlignment="LEADING" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="empty" sizeAdjustment="OriginalSize" layout="twocols" vGap="5" borderRight="0" hGap="5" constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=10;insetsLeft=0;insetsRight=10;insetsTop=10;location=right)" name="Panel3">
-    <Panel id="8" align="left" borderTop="0" borderTitle="Panel" flowAlignment="TRAILING" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="empty" sizeAdjustment="OriginalSize" layout="border" vGap="5" borderRight="0" hGap="5" constraints="twocols(expandHorizontally=false;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="Panel2">
-      <Browser id="9" backgroundSelectionColor="7,73,217" visibleRowCount="3" boundToSelectionManager="true" backgroundNonSelectionColor="255,255,255" textSelectionColor="255,255,255" backgroundSecondarySelectionColor="178,215,255" iteratorClassName="org.openflexo.foundation.fml.rt.FlexoConceptInstance" showRootsHandle="true" showFooter="true" textNonSelectionColor="0,0,0" root="data" selectionMode="DiscontiguousTreeSelection" rowHeight="18" manageDynamicModel="true" rightClickAction="controller.rightClick(ExecutorBrowser.selected,event)" doubleClickAction="controller.doubleClick(ExecutorBrowser.selected)" clickAction="controller.singleClick(ExecutorBrowser.selected)" constraints="border(location=center)" height="100" width="250" name="ExecutorBrowser">
-        <BrowserElement id="10" dataClassName="org.openflexo.foundation.fml.VirtualModelInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml&gt;" icon="controller.iconForObject(execution)" label="execution.stringRepresentation" isEditable="false" name="execution">
-          <Children id="11" data="execution.rootSystemNodeExecutor" name="rootSystemNodeExecutor" />
-        </BrowserElement>
-        <BrowserElement id="12" dataClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml#SystemNodeExecutor&gt;" icon="controller.iconForObject(systemNodeExecutor)" label="systemNodeExecutor.stringRepresentation" isEditable="false" name="systemNodeExecutor">
-          <Children id="13" data="systemNodeExecutor.executors" name="executors" />
-        </BrowserElement>
-        <BrowserElement id="14" dataClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml#Executor&gt;" icon="controller.iconForObject(executor)" label="executor.stringRepresentation" isEditable="false" name="executor" />
-      </Browser>
-    </Panel>
-    <Panel id="15" align="left" borderTop="0" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="empty" sizeAdjustment="OriginalSize" layout="twocols" borderRight="0" constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)" name="Panel4">
-      <Panel id="16" align="left" borderTop="0" borderTitle="" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="rounded3d" sizeAdjustment="OriginalSize" layout="border" borderRight="0" constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=10;insetsRight=0;insetsTop=5;location=center)" visible="(ExecutorBrowser.selected.flexoConcept.name = &quot;Execution&quot;)" name="ExecutionPanel">
-        <FIBReferencedComponent id="17" dynamicComponent="controller.inspectorForFlexoConceptInstance(ExecutorBrowser.selected)" localize="true" manageDynamicModel="true" data="ExecutorBrowser.selected" constraints="border(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=center)" height="200" opaque="false" index="15" width="200" name="FCIInspector1">
-          <ReferenceAssignment id="18" variable="controller.flexoController" value="controller.flexoController" mandatory="true" />
-        </FIBReferencedComponent>
-        <FIBVariable id="19" type="org.openflexo.foundation.fml.VirtualModelInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml&gt;" value="ExecutorBrowser.selected" name="execution" />
-      </Panel>
-      <Panel id="20" align="left" borderTop="0" borderTitle="" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="rounded3d" sizeAdjustment="OriginalSize" layout="border" borderRight="0" constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=10;insetsRight=0;insetsTop=5;location=center)" visible="(ExecutorBrowser.selected.flexoConcept.name = &quot;SystemNodeExecutor&quot;)" name="SystemNodeExecutorPanel">
-        <FIBReferencedComponent id="21" dynamicComponent="controller.inspectorForFlexoConceptInstance(SystemNodeExecutorPanel.systemNodeExecutor.systemNodeExecutionUnit)" localize="true" manageDynamicModel="true" data="SystemNodeExecutorPanel.systemNodeExecutor.systemNodeExecutionUnit" constraints="border(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=center)" height="200" opaque="false" index="15" width="200" name="FCIInspector2">
-          <ReferenceAssignment id="22" variable="controller.flexoController" value="controller.flexoController" mandatory="true" />
-        </FIBReferencedComponent>
-        <FIBVariable id="23" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml#SystemNodeExecutor&gt;" value="ExecutorBrowser.selected" name="systemNodeExecutor" />
-      </Panel>
-      <Panel id="24" align="left" borderTop="0" borderTitle="" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="empty" sizeAdjustment="OriginalSize" layout="border" borderRight="0" constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=10;insetsRight=0;insetsTop=5;location=center)" visible="(ExecutorBrowser.selected.flexoConcept.name = &quot;Executor&quot;)" name="ExecutorPanel">
-        <Panel id="25" align="left" borderTop="0" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="5" border="rounded3d" sizeAdjustment="OriginalSize" layout="twocols" borderRight="0" constraints="border(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=north)" name="ExecutorHeader">
-          <Label id="26" label="machinery" align="left" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="Label9" />
-          <TextField id="27" columns="7" readOnly="true" data="ExecutorPanel.executor.machineryAllocation.machinery.name" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)" name="TextField6" />
-          <Label id="28" label="execution_unit" align="left" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="Label3" />
-          <TextField id="29" columns="7" readOnly="true" data="ExecutorPanel.executor.machineryAllocation.executionUnitDefinition.name" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)" name="TextField" />
-          <Label id="30" label="type" align="left" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="Label8" />
-          <TextField id="31" columns="7" readOnly="true" data="ExecutorPanel.executor.executionUnit.executionUnitDefinition.concept.name" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)" name="TextField5" />
-          <Label id="32" label="counter" align="left" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="Label5" />
-          <Number id="33" minValue="0" numberType="IntegerType" maxValue="65535" columns="3" increment="1" data="ExecutorPanel.executor.systemNodeExecutionUnit.systemNodeCounter" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)" name="Integer" />
-        </Panel>
-        <Panel id="34" align="left" borderTop="0" borderTitle="" flowAlignment="LEADING" borderLeft="5" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="rounded3d" sizeAdjustment="OriginalSize" layout="twocols" vGap="5" borderRight="0" hGap="5" constraints="border(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=east)" height="100" width="300" name="TransitionsPanel">
-          <Table id="35" backgroundSelectionColor="7,73,217" visibleRowCount="3" backgroundNonSelectionColor="255,255,255" textSelectionColor="255,255,255" backgroundSecondarySelectionColor="212,212,212" iteratorClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml#Transition&gt;" textSecondarySelectionColor="0,0,0" lookAndFeel="FlatDesign" textNonSelectionColor="0,0,0" selectionMode="MultipleIntervalSelection" rowHeight="18" manageDynamicModel="true" data="ExecutorPanel.executor.executionUnit.fireableTransitions" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=10;insetsLeft=0;insetsRight=0;insetsTop=0;location=center)" name="TransitionsTable">
-            <IconColumn id="36" data="controller.iconForObject(iterator)" resizable="false" title="icon" displayTitle="false" columnWidth="20" showIcon="false" name="icon" />
-            <LabelColumn id="37" data="iterator.name" resizable="true" title="transition" displayTitle="true" columnWidth="100" showIcon="false" name="transition" />
-          </Table>
-          <Label id="38" label="guard" align="left" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="Label6" />
-          <TextField id="39" columns="7" data="TransitionsPanel.guardActionTransition.guardAction.actionScheme.conditional.toString" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)" name="TextField3" />
-          <Label id="40" label="action" align="left" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="Label7" />
-          <TextField id="41" columns="7" data="(TransitionsPanel.guardActionTransition.guardAction.actionScheme.name + &quot;()&quot;)" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)" name="TextField4" />
-          <Panel id="42" align="left" borderTop="0" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="empty" sizeAdjustment="OriginalSize" layout="border" borderRight="0" constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=center)" name="Panel5" />
-          <Panel id="43" align="left" borderTop="0" flowAlignment="CENTER" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="empty" sizeAdjustment="OriginalSize" layout="flow" vGap="5" borderRight="0" hGap="5" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=center)" name="Panel6">
-            <Button id="44" buttonType="Trigger" action="TransitionsTable.selected.fire()" label="fire" enable="(TransitionsTable.selected != null)" constraints="flow()" name="FireButton" />
-            <Button id="45" buttonType="Trigger" action="ExecutorPanel.executor.update()" label="update" constraints="flow()" name="UpdateButton" />
-          </Panel>
-          <FIBVariable id="46" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml#GuardActionTransition&gt;" value="TransitionsTable.selected" name="guardActionTransition" />
-        </Panel>
-        <Panel id="47" align="left" borderTop="0" borderTitle="" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="rounded3d" sizeAdjustment="OriginalSize" layout="border" borderRight="0" constraints="border(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=center)" name="ExecutorInspector">
-          <FIBReferencedComponent id="48" dynamicComponent="controller.inspectorForFlexoConceptInstance(ExecutorPanel.executor.executionUnit)" localize="true" manageDynamicModel="true" data="ExecutorPanel.executor.executionUnit" constraints="border(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=center)" height="200" opaque="false" index="15" width="200" name="FCIInspector3">
-            <ReferenceAssignment id="49" variable="controller.flexoController" value="controller.flexoController" mandatory="true" />
-          </FIBReferencedComponent>
-        </Panel>
-        <FIBVariable id="50" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml#Executor&gt;" value="ExecutorBrowser.selected" name="executor" />
-      </Panel>
-    </Panel>
-  </Panel>
-  <LocalizedDictionary id="51" />
-  <FIBVariable id="52" type="org.openflexo.foundation.fml.VirtualModelInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml&gt;" name="data" />
+<Panel id="0" align="left" borderTop="0" flowAlignment="LEADING" imageFile="../Icons/CTABackground.jpg"
+	borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true"
+	borderBottom="0" border="empty" imageWidth="626"
+	sizeAdjustment="FitToAvailableSize" imageHeight="417" layout="twocols"
+	vGap="5" borderRight="0" hGap="5"
+	controllerClassName="org.openflexo.ctamodule.controller.CTAFIBController"
+	name="Panel">
+	<Panel id="1" align="left" borderTop="0" borderTitle="Panel"
+		flowAlignment="CENTER" borderLeft="0" trackViewPortHeight="true"
+		trackViewPortWidth="true" borderBottom="0" border="empty"
+		sizeAdjustment="OriginalSize" layout="flow" vGap="5" borderRight="0"
+		hGap="5"
+		constraints="twocols(anchor=south;expandHorizontally=true;expandVertically=false;fill=both;gridHeight=1;gridWidth=0;gridX=-1;gridY=-1;insetsBottom=0;insetsLeft=10;insetsRight=10;insetsTop=10;location=center;padX=0;padY=0;weightX=1.0;weightY=0.0)"
+		name="FIBPanel2">
+		<Image id="2" imageWidth="80" sizeAdjustment="OriginalSize"
+			align="left" imageHeight="46" data="controller.projectIcon.image"
+			constraints="flow()" name="Image2" />
+		<Label id="3" label="" align="center" data="data.name"
+			constraints="flow(anchor=center;fill=horizontal;gridHeight=1;gridWidth=0;gridX=-1;gridY=-1;insetsBottom=0;insetsLeft=10;insetsRight=10;insetsTop=50;location=center;padX=0;padY=0;weightX=1.0;weightY=0.0)"
+			font="ArialMT,0,30" name="Label" />
+	</Panel>
+	<Label id="4" label="description" align="left" localize="true"
+		constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=10;location=left)"
+		name="Label2" />
+	<TextArea id="5" rows="5" columns="8" validateOnReturn="true"
+		text="TextArea" data="formoseView.projectDescription"
+		useScrollBar="true"
+		verticalScrollbarPolicy="VERTICAL_SCROLLBAR_AS_NEEDED"
+		constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=10;insetsTop=10;location=right)"
+		horizontalScrollbarPolicy="HORIZONTAL_SCROLLBAR_AS_NEEDED"
+		name="TextArea" />
+	<Label id="6" label="executors" align="left"
+		constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=10;location=left)"
+		name="Label4" />
+	<Panel id="7" align="left" borderTop="0" flowAlignment="LEADING"
+		borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true"
+		borderBottom="0" border="empty" sizeAdjustment="OriginalSize"
+		layout="twocols" vGap="5" borderRight="0" hGap="5"
+		constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=10;insetsLeft=0;insetsRight=10;insetsTop=10;location=right)"
+		name="Panel3">
+		<Panel id="8" align="left" borderTop="0" borderTitle="Panel"
+			flowAlignment="TRAILING" borderLeft="0" trackViewPortHeight="true"
+			trackViewPortWidth="true" borderBottom="0" border="empty"
+			sizeAdjustment="OriginalSize" layout="border" vGap="5"
+			borderRight="0" hGap="5"
+			constraints="twocols(expandHorizontally=false;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)"
+			name="Panel2">
+			<Browser id="9" backgroundSelectionColor="7,73,217"
+				visibleRowCount="3" boundToSelectionManager="true"
+				backgroundNonSelectionColor="255,255,255"
+				textSelectionColor="255,255,255"
+				backgroundSecondarySelectionColor="178,215,255"
+				iteratorClassName="org.openflexo.foundation.fml.rt.FlexoConceptInstance"
+				showRootsHandle="true" showFooter="true"
+				textNonSelectionColor="0,0,0" root="data"
+				selectionMode="DiscontiguousTreeSelection" rowHeight="18"
+				manageDynamicModel="true"
+				rightClickAction="controller.rightClick(ExecutorBrowser.selected,event)"
+				doubleClickAction="controller.doubleClick(ExecutorBrowser.selected)"
+				clickAction="controller.singleClick(ExecutorBrowser.selected)"
+				constraints="border(location=center)" height="100" width="250"
+				name="ExecutorBrowser">
+				<BrowserElement id="10"
+					dataClassName="org.openflexo.foundation.fml.VirtualModelInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml&gt;"
+					icon="controller.iconForObject(execution)"
+					label="execution.stringRepresentation" isEditable="false"
+					name="execution">
+					<Children id="11" data="execution.rootSystemNodeExecutor"
+						name="rootSystemNodeExecutor" />
+				</BrowserElement>
+				<BrowserElement id="12"
+					dataClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml#SystemNodeExecutor&gt;"
+					icon="controller.iconForObject(systemNodeExecutor)"
+					label="systemNodeExecutor.stringRepresentation" isEditable="false"
+					name="systemNodeExecutor">
+					<Children id="13" data="systemNodeExecutor.executors"
+						name="executors" />
+				</BrowserElement>
+				<BrowserElement id="14"
+					dataClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml#Executor&gt;"
+					icon="controller.iconForObject(executor)"
+					label="executor.stringRepresentation" isEditable="false"
+					name="executor" />
+			</Browser>
+		</Panel>
+		<Panel id="15" align="left" borderTop="0" borderLeft="0"
+			trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0"
+			border="empty" sizeAdjustment="OriginalSize" layout="twocols"
+			borderRight="0"
+			constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)"
+			name="Panel4">
+			<Panel id="16" align="left" borderTop="0" borderTitle=""
+				borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true"
+				borderBottom="0" border="rounded3d" sizeAdjustment="OriginalSize"
+				layout="border" borderRight="0"
+				constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=10;insetsRight=0;insetsTop=5;location=center)"
+				visible="(ExecutorBrowser.selected.flexoConcept.name = &quot;Execution&quot;)"
+				name="ExecutionPanel">
+				<FIBReferencedComponent id="17"
+					dynamicComponent="controller.inspectorForFlexoConceptInstance(ExecutorBrowser.selected)"
+					localize="true" manageDynamicModel="true"
+					data="ExecutorBrowser.selected"
+					constraints="border(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=center)"
+					height="200" opaque="false" index="15" width="200"
+					name="FCIInspector1">
+					<ReferenceAssignment id="18"
+						variable="controller.flexoController"
+						value="controller.flexoController" mandatory="true" />
+				</FIBReferencedComponent>
+				<FIBVariable id="19"
+					type="org.openflexo.foundation.fml.VirtualModelInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml&gt;"
+					value="ExecutorBrowser.selected" name="execution" />
+			</Panel>
+			<Panel id="20" align="left" borderTop="0" borderTitle=""
+				borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true"
+				borderBottom="0" border="rounded3d" sizeAdjustment="OriginalSize"
+				layout="border" borderRight="0"
+				constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=10;insetsRight=0;insetsTop=5;location=center)"
+				visible="(ExecutorBrowser.selected.flexoConcept.name = &quot;SystemNodeExecutor&quot;)"
+				name="SystemNodeExecutorPanel">
+				<FIBReferencedComponent id="21"
+					dynamicComponent="controller.inspectorForFlexoConceptInstance(SystemNodeExecutorPanel.systemNodeExecutor.systemNodeExecutionUnit)"
+					localize="true" manageDynamicModel="true"
+					data="SystemNodeExecutorPanel.systemNodeExecutor.systemNodeExecutionUnit"
+					constraints="border(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=center)"
+					height="200" opaque="false" index="15" width="200"
+					name="FCIInspector2">
+					<ReferenceAssignment id="22"
+						variable="controller.flexoController"
+						value="controller.flexoController" mandatory="true" />
+				</FIBReferencedComponent>
+				<FIBVariable id="23"
+					type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml#SystemNodeExecutor&gt;"
+					value="ExecutorBrowser.selected" name="systemNodeExecutor" />
+			</Panel>
+			<Panel id="24" align="left" borderTop="0" borderTitle=""
+				borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true"
+				borderBottom="0" border="empty" sizeAdjustment="OriginalSize"
+				layout="border" borderRight="0"
+				constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=10;insetsRight=0;insetsTop=5;location=center)"
+				visible="(ExecutorBrowser.selected.flexoConcept.name = &quot;Executor&quot;)"
+				name="ExecutorPanel">
+				<Panel id="25" align="left" borderTop="0" borderLeft="0"
+					trackViewPortHeight="true" trackViewPortWidth="true"
+					borderBottom="5" border="rounded3d" sizeAdjustment="OriginalSize"
+					layout="twocols" borderRight="0"
+					constraints="border(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=north)"
+					name="ExecutorHeader">
+					<Label id="26" label="machinery" align="left"
+						constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)"
+						name="Label9" />
+					<TextField id="27" columns="7" readOnly="true"
+						data="ExecutorPanel.executor.machineryAllocation.machinery.name"
+						constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)"
+						name="TextField6" />
+					<Label id="28" label="execution_unit" align="left"
+						constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)"
+						name="Label3" />
+					<TextField id="29" columns="7" readOnly="true"
+						data="ExecutorPanel.executor.machineryAllocation.executionUnitDefinition.name"
+						constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)"
+						name="TextField" />
+					<Label id="30" label="type" align="left"
+						constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)"
+						name="Label8" />
+					<TextField id="31" columns="7" readOnly="true"
+						data="ExecutorPanel.executor.executionUnit.executionUnitDefinition.concept.name"
+						constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)"
+						name="TextField5" />
+					<Label id="32" label="counter" align="left"
+						constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)"
+						name="Label5" />
+					<Number id="33" minValue="0" numberType="IntegerType"
+						maxValue="65535" columns="3" increment="1"
+						data="ExecutorPanel.executor.systemNodeExecutionUnit.systemNodeCounter"
+						constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)"
+						name="Integer" />
+				</Panel>
+				<Panel id="34" align="left" borderTop="0" borderTitle=""
+					flowAlignment="LEADING" borderLeft="5" trackViewPortHeight="true"
+					trackViewPortWidth="true" borderBottom="0" border="rounded3d"
+					sizeAdjustment="OriginalSize" layout="twocols" vGap="5"
+					borderRight="0" hGap="5"
+					constraints="border(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=east)"
+					height="100" width="300" name="TransitionsPanel">
+					<Table id="35" backgroundSelectionColor="7,73,217"
+						visibleRowCount="3" backgroundNonSelectionColor="255,255,255"
+						textSelectionColor="255,255,255"
+						backgroundSecondarySelectionColor="212,212,212"
+						iteratorClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml#Transition&gt;"
+						textSecondarySelectionColor="0,0,0" lookAndFeel="FlatDesign"
+						textNonSelectionColor="0,0,0"
+						selectionMode="MultipleIntervalSelection" rowHeight="18"
+						manageDynamicModel="true"
+						data="ExecutorPanel.executor.executionUnit.fireableTransitions"
+						constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=10;insetsLeft=0;insetsRight=0;insetsTop=0;location=center)"
+						name="TransitionsTable">
+						<IconColumn id="36"
+							data="controller.iconForObject(iterator)" resizable="false"
+							title="icon" displayTitle="false" columnWidth="20"
+							showIcon="false" name="icon" />
+						<LabelColumn id="37" data="iterator.name"
+							resizable="true" title="transition" displayTitle="true"
+							columnWidth="100" showIcon="false" name="transition" />
+					</Table>
+					<Label id="38" label="guard" align="left"
+						constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)"
+						name="Label6" />
+					<TextField id="39" columns="7"
+						data="TransitionsPanel.guardActionTransition.guardAction.actionScheme.conditional.toString"
+						constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)"
+						name="TextField3" />
+					<Label id="40" label="action" align="left"
+						constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)"
+						name="Label7" />
+					<TextField id="41" columns="7"
+						data="(TransitionsPanel.guardActionTransition.guardAction.actionScheme.name + &quot;()&quot;)"
+						constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)"
+						name="TextField4" />
+					<Panel id="42" align="left" borderTop="0" borderLeft="0"
+						trackViewPortHeight="true" trackViewPortWidth="true"
+						borderBottom="0" border="empty" sizeAdjustment="OriginalSize"
+						layout="border" borderRight="0"
+						constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=center)"
+						name="Panel5" />
+					<Panel id="43" align="left" borderTop="0"
+						flowAlignment="CENTER" borderLeft="0" trackViewPortHeight="true"
+						trackViewPortWidth="true" borderBottom="0" border="empty"
+						sizeAdjustment="OriginalSize" layout="flow" vGap="5"
+						borderRight="0" hGap="5"
+						constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=center)"
+						name="Panel6">
+						<Button id="44" buttonType="Trigger"
+							action="TransitionsTable.selected.fire()" label="fire"
+							enable="(TransitionsTable.selected != null)" constraints="flow()"
+							name="FireButton" />
+						<Button id="45" buttonType="Trigger"
+							action="ExecutorPanel.executor.update()" label="update"
+							constraints="flow()" name="UpdateButton" />
+					</Panel>
+					<FIBVariable id="46"
+						type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml#GuardActionTransition&gt;"
+						value="TransitionsTable.selected" name="guardActionTransition" />
+				</Panel>
+				<Panel id="47" align="left" borderTop="0" borderTitle=""
+					borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true"
+					borderBottom="0" border="rounded3d" sizeAdjustment="OriginalSize"
+					layout="border" borderRight="0"
+					constraints="border(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=center)"
+					name="ExecutorInspector">
+					<FIBReferencedComponent id="48"
+						dynamicComponent="controller.inspectorForFlexoConceptInstance(ExecutorPanel.executor.executionUnit)"
+						localize="true" manageDynamicModel="true"
+						data="ExecutorPanel.executor.executionUnit"
+						constraints="border(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=center)"
+						height="200" opaque="false" index="15" width="200"
+						name="FCIInspector3">
+						<ReferenceAssignment id="49"
+							variable="controller.flexoController"
+							value="controller.flexoController" mandatory="true" />
+					</FIBReferencedComponent>
+				</Panel>
+				<FIBVariable id="50"
+					type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml#Executor&gt;"
+					value="ExecutorBrowser.selected" name="executor" />
+			</Panel>
+		</Panel>
+	</Panel>
+	<LocalizedDictionary id="51" />
+	<FIBVariable id="52"
+		type="org.openflexo.foundation.fml.VirtualModelInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml&gt;"
+		name="data" />
 </Panel>
