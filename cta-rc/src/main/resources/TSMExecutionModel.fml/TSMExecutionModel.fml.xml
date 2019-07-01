@@ -3,7 +3,7 @@
   <FlexoConcept id="SYL-9" name="SystemNodeExecutionUnit" author="sylvain" userID="SYL" flexoID="9">
     <Inspector id="SYL-10" inspectorTitle="SystemNodeExecutionUnit" userID="SYL" flexoID="10">
       <InspectorEntry id="SYL-290" widget="INTEGER" data="systemNodeCounter" name="systemNodeCounter" label="systemNodeCounter" type="java.lang.Integer" userID="SYL" flexoID="290" />
-      <InspectorEntry id="SYL-291" widget="TEXT_FIELD" readOnly="true" data="systemNode.nodeName" name="systemNode" label="systemNode" type="java.lang.String" userID="SYL" flexoID="291" />
+      <InspectorEntry id="SYL-291" readOnly="true" widget="TEXT_FIELD" data="systemNode.nodeName" name="systemNode" label="systemNode" type="java.lang.String" userID="SYL" flexoID="291" />
     </Inspector>
     <EmbeddedFlexoConcept id="SYL-18" isAbstract="true" name="ExecutionUnit" author="sylvain" userID="SYL" flexoID="18">
       <Inspector id="SYL-19" inspectorTitle="ExecutionUnit" userID="SYL" flexoID="19">
@@ -11,11 +11,12 @@
       </Inspector>
       <EmbeddedFlexoConcept id="SYL-102" isAbstract="true" name="Transition" userID="SYL" flexoID="102">
         <Inspector id="SYL-103" inspectorTitle="Transition" userID="SYL" flexoID="103">
-          <InspectorEntry id="SYL-314" widget="TEXT_FIELD" readOnly="true" data="label" name="transition" label="transition" type="java.lang.String" userID="SYL" flexoID="314" />
-          <InspectorEntry id="SYL-315" widget="CHECKBOX" readOnly="true" data="isFireable" name="is_fireable" label="is_fireable" type="java.lang.Boolean" userID="SYL" flexoID="315" />
+          <InspectorEntry id="SYL-314" readOnly="true" widget="TEXT_FIELD" data="label" name="transition" label="transition" type="java.lang.String" userID="SYL" flexoID="314" />
+          <InspectorEntry id="SYL-315" readOnly="true" widget="CHECKBOX" data="isFireable" name="is_fireable" label="is_fireable" type="java.lang.Boolean" userID="SYL" flexoID="315" />
         </Inspector>
         <AbstractProperty id="SYL-152" type="java.lang.Boolean" name="isFireable" userID="SYL" flexoID="152" />
         <AbstractProperty id="SYL-312" type="java.lang.String" name="label" userID="SYL" flexoID="312" />
+        <AbstractProperty id="SYL-513" type="java.lang.String" name="name" userID="SYL" flexoID="513" />
         <ActionScheme id="SYL-153" visibility="Public" name="fire" width="800" label="fire" height="600" userID="SYL" flexoID="153">
           <BehaviourControlGraph_EmptyControlGraph id="SYL-172" userID="SYL" flexoID="172" />
         </ActionScheme>
@@ -69,6 +70,7 @@
           </GetControlGraph_ReturnStatement>
         </GetSetProperty>
         <ExpressionProperty id="SYL-313" expression="(((guardAction.actionScheme.conditional.toString + &quot;/&quot;) + guardAction.actionScheme.name) + &quot;()&quot;)" name="label" userID="SYL" flexoID="313" />
+        <ExpressionProperty id="SYL-514" expression="(guardAction.name + &quot;()&quot;)" name="name" userID="SYL" flexoID="514" />
         <CreationScheme id="SYL-116" name="create" width="800" label="create" height="600" userID="SYL" flexoID="116">
           <BehaviourControlGraph_AssignationAction id="SYL-145" assign="guardAction" userID="SYL" flexoID="145">
             <AssignableAction_ExpressionAction id="SYL-144" expression="parameters.guardAction" userID="SYL" flexoID="144" />

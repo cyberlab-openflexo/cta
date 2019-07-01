@@ -91,6 +91,8 @@ public class TSMExecutionModel {
         abstract Boolean isFireable;      
               
         abstract String label;      
+              
+        abstract String name;      
           
         @ActionScheme        
         public Void fire() {        
@@ -154,6 +156,8 @@ public class TSMExecutionModel {
         }      
               
         public String label = (((guardAction.actionScheme.conditional.toString + "/") + guardAction.actionScheme.name) + "()");      
+              
+        public String name = (guardAction.name + "()");      
           
         @CreationScheme        
         GuardActionTransition:create(FlexoConceptInstanceType<GuardAction> guardAction) {        
@@ -221,6 +225,8 @@ public class TSMExecutionModel {
       abstract Boolean isFireable;    
           
       abstract String label;    
+          
+      abstract String name;    
       
       @ActionScheme      
       public Void fire() {      
@@ -284,6 +290,8 @@ public class TSMExecutionModel {
       }    
           
       public String label = (((guardAction.actionScheme.conditional.toString + "/") + guardAction.actionScheme.name) + "()");    
+          
+      public String name = (guardAction.name + "()");    
       
       @CreationScheme      
       GuardActionTransition:create(FlexoConceptInstanceType<GuardAction> guardAction) {      
@@ -314,6 +322,8 @@ public class TSMExecutionModel {
     abstract Boolean isFireable;  
       
     abstract String label;  
+      
+    abstract String name;  
   
     @ActionScheme    
     public Void fire() {    
@@ -337,6 +347,8 @@ public class TSMExecutionModel {
     }  
       
     public String label = (((guardAction.actionScheme.conditional.toString + "/") + guardAction.actionScheme.name) + "()");  
+      
+    public String name = (guardAction.name + "()");  
   
     @CreationScheme    
     GuardActionTransition:create(FlexoConceptInstanceType<GuardAction> guardAction) {    
