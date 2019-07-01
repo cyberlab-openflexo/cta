@@ -38,9 +38,14 @@
 
 package org.openflexo.ctamodule.model.action;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Vector;
 
 import org.openflexo.ApplicationContext;
+import org.openflexo.connie.DataBinding;
+import org.openflexo.connie.exception.InvalidBindingException;
+import org.openflexo.connie.exception.NullReferenceException;
+import org.openflexo.connie.exception.TypeMismatchException;
 import org.openflexo.connie.type.PrimitiveType;
 import org.openflexo.ctamodule.CTA;
 import org.openflexo.ctamodule.CTACst;
@@ -49,6 +54,8 @@ import org.openflexo.foundation.FlexoException;
 import org.openflexo.foundation.FlexoObject;
 import org.openflexo.foundation.FlexoObject.FlexoObjectImpl;
 import org.openflexo.foundation.action.FlexoActionFactory;
+import org.openflexo.foundation.fml.FlexoConcept;
+import org.openflexo.foundation.fml.action.CreateInspectorEntry;
 import org.openflexo.foundation.fml.rt.FlexoConceptInstance;
 import org.openflexo.localization.LocalizedDelegate;
 
@@ -116,6 +123,29 @@ public class CreateNewVariable extends CTAAction<CreateNewVariable, FlexoConcept
 					getVariableName(), getPrimitiveType(), getDescription());
 		} catch (Exception e) {
 			throw new FlexoException(e);
+		}
+
+		try {
+			FlexoConcept supportConcept = executionUnitDefinition.execute("supportConcept");
+			CreateInspectorEntry createInspectorEntry = CreateInspectorEntry.actionType.makeNewEmbeddedAction(supportConcept.getInspector(),
+					null, this);
+			createInspectorEntry.setEntryName(getVariableName());
+			createInspectorEntry.setEntryType(getPrimitiveType().getType());
+			createInspectorEntry.setData(new DataBinding<>(getVariableName()));
+			createInspectorEntry.setIndex(supportConcept.getInspector().getEntries().size() - 1);
+			createInspectorEntry.doAction();
+		} catch (TypeMismatchException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NullReferenceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidBindingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
