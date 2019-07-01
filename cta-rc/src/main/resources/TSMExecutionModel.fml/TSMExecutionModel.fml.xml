@@ -3,17 +3,16 @@
   <FlexoConcept id="SYL-9" name="SystemNodeExecutionUnit" author="sylvain" userID="SYL" flexoID="9">
     <Inspector id="SYL-10" inspectorTitle="SystemNodeExecutionUnit" userID="SYL" flexoID="10">
       <InspectorEntry id="SYL-290" widget="INTEGER" data="systemNodeCounter" name="systemNodeCounter" label="systemNodeCounter" type="java.lang.Integer" userID="SYL" flexoID="290" />
-      <InspectorEntry id="SYL-291" readOnly="true" widget="TEXT_FIELD" data="systemNode.nodeName" name="systemNode" label="systemNode" type="java.lang.String" userID="SYL" flexoID="291" />
+      <InspectorEntry id="SYL-291" widget="TEXT_FIELD" readOnly="true" data="systemNode.nodeName" name="systemNode" label="systemNode" type="java.lang.String" userID="SYL" flexoID="291" />
     </Inspector>
     <EmbeddedFlexoConcept id="SYL-18" isAbstract="true" name="ExecutionUnit" author="sylvain" userID="SYL" flexoID="18">
       <Inspector id="SYL-19" inspectorTitle="ExecutionUnit" userID="SYL" flexoID="19">
         <InspectorEntry id="SYL-292" widget="INTEGER" data="counter" name="counter" label="counter" type="java.lang.Integer" userID="SYL" flexoID="292" />
-        <InspectorEntry id="SYL-293" readOnly="true" widget="CHECKBOX_LIST" data="fireableTransitions" name="fireableTransitions" label="fireableTransitions" type="java.util.List&lt;org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml#Transition&gt;&gt;" userID="SYL" flexoID="293" />
       </Inspector>
       <EmbeddedFlexoConcept id="SYL-102" isAbstract="true" name="Transition" userID="SYL" flexoID="102">
         <Inspector id="SYL-103" inspectorTitle="Transition" userID="SYL" flexoID="103">
-          <InspectorEntry id="SYL-314" readOnly="true" widget="TEXT_FIELD" data="label" name="transition" label="transition" type="java.lang.String" userID="SYL" flexoID="314" />
-          <InspectorEntry id="SYL-315" readOnly="true" widget="CHECKBOX" data="isFireable" name="is_fireable" label="is_fireable" type="java.lang.Boolean" userID="SYL" flexoID="315" />
+          <InspectorEntry id="SYL-314" widget="TEXT_FIELD" readOnly="true" data="label" name="transition" label="transition" type="java.lang.String" userID="SYL" flexoID="314" />
+          <InspectorEntry id="SYL-315" widget="CHECKBOX" readOnly="true" data="isFireable" name="is_fireable" label="is_fireable" type="java.lang.Boolean" userID="SYL" flexoID="315" />
         </Inspector>
         <AbstractProperty id="SYL-152" type="java.lang.Boolean" name="isFireable" userID="SYL" flexoID="152" />
         <AbstractProperty id="SYL-312" type="java.lang.String" name="label" userID="SYL" flexoID="312" />
@@ -46,6 +45,17 @@
       <ActionScheme id="SYL-209" name="execute" width="800" label="execute" height="600" userID="SYL" flexoID="209">
         <BehaviourControlGraph_LogAction id="SYL-212" logLevel="INFO" logString="&quot;On devrait pas passer ici&quot;" userID="SYL" flexoID="212" />
       </ActionScheme>
+      <ActionScheme id="SYL-426" name="proceedExecutionStep" width="800" label="proceedExecutionStep" height="600" userID="SYL" flexoID="426">
+        <BehaviourControlGraph_Sequence id="SYL-443" userID="SYL" flexoID="443">
+          <ControlGraph2_ExpressionAction id="SYL-434" expression="container.proceedSystemNodeExecutionUnit()" ownerContext="controlGraph2" userID="SYL" flexoID="434" />
+          <ControlGraph1_AssignationAction id="SYL-428" assign="counter" ownerContext="controlGraph1" userID="SYL" flexoID="428">
+            <AssignableAction_ExpressionAction id="SYL-427" expression="(counter + 1)" userID="SYL" flexoID="427" />
+          </ControlGraph1_AssignationAction>
+        </BehaviourControlGraph_Sequence>
+      </ActionScheme>
+      <ActionScheme id="SYL-429" name="updateFireableTransitions" width="800" label="updateFireableTransitions" height="600" userID="SYL" flexoID="429">
+        <BehaviourControlGraph_EmptyControlGraph id="SYL-444" userID="SYL" flexoID="444" />
+      </ActionScheme>
     </EmbeddedFlexoConcept>
     <EmbeddedFlexoConcept id="SYL-77" isAbstract="true" parentFlexoConceptsList="http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml#ExecutionUnit" name="GuardActionExecutionUnit" userID="SYL" flexoID="77">
       <Inspector id="SYL-78" inspectorTitle="GuardActionExecutionUnit" userID="SYL" flexoID="78" />
@@ -67,9 +77,17 @@
         </CreationScheme>
         <ActionScheme id="SYL-149" visibility="Public" name="fire" width="800" label="fire" height="600" userID="SYL" flexoID="149">
           <BehaviourControlGraph_Sequence id="SYL-402" userID="SYL" flexoID="402">
-            <ControlGraph2_ReturnStatement id="SYL-401" ownerContext="controlGraph2" userID="SYL" flexoID="401">
-              <AssignableAction_ExecuteFlexoBehaviour id="SYL-400" flexoBehaviour="guardAction.actionScheme" receiver="container" ownerContext="controlGraph2" userID="SYL" flexoID="400" />
-            </ControlGraph2_ReturnStatement>
+            <ControlGraph2_Sequence id="SYL-472" ownerContext="controlGraph2" userID="SYL" flexoID="472">
+              <ControlGraph2_Sequence id="SYL-473" ownerContext="controlGraph2" userID="SYL" flexoID="473">
+                <ControlGraph2_ReturnStatement id="SYL-471" ownerContext="controlGraph2" userID="SYL" flexoID="471">
+                  <AssignableAction_ExpressionAction id="SYL-470" expression="returned" userID="SYL" flexoID="470" />
+                </ControlGraph2_ReturnStatement>
+                <ControlGraph1_ExpressionAction id="SYL-469" expression="container.proceedExecutionStep()" ownerContext="controlGraph1" userID="SYL" flexoID="469" />
+              </ControlGraph2_Sequence>
+              <ControlGraph1_DeclarationAction id="SYL-423" variable="returned" ownerContext="controlGraph1" userID="SYL" flexoID="423">
+                <AssignableAction_ExecuteFlexoBehaviour id="SYL-422" flexoBehaviour="guardAction.actionScheme" receiver="container" ownerContext="controlGraph2" userID="SYL" flexoID="422" />
+              </ControlGraph1_DeclarationAction>
+            </ControlGraph2_Sequence>
             <ControlGraph1_LogAction id="SYL-151" logLevel="INFO" logString="(&quot;Hop, je declenche la transition pour &quot; + guardAction)" ownerContext="controlGraph1" userID="SYL" flexoID="151" />
           </BehaviourControlGraph_Sequence>
         </ActionScheme>
@@ -118,7 +136,10 @@
         <BehaviourControlGraph_Sequence id="SYL-373" userID="SYL" flexoID="373">
           <ControlGraph2_Sequence id="SYL-374" ownerContext="controlGraph2" userID="SYL" flexoID="374">
             <ControlGraph2_Sequence id="SYL-369" ownerContext="controlGraph2" userID="SYL" flexoID="369">
-              <ControlGraph2_FinalizeMatching id="SYL-366" container="this" flexoBehaviourURI="http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml#SystemNodeExecutionUnit.delete()" matchingSet="aMatchingSet" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml#GuardActionTransition" ownerContext="controlGraph2" userID="SYL" flexoID="366" />
+              <ControlGraph2_Sequence id="SYL-494" ownerContext="controlGraph2" userID="SYL" flexoID="494">
+                <ControlGraph2_NotifyPropertyChangedAction id="SYL-493" propertyName="fireableTransitions" object="this" ownerContext="controlGraph2" userID="SYL" flexoID="493" />
+                <ControlGraph1_FinalizeMatching id="SYL-366" container="this" flexoBehaviourURI="http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml#SystemNodeExecutionUnit.delete()" matchingSet="aMatchingSet" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml#GuardActionTransition" ownerContext="controlGraph1" userID="SYL" flexoID="366" />
+              </ControlGraph2_Sequence>
               <ControlGraph1_IterationAction id="SYL-340" iteratorName="guardAction" ownerContext="controlGraph1" userID="SYL" flexoID="340">
                 <Iteration_ExpressionAction id="SYL-341" expression="guardActionExecutionUnitDefinition.guardActions" ownerContext="iterationControlGraph" userID="SYL" flexoID="341" />
                 <ControlGraph_Sequence id="SYL-370" ownerContext="controlGraph" userID="SYL" flexoID="370">
@@ -158,6 +179,12 @@
     <PrimitiveRole id="SYL-54" primitiveType="Integer" cloningStrategy="Clone" cardinality="ZeroOne" name="systemNodeCounter" userID="SYL" flexoID="54" />
     <FlexoConceptInstanceRole id="SYL-75" virtualModelInstance="cta" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/CTA.fml#SystemNode" container="cta" cloningStrategy="Reference" cardinality="ZeroOne" name="systemNode" userID="SYL" flexoID="75" />
     <ExpressionProperty id="SYL-76" expression="systemNode.systemNodeExecutionDefinition" name="systemNodeExecutionDefinition" userID="SYL" flexoID="76" />
+    <GetSetProperty id="SYL-435" name="executionUnits" userID="SYL" flexoID="435">
+      <SetControlGraph_EmptyControlGraph id="SYL-446" ownerContext="setControlGraph" userID="SYL" flexoID="446" />
+      <GetControlGraph_ReturnStatement id="SYL-468" ownerContext="getControlGraph" userID="SYL" flexoID="468">
+        <AssignableAction_SelectFlexoConceptInstance id="SYL-467" container="this" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml#ExecutionUnit" receiver="container" ownerContext="getControlGraph" userID="SYL" flexoID="467" />
+      </GetControlGraph_ReturnStatement>
+    </GetSetProperty>
     <CreationScheme id="SYL-14" name="initSystemNodeExecutionUnit" width="800" label="init" height="600" userID="SYL" flexoID="14">
       <BehaviourControlGraph_Sequence id="SYL-63" userID="SYL" flexoID="63">
         <ControlGraph2_AssignationAction id="SYL-56" assign="systemNodeCounter" ownerContext="controlGraph2" userID="SYL" flexoID="56">
@@ -169,6 +196,17 @@
     <DeletionScheme id="SYL-15" name="delete" width="800" label="delete" height="600" userID="SYL" flexoID="15">
       <BehaviourControlGraph_EmptyControlGraph id="SYL-17" userID="SYL" flexoID="17" />
     </DeletionScheme>
+    <ActionScheme id="SYL-431" name="proceedSystemNodeExecutionUnit" width="800" label="proceedSystemNodeExecutionUnit" height="600" userID="SYL" flexoID="431">
+      <BehaviourControlGraph_Sequence id="SYL-447" userID="SYL" flexoID="447">
+        <ControlGraph2_IterationAction id="SYL-440" iteratorName="executionUnit" ownerContext="controlGraph2" userID="SYL" flexoID="440">
+          <Iteration_ExpressionAction id="SYL-441" expression="executionUnits" ownerContext="iterationControlGraph" userID="SYL" flexoID="441" />
+          <ControlGraph_ExpressionAction id="SYL-442" expression="executionUnit.updateFireableTransitions()" ownerContext="controlGraph" userID="SYL" flexoID="442" />
+        </ControlGraph2_IterationAction>
+        <ControlGraph1_AssignationAction id="SYL-433" assign="systemNodeCounter" ownerContext="controlGraph1" userID="SYL" flexoID="433">
+          <AssignableAction_ExpressionAction id="SYL-432" expression="(systemNodeCounter + 1)" userID="SYL" flexoID="432" />
+        </ControlGraph1_AssignationAction>
+      </BehaviourControlGraph_Sequence>
+    </ActionScheme>
   </FlexoConcept>
   <FlexoConcept idref="SYL-18" />
   <FlexoConcept idref="SYL-77" />

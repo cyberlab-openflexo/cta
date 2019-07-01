@@ -24,6 +24,10 @@ public class TSMExecutionModel {
     public SystemNode systemNode;  
       
     public FlexoConceptInstanceType<SystemNodeExecutionDefinition> systemNodeExecutionDefinition = systemNode.systemNodeExecutionDefinition;  
+    @GetSetProperty(value="executionUnits", access=get)    
+    public List<FlexoConceptInstanceType<ExecutionUnit>> getExecutionUnits {    
+      return container.SelectFlexoConceptInstance(type=ExecutionUnit);    
+    }  
   
     @CreationScheme    
     SystemNodeExecutionUnit:initSystemNodeExecutionUnit() {    
@@ -34,6 +38,14 @@ public class TSMExecutionModel {
     @DeletionScheme    
     Void delete() {    
       
+    }    
+  
+    @ActionScheme    
+    Void proceedSystemNodeExecutionUnit() {    
+      systemNodeCounter = (systemNodeCounter + 1);      
+      for (executionUnit : executionUnits) {      
+        executionUnit.updateFireableTransitions()      
+      }    
     }    
   
   
@@ -58,6 +70,17 @@ public class TSMExecutionModel {
       @ActionScheme      
       Void execute() {      
         log "On devrait pas passer ici"      
+      }      
+      
+      @ActionScheme      
+      Void proceedExecutionStep() {      
+        counter = (counter + 1);        
+        container.proceedSystemNodeExecutionUnit()      
+      }      
+      
+      @ActionScheme      
+      Void updateFireableTransitions() {      
+          
       }      
       
       
@@ -116,7 +139,8 @@ public class TSMExecutionModel {
           log ("Match transition " + transition)          
           transition.update()        
         }        
-        aMatchingSet.finalizeMatching()      
+        aMatchingSet.finalizeMatching()        
+        this.firePropertyChange fireableTransitions      
       }      
       
       
@@ -139,7 +163,9 @@ public class TSMExecutionModel {
         @ActionScheme        
         public Object fire() {        
           log ("Hop, je declenche la transition pour " + guardAction)          
-          return container.ExecuteFlexoBehaviour();        
+          Object returned = container.ExecuteFlexoBehaviour();          
+          container.proceedExecutionStep()          
+          return returned;        
         }        
           
         @ActionScheme        
@@ -174,6 +200,17 @@ public class TSMExecutionModel {
     @ActionScheme    
     Void execute() {    
       log "On devrait pas passer ici"    
+    }    
+  
+    @ActionScheme    
+    Void proceedExecutionStep() {    
+      counter = (counter + 1);      
+      container.proceedSystemNodeExecutionUnit()    
+    }    
+  
+    @ActionScheme    
+    Void updateFireableTransitions() {    
+      
     }    
   
   
@@ -232,7 +269,8 @@ public class TSMExecutionModel {
         log ("Match transition " + transition)        
         transition.update()      
       }      
-      aMatchingSet.finalizeMatching()    
+      aMatchingSet.finalizeMatching()      
+      this.firePropertyChange fireableTransitions    
     }    
   
   
@@ -255,7 +293,9 @@ public class TSMExecutionModel {
       @ActionScheme      
       public Object fire() {      
         log ("Hop, je declenche la transition pour " + guardAction)        
-        return container.ExecuteFlexoBehaviour();      
+        Object returned = container.ExecuteFlexoBehaviour();        
+        container.proceedExecutionStep()        
+        return returned;      
       }      
       
       @ActionScheme      
@@ -306,7 +346,9 @@ public class TSMExecutionModel {
     @ActionScheme    
     public Object fire() {    
       log ("Hop, je declenche la transition pour " + guardAction)      
-      return container.ExecuteFlexoBehaviour();    
+      Object returned = container.ExecuteFlexoBehaviour();      
+      container.proceedExecutionStep()      
+      return returned;    
     }    
   
     @ActionScheme    

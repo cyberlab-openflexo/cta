@@ -39,6 +39,9 @@
       <DeletionScheme id="SYL-40" name="delete" width="800" label="delete" height="600" userID="SYL" flexoID="40">
         <BehaviourControlGraph_EmptyControlGraph id="SYL-43" userID="SYL" flexoID="43" />
       </DeletionScheme>
+      <ActionScheme id="SYL-241" visibility="Public" name="update" width="800" label="update" height="600" userID="SYL" flexoID="241">
+        <BehaviourControlGraph_ExpressionAction id="SYL-242" expression="executionUnit.updateFireableTransitions()" userID="SYL" flexoID="242" />
+      </ActionScheme>
     </EmbeddedFlexoConcept>
     <FlexoConceptInstanceRole id="SYL-13" virtualModelInstance="container.container" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/CTA.fml#SystemNode" cloningStrategy="Reference" cardinality="ZeroOne" name="systemNode" userID="SYL" flexoID="13" />
     <FlexoConceptInstanceRole id="SYL-111" virtualModelInstance="executionModel" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml#SystemNodeExecutionUnit" cloningStrategy="Reference" cardinality="ZeroOne" name="systemNodeExecutionUnit" userID="SYL" flexoID="111" />
@@ -54,9 +57,14 @@
           <ControlGraph2_Sequence id="SYL-158" ownerContext="controlGraph2" userID="SYL" flexoID="158">
             <ControlGraph2_IterationAction id="SYL-127" iteratorName="machineryAllocation" ownerContext="controlGraph2" userID="SYL" flexoID="127">
               <Iteration_ExpressionAction id="SYL-128" expression="systemNode.machineryAllocations" ownerContext="iterationControlGraph" userID="SYL" flexoID="128" />
-              <ControlGraph_AddFlexoConceptInstance id="SYL-130" container="this" creationSchemeURI="http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml#Executor.create(machineryAllocation)" receiver="container" ownerContext="controlGraph" userID="SYL" flexoID="130">
-                <AddFlexoConceptInstanceParameter id="SYL-131" paramName="machineryAllocation" value="machineryAllocation" userID="SYL" flexoID="131" />
-              </ControlGraph_AddFlexoConceptInstance>
+              <ControlGraph_ConditionalAction id="SYL-227" condition="(machineryAllocation.executionUnitDefinition != null)" ownerContext="controlGraph" userID="SYL" flexoID="227">
+                <ThenControlGraph_Sequence id="SYL-231" ownerContext="thenControlGraph" userID="SYL" flexoID="231">
+                  <ControlGraph2_AddFlexoConceptInstance id="SYL-130" container="this" creationSchemeURI="http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml#Executor.create(machineryAllocation)" receiver="container" ownerContext="controlGraph2" userID="SYL" flexoID="130">
+                    <AddFlexoConceptInstanceParameter id="SYL-131" paramName="machineryAllocation" value="machineryAllocation" userID="SYL" flexoID="131" />
+                  </ControlGraph2_AddFlexoConceptInstance>
+                  <ControlGraph1_LogAction id="SYL-229" logLevel="INFO" logString="(&quot;Instantiate &quot; + machineryAllocation.executionUnitDefinition)" ownerContext="controlGraph1" userID="SYL" flexoID="229" />
+                </ThenControlGraph_Sequence>
+              </ControlGraph_ConditionalAction>
             </ControlGraph2_IterationAction>
             <ControlGraph1_AssignationAction id="SYL-153" assign="systemNodeExecutionUnit.systemNode" ownerContext="controlGraph1" userID="SYL" flexoID="153">
               <AssignableAction_ExpressionAction id="SYL-152" expression="systemNode" userID="SYL" flexoID="152" />
