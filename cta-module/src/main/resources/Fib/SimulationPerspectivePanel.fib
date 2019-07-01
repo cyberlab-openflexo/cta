@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Panel id="0" align="left" borderTop="0" flowAlignment="LEADING"
-	borderLeft="0" imageFile="../../../../bin/main/Icons/CTABackground.jpg"
-	trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0"
-	border="empty" imageWidth="626" sizeAdjustment="FitToAvailableSize"
-	imageHeight="417" layout="twocols" vGap="5" borderRight="0" hGap="5"
+	borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true"
+	borderBottom="0" border="empty" imageWidth="626" imageFile="../Icons/CTABackground.jpg"
+	sizeAdjustment="FitToAvailableSize" imageHeight="417" layout="twocols"
+	vGap="5" borderRight="0" hGap="5"
 	controllerClassName="org.openflexo.ctamodule.view.SimulationPerspectiveModuleView$CTAProjectNatureModuleViewFIBController"
 	name="Panel">
 	<Panel id="1" align="left" borderTop="0" borderTitle="Panel"
@@ -45,73 +45,103 @@
 			clickAction="controller.singleClick(SimulationBrowser.selected)"
 			constraints="border(location=west)" height="100" width="200"
 			name="SimulationBrowser">
-			<BrowserElement
+			<BrowserElement id="7"
 				dataClassName="org.openflexo.ctamodule.model.CTAProjectNature"
 				icon="controller.iconForObject(ctaView)" label="nature.owner.name"
 				isEditable="false" defaultVisible="false" name="nature">
-				<Children data="ctaView.executions" name="executions" />
+				<Children id="8" data="ctaView.executions"
+					name="executions" />
 			</BrowserElement>
-			<BrowserElement
+			<BrowserElement id="9"
 				dataClassName="org.openflexo.foundation.fml.VirtualModelInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml&gt;"
 				icon="controller.iconForObject(simulation)"
 				label="simulation.simulationName" isEditable="false"
-				name="simulation">
-			</BrowserElement>
+				name="simulation" />
 		</Browser>
-		<Panel id="8" align="left" borderTop="0" borderTitle="Panel"
+		<Panel id="10" align="left" borderTop="0" borderTitle="Panel"
 			borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true"
 			borderBottom="0" border="empty" sizeAdjustment="OriginalSize"
-			layout="border" borderRight="0" constraints="border(location=center)"
-			name="Panel2">
-			<Table id="9" backgroundSelectionColor="9,80,208"
+			layout="gridbag" borderRight="0"
+			constraints="border(location=center)" name="Panel2">
+			<Table id="11" backgroundSelectionColor="9,80,208"
 				visibleRowCount="3" boundToSelectionManager="true"
 				backgroundNonSelectionColor="255,255,255"
 				iteratorClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml#SystemNodeExecutor&gt;"
 				textSelectionColor="255,255,255"
 				backgroundSecondarySelectionColor="178,215,255"
+				autoSelectFirstRow="true" textSecondarySelectionColor="0,0,0"
+				lookAndFeel="FlatDesign" textNonSelectionColor="0,0,0"
+				selectionMode="MultipleIntervalSelection" rowHeight="18"
+				manageDynamicModel="true"
+				rightClickAction="controller.rightClick(SystemNodeExecutorsTable.selected,event)"
+				doubleClickAction="controller.doubleClick(SystemNodeExecutorsTable.selected)"
+				data="SimulationBrowser.selected.systemNodeExecutors"
+				clickAction="controller.singleClick(SystemNodeExecutorsTable.selected)"
+				constraints="gridbag(anchor=north;expandHorizontally=true;expandVertically=false;fill=horizontal;gridHeight=1;gridWidth=0;gridX=-1;gridY=-1;insetsBottom=0;insetsLeft=10;insetsRight=0;insetsTop=0;location=north;padX=0;padY=0;weightX=1.0;weightY=1.0)"
+				name="SystemNodeExecutorsTable">
+				<IconColumn id="12"
+					data="controller.iconForObject(iterator)" resizable="false"
+					title="icon" displayTitle="false" columnWidth="20" showIcon="false"
+					name="icon" />
+				<LabelColumn id="13" data="iterator.systemNode.nodeName"
+					resizable="true" title="system_node_executors" displayTitle="true"
+					columnWidth="100" showIcon="false" name="systemNodeExecutors" />
+				<NumberColumn id="14" numberType="IntegerType"
+					data="iterator.executors.size" resizable="true" title="executors"
+					displayTitle="true" columnWidth="50" showIcon="false"
+					name="executors" />
+			</Table>
+			<Table id="15" backgroundSelectionColor="7,73,217"
+				visibleRowCount="3" backgroundNonSelectionColor="255,255,255"
+				iteratorClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml/Execution.fml#Executor&gt;"
+				textSelectionColor="255,255,255"
+				backgroundSecondarySelectionColor="212,212,212"
 				textSecondarySelectionColor="0,0,0" lookAndFeel="FlatDesign"
 				textNonSelectionColor="0,0,0"
 				selectionMode="MultipleIntervalSelection" rowHeight="18"
 				manageDynamicModel="true"
-				rightClickAction="controller.rightClick(Table.selected,event)"
-				doubleClickAction="controller.doubleClick(Table.selected)"
-				data="SimulationBrowser.selected.systemNodeExecutors"
-				clickAction="controller.singleClick(Table.selected)"
-				constraints="border(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=10;insetsRight=0;insetsTop=0;location=north)"
-				name="Table">
-				<IconColumn id="10"
+				data="SystemNodeExecutorsTable.selected.executors"
+				constraints="gridbag(anchor=north;expandHorizontally=true;expandVertically=false;fill=horizontal;gridHeight=1;gridWidth=0;gridX=-1;gridY=-1;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=south;padX=0;padY=0;weightX=1.0;weightY=1.0)"
+				name="Table2">
+				<IconColumn id="16"
 					data="controller.iconForObject(iterator)" resizable="false"
 					title="icon" displayTitle="false" columnWidth="20" showIcon="false"
 					name="icon" />
-				<LabelColumn id="11" data="iterator.name"
-					resizable="true" title="executor" displayTitle="true"
-					columnWidth="100" showIcon="false" name="label" />
-				<LabelColumn id="12" data="iterator.status"
-					resizable="true" title="status" displayTitle="true"
-					columnWidth="50" showIcon="false" name="label" />
+				<LabelColumn id="17"
+					data="iterator.machineryAllocation.machinery.name" resizable="true"
+					title="executor" displayTitle="true" columnWidth="100"
+					showIcon="false" name="executorName" />
+				<LabelColumn id="18"
+					data="iterator.executionUnit.executionUnitDefinition.supportConcept.name"
+					resizable="true" title="execution_unit" displayTitle="true"
+					columnWidth="100" showIcon="false" name="executionUnit" />
+				<LabelColumn id="19"
+					data="iterator.executionUnit.executionUnitDefinition.concept.name"
+					resizable="true" title="type" displayTitle="true" columnWidth="100"
+					showIcon="false" name="type" />
 			</Table>
 		</Panel>
 	</Panel>
-	<Panel id="13" align="left" borderTop="0" borderTitle="Panel"
+	<Panel id="20" align="left" borderTop="0" borderTitle="Panel"
 		flowAlignment="CENTER" borderLeft="0" trackViewPortHeight="true"
 		trackViewPortWidth="true" borderBottom="0" border="empty"
 		sizeAdjustment="OriginalSize" layout="flow" vGap="5" borderRight="0"
 		hGap="5"
 		constraints="twocols(anchor=east;expandHorizontally=true;expandVertically=false;fill=both;gridHeight=-1;gridWidth=0;gridX=-1;gridY=-1;insetsBottom=10;insetsLeft=20;insetsRight=20;insetsTop=10;location=center;padX=0;padY=0;weightX=1.0;weightY=0.1)"
 		name="FIBPanel">
-		<Button id="14" buttonType="Trigger"
+		<Button id="21" buttonType="Trigger"
 			action="controller.startNewSimulation(data)" label="new_simulation"
 			localize="true" constraints="flow()" name="Button" />
-		<Button id="15" buttonType="Trigger"
+		<Button id="22" buttonType="Trigger"
 			action="controller.openSimulation(SimulationBrowser.selected)"
 			label="open_simulation" localize="true"
 			enable="(SimulationBrowser.selected != null)" constraints="flow()"
 			name="Button3" />
 	</Panel>
-	<LocalizedDictionary id="16" />
-	<FIBVariable id="17"
+	<LocalizedDictionary id="23" />
+	<FIBVariable id="24"
 		type="org.openflexo.ctamodule.model.CTAProjectNature" name="data" />
-	<FIBVariable id="18"
+	<FIBVariable id="25"
 		type="org.openflexo.foundation.fml.VirtualModelInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml&gt;"
 		value="data.CTAInstance.accessedVirtualModelInstance" name="ctaView" />
 </Panel>
