@@ -8,6 +8,7 @@ createNewDiagram=CreateNewDiagram
 diagramName=DiagramName
 diagramTitle=DiagramTitle
 executionUnit=ExecutionUnit
+executionUnitDefinition=ExecutionUnitDefinition
 executionUnitName=ExecutionUnitName
 invalid_parameter=Invalid parameter
 machinery=Machinery
