@@ -60,6 +60,8 @@ public class TSMExecutionModel {
       public List<FlexoConceptInstanceType<Transition>> getFireableTransitions {      
         return container.container.SelectFlexoConceptInstance(type=Transition,where=where=selected.isFireable);      
       }    
+          
+      public FlexoConceptInstanceType<Machinery> machinery = machineryAllocation.machinery;    
       
       @ActionScheme      
       Void initExecutionUnit() {      
@@ -194,6 +196,8 @@ public class TSMExecutionModel {
     public List<FlexoConceptInstanceType<Transition>> getFireableTransitions {    
       return container.container.SelectFlexoConceptInstance(type=Transition,where=where=selected.isFireable);    
     }  
+      
+    public FlexoConceptInstanceType<Machinery> machinery = machineryAllocation.machinery;  
   
     @ActionScheme    
     Void initExecutionUnit() {    

@@ -35,6 +35,7 @@
           </AssignableAction_SelectFlexoConceptInstance>
         </GetControlGraph_ReturnStatement>
       </GetSetProperty>
+      <ExpressionProperty id="SYL-533" expression="machineryAllocation.machinery" name="machinery" userID="SYL" flexoID="533" />
       <ActionScheme id="SYL-154" name="initExecutionUnit" width="800" label="init" height="600" userID="SYL" flexoID="154">
         <BehaviourControlGraph_Sequence id="SYL-174" userID="SYL" flexoID="174">
           <ControlGraph2_AssignationAction id="SYL-157" assign="counter" ownerContext="controlGraph2" userID="SYL" flexoID="157">
