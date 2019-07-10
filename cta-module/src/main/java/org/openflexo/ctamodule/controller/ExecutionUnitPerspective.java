@@ -38,14 +38,20 @@
 
 package org.openflexo.ctamodule.controller;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 
+import org.openflexo.connie.exception.InvalidBindingException;
+import org.openflexo.connie.exception.NullReferenceException;
+import org.openflexo.connie.exception.TypeMismatchException;
+import org.openflexo.ctamodule.CTACst;
 import org.openflexo.ctamodule.CTAIconLibrary;
 import org.openflexo.ctamodule.model.CTAProjectNature;
 import org.openflexo.ctamodule.view.ExecutionUnitPerspectiveModuleView;
 import org.openflexo.ctamodule.view.GuardActionExecutionUnitModuleView;
+import org.openflexo.ctamodule.view.UnallocatedExecutionUnitModuleView;
 import org.openflexo.ctamodule.widget.ExecutionUnitProjectBrowser;
 import org.openflexo.ctamodule.widget.PimCAModelBrowser;
 import org.openflexo.foundation.FlexoObject;
@@ -115,15 +121,25 @@ public class ExecutionUnitPerspective extends AbstractCTAPerspective {
 		}*/
 
 		if (object instanceof FlexoConceptInstance) {
-			if (((FlexoConceptInstance) object).getFlexoConcept().getName().equals("GuardActionExecutionUnitDefinition")) {
-				/*FlexoConcept concept;
+			if (((FlexoConceptInstance) object).getFlexoConcept().getName().equals(CTACst.MACHINERY_ALLOCATION_CONCEPT_NAME)) {
+				FlexoConceptInstance machineryAllocation = (FlexoConceptInstance) object;
+				FlexoConceptInstance executionUnitDefinition;
 				try {
-					concept = ((FlexoConceptInstance) object).execute("supportConcept");
-					return new StandardFlexoConceptView(concept, getController(), this);
+					executionUnitDefinition = machineryAllocation.execute("executionUnitDefinition");
 				} catch (TypeMismatchException | NullReferenceException | InvocationTargetException | InvalidBindingException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}*/
+					return null;
+				}
+				if (executionUnitDefinition == null) {
+					return new UnallocatedExecutionUnitModuleView(machineryAllocation, getController(), this);
+				}
+				else if (executionUnitDefinition.getFlexoConcept().getName()
+						.equals(CTACst.TSM_GUARD_ACTION_EXECUTION_UNIT_DEFINITION_CONCEPT_NAME)) {
+					return new GuardActionExecutionUnitModuleView(executionUnitDefinition, getController(), this);
+				}
+			}
+			if (((FlexoConceptInstance) object).getFlexoConcept().getName()
+					.equals(CTACst.TSM_GUARD_ACTION_EXECUTION_UNIT_DEFINITION_CONCEPT_NAME)) {
 				return new GuardActionExecutionUnitModuleView((FlexoConceptInstance) object, getController(), this);
 			}
 		}
@@ -148,7 +164,11 @@ public class ExecutionUnitPerspective extends AbstractCTAPerspective {
 			}
 		}*/
 		if (object instanceof FlexoConceptInstance) {
-			if (((FlexoConceptInstance) object).getFlexoConcept().getName().equals("GuardActionExecutionUnitDefinition")) {
+			if (((FlexoConceptInstance) object).getFlexoConcept().getName()
+					.equals(CTACst.TSM_GUARD_ACTION_EXECUTION_UNIT_DEFINITION_CONCEPT_NAME)) {
+				return true;
+			}
+			if (((FlexoConceptInstance) object).getFlexoConcept().getName().equals(CTACst.MACHINERY_ALLOCATION_CONCEPT_NAME)) {
 				return true;
 			}
 		}

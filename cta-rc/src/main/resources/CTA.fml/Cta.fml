@@ -12,7 +12,7 @@ public class CTA {
   public SystemNode rootNode;
   public TSM tsm;
   @GetSetProperty(value="executions", access=get)  
-  public List<VirtualModelInstanceType<Execution>> getExecutions {  
+  public List<UndefinedVirtualModelInstanceType> getExecutions {  
     return this.FML@RT::SelectVirtualModelInstance();  
   }
 
