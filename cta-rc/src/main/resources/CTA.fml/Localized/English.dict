@@ -10,6 +10,7 @@ diagramTitle=DiagramTitle
 executionUnit=ExecutionUnit
 executionUnitDefinition=ExecutionUnitDefinition
 executionUnitName=ExecutionUnitName
+getMachineryAllocation=GetMachineryAllocation
 invalid_parameter=Invalid parameter
 machinery=Machinery
 newMachinery=NewMachinery

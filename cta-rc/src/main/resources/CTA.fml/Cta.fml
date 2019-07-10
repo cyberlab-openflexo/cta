@@ -119,18 +119,39 @@ public class CTA {
       }      
       
       @ActionScheme      
-      public Void allocateExistingExecutionUnit(UndefinedFlexoConceptInstanceType executionUnitDefinition) {      
+      Void allocateExistingExecutionUnit(UndefinedFlexoConceptInstanceType executionUnitDefinition) {      
         executionUnitDefinition = parameters.executionUnitDefinition;      
       }      
       
       @ActionScheme      
-      public Void allocateNewGuardActionExecutionUnit(String executionUnitName) {      
+      Void allocateNewGuardActionExecutionUnit(String executionUnitName) {      
         executionUnitDefinition = GuardActionExecutionUnitDefinition.create(parameters.executionUnitName);      
       }      
       
       @ActionScheme      
       public Void clearAllocation() {      
         executionUnitDefinition = null;      
+      }      
+      
+      
+      @FlexoConcept      
+      public class MachineryConnection {      
+          
+        public String referenceName;      
+        public MachineryAllocation reference;      
+        public Relation relation;      
+          
+        @CreationScheme        
+        MachineryConnection:create(String referenceName, FlexoConceptInstanceType<Relation> relation) {        
+          referenceName = parameters.referenceName;          
+          relation = parameters.relation;        
+        }        
+          
+        @DeletionScheme        
+        Void delete() {        
+              
+        }        
+          
       }      
       
     }    
@@ -155,18 +176,59 @@ public class CTA {
     }    
   
     @ActionScheme    
-    public Void allocateExistingExecutionUnit(UndefinedFlexoConceptInstanceType executionUnitDefinition) {    
+    Void allocateExistingExecutionUnit(UndefinedFlexoConceptInstanceType executionUnitDefinition) {    
       executionUnitDefinition = parameters.executionUnitDefinition;    
     }    
   
     @ActionScheme    
-    public Void allocateNewGuardActionExecutionUnit(String executionUnitName) {    
+    Void allocateNewGuardActionExecutionUnit(String executionUnitName) {    
       executionUnitDefinition = GuardActionExecutionUnitDefinition.create(parameters.executionUnitName);    
     }    
   
     @ActionScheme    
     public Void clearAllocation() {    
       executionUnitDefinition = null;    
+    }    
+  
+  
+    @FlexoConcept    
+    public class MachineryConnection {    
+      
+      public String referenceName;    
+      public MachineryAllocation reference;    
+      public Relation relation;    
+      
+      @CreationScheme      
+      MachineryConnection:create(String referenceName, FlexoConceptInstanceType<Relation> relation) {      
+        referenceName = parameters.referenceName;        
+        relation = parameters.relation;      
+      }      
+      
+      @DeletionScheme      
+      Void delete() {      
+          
+      }      
+      
+    }    
+  
+  }  
+
+  @FlexoConcept  
+  public class MachineryConnection {  
+  
+    public String referenceName;  
+    public MachineryAllocation reference;  
+    public Relation relation;  
+  
+    @CreationScheme    
+    MachineryConnection:create(String referenceName, FlexoConceptInstanceType<Relation> relation) {    
+      referenceName = parameters.referenceName;      
+      relation = parameters.relation;    
+    }    
+  
+    @DeletionScheme    
+    Void delete() {    
+      
     }    
   
   }  

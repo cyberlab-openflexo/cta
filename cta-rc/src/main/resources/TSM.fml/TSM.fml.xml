@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<VirtualModel id="SYL-5" virtualModelClass="org.openflexo.foundation.fml.VirtualModel" modelVersion="2.0" uri="http://ensta-bretagne.fr/cyber/cta/TSM.fml" version="0.1" smallIconResource="../Icons/TSM_16x16.png" name="TSM" author="sylvain" description="Target System Modelling viewpoint" userID="SYL" flexoID="5">
+<VirtualModel id="SYL-5" virtualModelClass="org.openflexo.foundation.fml.VirtualModel" modelVersion="2.0" version="0.1" uri="http://ensta-bretagne.fr/cyber/cta/TSM.fml" smallIconResource="../Icons/TSM_16x16.png" name="TSM" author="sylvain" description="Target System Modelling viewpoint" userID="SYL" flexoID="5">
   <FlexoConcept idref="SYL-9" />
   <FlexoConcept idref="SYL-138" />
   <FlexoConcept idref="SYL-14" />
   <FlexoConcept idref="SYL-19" />
   <FlexoConcept id="SYL-387" smallIconResource="../Icons/TSM_16x16.png" name="SystemNodeExecutionDefinition" author="sylvain" userID="SYL" flexoID="387">
-    <Inspector id="SYL-388" inspectorTitle="SystemNodeExecutionDefinition" userID="SYL" flexoID="388" />
+    <Inspector id="SYL-388" renderer="name" inspectorTitle="SystemNodeExecutionDefinition" userID="SYL" flexoID="388" />
     <EmbeddedFlexoConcept id="SYL-9" name="ExecutionUnitDefinition" userID="SYL" flexoID="9">
-      <Inspector id="SYL-10" inspectorTitle="ExecutionUnit" userID="SYL" flexoID="10" />
+      <Inspector id="SYL-10" renderer="name" inspectorTitle="ExecutionUnit" userID="SYL" flexoID="10" />
       <EmbeddedFlexoConcept id="SYL-138" name="Variable" userID="SYL" flexoID="138">
         <Inspector id="SYL-139" inspectorTitle="Variable" userID="SYL" flexoID="139" />
         <ExpressionProperty id="SYL-172" expression="property.name" name="name" userID="SYL" flexoID="172" />
@@ -108,6 +108,7 @@
       </GetControlGraph_ReturnStatement>
     </GetSetProperty>
     <FlexoConceptRole id="SYL-418" container="supportVirtualModel" cloningStrategy="Reference" cardinality="One" name="supportContainerConcept" userID="SYL" flexoID="418" />
+    <ExpressionProperty id="GUE-461" expression="supportContainerConcept.name" name="name" userID="GUE" flexoID="461" />
     <CreationScheme id="SYL-392" name="create" width="800" label="create" height="600" userID="SYL" flexoID="392">
       <BehaviourControlGraph_AssignationAction id="SYL-419" assign="supportContainerConcept" userID="SYL" flexoID="419">
         <AssignableAction_CreateFlexoConcept id="SYL-420" container="supportVirtualModel" conceptName="parameters.name" parentFlexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml#SystemNodeExecutionUnit" receiver="supportVirtualModel" userID="SYL" flexoID="420" />

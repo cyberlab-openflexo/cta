@@ -140,6 +140,8 @@ public class TSM {
       return container.SelectFlexoConceptInstance(type=ExecutionUnitDefinition);    
     }  
     public FlexoConcept supportContainerConcept;  
+      
+    public String name = supportContainerConcept.name;  
   
     @CreationScheme    
     SystemNodeExecutionDefinition:create(String name) {    

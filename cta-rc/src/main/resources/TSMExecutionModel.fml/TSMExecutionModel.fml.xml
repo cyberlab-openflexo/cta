@@ -9,7 +9,7 @@
       <Inspector id="SYL-19" inspectorTitle="ExecutionUnit" userID="SYL" flexoID="19">
         <InspectorEntry id="SYL-292" widget="INTEGER" data="counter" name="counter" label="counter" type="java.lang.Integer" userID="SYL" flexoID="292" />
       </Inspector>
-      <EmbeddedFlexoConcept id="SYL-102" bigIconResource="../Icons/Transition_64x64.png" smallIconResource="../Icons/Transition_16x16.png" isAbstract="true" name="Transition" userID="SYL" flexoID="102">
+      <EmbeddedFlexoConcept id="SYL-102" smallIconResource="../Icons/Transition_16x16.png" bigIconResource="../Icons/Transition_64x64.png" isAbstract="true" name="Transition" userID="SYL" flexoID="102">
         <Inspector id="SYL-103" inspectorTitle="Transition" userID="SYL" flexoID="103">
           <InspectorEntry id="SYL-314" readOnly="true" widget="TEXT_FIELD" data="label" name="transition" label="transition" type="java.lang.String" userID="SYL" flexoID="314" />
           <InspectorEntry id="SYL-315" readOnly="true" widget="CHECKBOX" data="isFireable" name="is_fireable" label="is_fireable" type="java.lang.Boolean" userID="SYL" flexoID="315" />
@@ -61,7 +61,7 @@
     </EmbeddedFlexoConcept>
     <EmbeddedFlexoConcept id="SYL-77" isAbstract="true" parentFlexoConceptsList="http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml#ExecutionUnit" name="GuardActionExecutionUnit" userID="SYL" flexoID="77">
       <Inspector id="SYL-78" inspectorTitle="GuardActionExecutionUnit" userID="SYL" flexoID="78" />
-      <EmbeddedFlexoConcept id="SYL-111" bigIconResource="../Icons/Transition_64x64.png" smallIconResource="../Icons/Transition_16x16.png" isAbstract="true" parentFlexoConceptsList="http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml#Transition" name="GuardActionTransition" userID="SYL" flexoID="111">
+      <EmbeddedFlexoConcept id="SYL-111" smallIconResource="../Icons/Transition_16x16.png" bigIconResource="../Icons/Transition_64x64.png" isAbstract="true" parentFlexoConceptsList="http://ensta-bretagne.fr/cyber/cta/TSMExecutionModel.fml#Transition" name="GuardActionTransition" userID="SYL" flexoID="111">
         <Inspector id="SYL-112" renderer="label" inspectorTitle="GuardActionTransition" userID="SYL" flexoID="112" />
         <FlexoConceptInstanceRole id="SYL-143" virtualModelInstance="cta.tsm" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/TSM.fml#GuardAction" cloningStrategy="Reference" cardinality="ZeroOne" name="guardAction" userID="SYL" flexoID="143" />
         <GetSetProperty id="SYL-146" name="isFireable" userID="SYL" flexoID="146">

@@ -76,6 +76,7 @@ public class CTAControllerActionInitializer extends ControllerActionInitializer 
 		new GivesCTANatureInitializer(this);
 
 		new CreateNewPimCADiagramInitializer(this);
+		new AllocateExecutionUnitInitializer(this);
 		new CreateNewVariableInitializer(this);
 		new CreateNewGuardActionInitializer(this);
 
