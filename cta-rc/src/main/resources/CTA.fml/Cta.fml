@@ -12,7 +12,7 @@ public class CTA {
   public SystemNode rootNode;
   public TSM tsm;
   @GetSetProperty(value="executions", access=get)  
-  public List<UndefinedVirtualModelInstanceType> getExecutions {  
+  public List<VirtualModelInstanceType<Execution>> getExecutions {  
     return this.FML@RT::SelectVirtualModelInstance();  
   }
 
@@ -100,12 +100,25 @@ public class CTA {
       this.update()    
     }    
   
+    @ActionScheme    
+    Void updateConnections() {    
+      for (machineryAllocation : machineryAllocations) {      
+        for (machineryConnection : machineryAllocation.machineryConnections) {        
+          machineryConnection.updateReference()        
+        }      
+      }    
+    }    
+  
   
     @FlexoConcept    
     public class MachineryAllocation {    
       
       public Machinery machinery;    
       public ExecutionUnitDefinition executionUnitDefinition;    
+      @GetSetProperty(value="machineryConnections", access=get)      
+      public List<FlexoConceptInstanceType<MachineryConnection>> getMachineryConnections {      
+        return container.container.SelectFlexoConceptInstance(type=MachineryConnection);      
+      }    
       
       @CreationScheme      
       MachineryAllocation:create(FlexoConceptInstanceType<Machinery> aMachinery) {      
@@ -126,6 +139,7 @@ public class CTA {
       @ActionScheme      
       FlexoConceptInstanceType<ExecutionUnitDefinition> allocateNewGuardActionExecutionUnit(String executionUnitName) {      
         executionUnitDefinition = GuardActionExecutionUnitDefinition.create(parameters.executionUnitName);        
+        container.updateConnections()        
         return executionUnitDefinition;      
       }      
       
@@ -137,7 +151,6 @@ public class CTA {
       @ActionScheme      
       FlexoConceptInstanceType<MachineryConnection> createMachineryConnection(String referenceName, FlexoConceptInstanceType<Relation> relation, FlexoConceptInstanceType<MachineryAllocation> reference) {      
         FlexoConceptInstanceType<MachineryConnection> returned = MachineryConnection.create(parameters.referenceName,parameters.relation,parameters.reference);        
-        FlexoConceptInstanceType<ExecutionUnitReference> newReference = ExecutionUnitReference.create(parameters.referenceName,parameters.reference.executionUnitDefinition.supportConcept,("Reference to " + parameters.reference.machinery.name));        
         return returned;      
       }      
       
@@ -148,17 +161,26 @@ public class CTA {
         public String referenceName;      
         public MachineryAllocation reference;      
         public Relation relation;      
+        public ExecutionUnitReference executionUnitReference;      
           
         @CreationScheme        
         MachineryConnection:create(String referenceName, FlexoConceptInstanceType<Relation> relation, FlexoConceptInstanceType<MachineryAllocation> reference) {        
           referenceName = parameters.referenceName;          
           relation = parameters.relation;          
-          reference = parameters.reference;        
+          reference = parameters.reference;          
+          executionUnitReference = ExecutionUnitReference.create(parameters.referenceName,parameters.reference.executionUnitDefinition.supportConcept,("Reference to " + parameters.reference.machinery.name));        
         }        
           
         @DeletionScheme        
         Void delete() {        
               
+        }        
+          
+        @ActionScheme        
+        Void updateReference() {        
+          log ("Mise a jour de la reference pour " + reference)          
+          log ("Le type est maintenant: " + reference.executionUnitDefinition.supportConcept)          
+          executionUnitReference.property.flexoConceptType = reference.executionUnitDefinition.supportConcept;        
         }        
           
       }      
@@ -172,6 +194,10 @@ public class CTA {
   
     public Machinery machinery;  
     public ExecutionUnitDefinition executionUnitDefinition;  
+    @GetSetProperty(value="machineryConnections", access=get)    
+    public List<FlexoConceptInstanceType<MachineryConnection>> getMachineryConnections {    
+      return container.container.SelectFlexoConceptInstance(type=MachineryConnection);    
+    }  
   
     @CreationScheme    
     MachineryAllocation:create(FlexoConceptInstanceType<Machinery> aMachinery) {    
@@ -192,6 +218,7 @@ public class CTA {
     @ActionScheme    
     FlexoConceptInstanceType<ExecutionUnitDefinition> allocateNewGuardActionExecutionUnit(String executionUnitName) {    
       executionUnitDefinition = GuardActionExecutionUnitDefinition.create(parameters.executionUnitName);      
+      container.updateConnections()      
       return executionUnitDefinition;    
     }    
   
@@ -203,7 +230,6 @@ public class CTA {
     @ActionScheme    
     FlexoConceptInstanceType<MachineryConnection> createMachineryConnection(String referenceName, FlexoConceptInstanceType<Relation> relation, FlexoConceptInstanceType<MachineryAllocation> reference) {    
       FlexoConceptInstanceType<MachineryConnection> returned = MachineryConnection.create(parameters.referenceName,parameters.relation,parameters.reference);      
-      FlexoConceptInstanceType<ExecutionUnitReference> newReference = ExecutionUnitReference.create(parameters.referenceName,parameters.reference.executionUnitDefinition.supportConcept,("Reference to " + parameters.reference.machinery.name));      
       return returned;    
     }    
   
@@ -214,17 +240,26 @@ public class CTA {
       public String referenceName;    
       public MachineryAllocation reference;    
       public Relation relation;    
+      public ExecutionUnitReference executionUnitReference;    
       
       @CreationScheme      
       MachineryConnection:create(String referenceName, FlexoConceptInstanceType<Relation> relation, FlexoConceptInstanceType<MachineryAllocation> reference) {      
         referenceName = parameters.referenceName;        
         relation = parameters.relation;        
-        reference = parameters.reference;      
+        reference = parameters.reference;        
+        executionUnitReference = ExecutionUnitReference.create(parameters.referenceName,parameters.reference.executionUnitDefinition.supportConcept,("Reference to " + parameters.reference.machinery.name));      
       }      
       
       @DeletionScheme      
       Void delete() {      
           
+      }      
+      
+      @ActionScheme      
+      Void updateReference() {      
+        log ("Mise a jour de la reference pour " + reference)        
+        log ("Le type est maintenant: " + reference.executionUnitDefinition.supportConcept)        
+        executionUnitReference.property.flexoConceptType = reference.executionUnitDefinition.supportConcept;      
       }      
       
     }    
@@ -237,17 +272,26 @@ public class CTA {
     public String referenceName;  
     public MachineryAllocation reference;  
     public Relation relation;  
+    public ExecutionUnitReference executionUnitReference;  
   
     @CreationScheme    
     MachineryConnection:create(String referenceName, FlexoConceptInstanceType<Relation> relation, FlexoConceptInstanceType<MachineryAllocation> reference) {    
       referenceName = parameters.referenceName;      
       relation = parameters.relation;      
-      reference = parameters.reference;    
+      reference = parameters.reference;      
+      executionUnitReference = ExecutionUnitReference.create(parameters.referenceName,parameters.reference.executionUnitDefinition.supportConcept,("Reference to " + parameters.reference.machinery.name));    
     }    
   
     @DeletionScheme    
     Void delete() {    
       
+    }    
+  
+    @ActionScheme    
+    Void updateReference() {    
+      log ("Mise a jour de la reference pour " + reference)      
+      log ("Le type est maintenant: " + reference.executionUnitDefinition.supportConcept)      
+      executionUnitReference.property.flexoConceptType = reference.executionUnitDefinition.supportConcept;    
     }    
   
   }  
