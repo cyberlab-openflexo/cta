@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<VirtualModel id="SYL-5" virtualModelClass="org.openflexo.foundation.fml.VirtualModel" modelVersion="2.0" uri="http://ensta-bretagne.fr/cyber/cta/CTA.fml" version="0.1" smallIconResource="../../../../../cta-module/src/main/resources/Icons/CTA/module-cta-16.png" bigIconResource="../../../../../cta-module/src/main/resources/Icons/CTA/module-cta-64.png" name="CTA" mediumIconResource="../../../../../cta-module/src/main/resources/Icons/CTA/module-cta-32.png" author="sylvain" userID="SYL" flexoID="5">
-  <FlexoConcept id="SYL-36" smallIconResource="../Icons/SystemNode_16x16.png" bigIconResource="../Icons/SystemNode_64x64.png" name="SystemNode" mediumIconResource="../Icons/SystemNode_32x32.png" userID="SYL" flexoID="36">
+<VirtualModel id="SYL-5" virtualModelClass="org.openflexo.foundation.fml.VirtualModel" modelVersion="2.0" uri="http://ensta-bretagne.fr/cyber/cta/CTA.fml" version="0.1" bigIconResource="../../../../../cta-module/src/main/resources/Icons/CTA/module-cta-64.png" smallIconResource="../../../../../cta-module/src/main/resources/Icons/CTA/module-cta-16.png" name="CTA" mediumIconResource="../../../../../cta-module/src/main/resources/Icons/CTA/module-cta-32.png" author="sylvain" userID="SYL" flexoID="5">
+  <FlexoConcept id="SYL-36" bigIconResource="../Icons/SystemNode_64x64.png" smallIconResource="../Icons/SystemNode_16x16.png" name="SystemNode" mediumIconResource="../Icons/SystemNode_32x32.png" userID="SYL" flexoID="36">
     <Inspector id="SYL-37" renderer="nodeName" inspectorTitle="SystemNode" userID="SYL" flexoID="37" />
     <EmbeddedFlexoConcept id="SYL-154" name="MachineryAllocation" userID="SYL" flexoID="154">
-      <Inspector id="SYL-153" renderer="(machinery.name + ((executionUnitDefinition != null) ? ((&quot;[&quot; + executionUnitDefinition.name) + &quot;]&quot;) : &quot;&quot;))" inspectorTitle="MachineryAllocation" userID="SYL" flexoID="153">
+      <Inspector id="SYL-153" renderer="(machinery.name + ((executionUnitDefinition != null) ? ((&quot;[&quot; + executionUnitDefinition.name) + &quot;]&quot;) : &quot;[Non allocated]&quot;))" inspectorTitle="MachineryAllocation" userID="SYL" flexoID="153">
         <InspectorEntry id="SYL-160" container="pimcaModel" widget="CUSTOM_WIDGET" data="machinery" name="machinery" label="machinery" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCAModel.fml#Machinery&gt;" userID="SYL" flexoID="160" />
         <InspectorEntry id="SYL-255" container="tsm" widget="CUSTOM_WIDGET" data="executionUnitDefinition" name="executionUnit" label="executionUnit" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml#ExecutionUnit&gt;" userID="SYL" flexoID="255" />
       </Inspector>
@@ -14,15 +14,21 @@
         <FlexoConceptInstanceRole id="GUE-388" virtualModelInstance="pimcaModel" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCAModel.fml#Relation" container="pimcaModel" cloningStrategy="Reference" cardinality="ZeroOne" name="relation" userID="GUE" flexoID="388" />
         <CreationScheme id="GUE-384" name="create" width="800" label="create" height="600" userID="GUE" flexoID="384">
           <BehaviourControlGraph_Sequence id="GUE-395" userID="GUE" flexoID="395">
-            <ControlGraph2_AssignationAction id="GUE-394" assign="relation" ownerContext="controlGraph2" userID="GUE" flexoID="394">
-              <AssignableAction_ExpressionAction id="GUE-393" expression="parameters.relation" userID="GUE" flexoID="393" />
-            </ControlGraph2_AssignationAction>
+            <ControlGraph2_Sequence id="GUE-417" ownerContext="controlGraph2" userID="GUE" flexoID="417">
+              <ControlGraph2_AssignationAction id="GUE-416" assign="reference" ownerContext="controlGraph2" userID="GUE" flexoID="416">
+                <AssignableAction_ExpressionAction id="GUE-415" expression="parameters.reference" userID="GUE" flexoID="415" />
+              </ControlGraph2_AssignationAction>
+              <ControlGraph1_AssignationAction id="GUE-394" assign="relation" ownerContext="controlGraph1" userID="GUE" flexoID="394">
+                <AssignableAction_ExpressionAction id="GUE-393" expression="parameters.relation" userID="GUE" flexoID="393" />
+              </ControlGraph1_AssignationAction>
+            </ControlGraph2_Sequence>
             <ControlGraph1_AssignationAction id="GUE-392" assign="referenceName" ownerContext="controlGraph1" userID="GUE" flexoID="392">
               <AssignableAction_ExpressionAction id="GUE-391" expression="parameters.referenceName" userID="GUE" flexoID="391" />
             </ControlGraph1_AssignationAction>
           </BehaviourControlGraph_Sequence>
           <GenericBehaviourParameter id="GUE-390" widget="TEXT_FIELD" name="referenceName" type="java.lang.String" userID="GUE" flexoID="390" />
           <GenericBehaviourParameter id="GUE-389" container="pimcaModel" widget="CUSTOM_WIDGET" name="relation" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCAModel.fml#Relation&gt;" userID="GUE" flexoID="389" />
+          <GenericBehaviourParameter id="GUE-414" widget="CUSTOM_WIDGET" name="reference" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml#MachineryAllocation&gt;" userID="GUE" flexoID="414" />
         </CreationScheme>
         <DeletionScheme id="GUE-385" name="delete" width="800" label="delete" height="600" userID="GUE" flexoID="385">
           <BehaviourControlGraph_EmptyControlGraph id="GUE-396" userID="GUE" flexoID="396" />
@@ -49,17 +55,48 @@
         <GenericBehaviourParameter id="SYL-179" container="tsm" isRequired="true" widget="CUSTOM_WIDGET" name="executionUnitDefinition" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml#ExecutionUnit&gt;" userID="SYL" flexoID="179" />
       </ActionScheme>
       <ActionScheme id="SYL-184" conditional="(executionUnitDefinition = null)" name="allocateNewGuardActionExecutionUnit" width="800" label="allocate_new_guard_action_execution_unit" height="600" description="Une description ici ?&#xA;" userID="SYL" flexoID="184">
-        <BehaviourControlGraph_AssignationAction id="SYL-182" assign="executionUnitDefinition" userID="SYL" flexoID="182">
-          <AssignableAction_AddFlexoConceptInstance id="SYL-181" container="systemNodeExecutionDefinition" creationSchemeURI="http://ensta-bretagne.fr/cyber/cta/TSM.fml#GuardActionExecutionUnitDefinition.create(name)" receiver="tsm" userID="SYL" flexoID="181">
-            <AddFlexoConceptInstanceParameter id="SYL-180" paramName="name" value="parameters.executionUnitName" userID="SYL" flexoID="180" />
-          </AssignableAction_AddFlexoConceptInstance>
-        </BehaviourControlGraph_AssignationAction>
+        <BehaviourControlGraph_Sequence id="GUE-411" userID="GUE" flexoID="411">
+          <ControlGraph2_ReturnStatement id="GUE-410" ownerContext="controlGraph2" userID="GUE" flexoID="410">
+            <AssignableAction_ExpressionAction id="GUE-409" expression="executionUnitDefinition" userID="GUE" flexoID="409" />
+          </ControlGraph2_ReturnStatement>
+          <ControlGraph1_AssignationAction id="SYL-182" assign="executionUnitDefinition" ownerContext="controlGraph1" userID="SYL" flexoID="182">
+            <AssignableAction_AddFlexoConceptInstance id="SYL-181" container="systemNodeExecutionDefinition" creationSchemeURI="http://ensta-bretagne.fr/cyber/cta/TSM.fml#GuardActionExecutionUnitDefinition.create(name)" receiver="tsm" userID="SYL" flexoID="181">
+              <AddFlexoConceptInstanceParameter id="SYL-180" paramName="name" value="parameters.executionUnitName" userID="SYL" flexoID="180" />
+            </AssignableAction_AddFlexoConceptInstance>
+          </ControlGraph1_AssignationAction>
+        </BehaviourControlGraph_Sequence>
         <GenericBehaviourParameter id="SYL-183" isRequired="true" widget="TEXT_FIELD" name="executionUnitName" type="java.lang.String" userID="SYL" flexoID="183" />
       </ActionScheme>
       <ActionScheme id="SYL-256" conditional="(executionUnit != null)" visibility="Public" name="clearAllocation" width="800" label="clearAllocation" height="600" userID="SYL" flexoID="256">
         <BehaviourControlGraph_AssignationAction id="SYL-258" assign="executionUnitDefinition" userID="SYL" flexoID="258">
           <AssignableAction_ExpressionAction id="SYL-257" expression="null" userID="SYL" flexoID="257" />
         </BehaviourControlGraph_AssignationAction>
+      </ActionScheme>
+      <ActionScheme id="GUE-412" name="createMachineryConnection" width="800" label="createMachineryConnection" height="600" userID="GUE" flexoID="412">
+        <BehaviourControlGraph_Sequence id="GUE-456" userID="GUE" flexoID="456">
+          <ControlGraph2_Sequence id="GUE-457" ownerContext="controlGraph2" userID="GUE" flexoID="457">
+            <ControlGraph2_ReturnStatement id="GUE-455" ownerContext="controlGraph2" userID="GUE" flexoID="455">
+              <AssignableAction_ExpressionAction id="GUE-454" expression="returned" userID="GUE" flexoID="454" />
+            </ControlGraph2_ReturnStatement>
+            <ControlGraph1_DeclarationAction id="GUE-453" variable="newReference" ownerContext="controlGraph1" userID="GUE" flexoID="453">
+              <AssignableAction_AddFlexoConceptInstance id="GUE-449" container="executionUnitDefinition" creationSchemeURI="http://ensta-bretagne.fr/cyber/cta/TSM.fml#ExecutionUnitReference.create(aName,flexoConceptType,description)" receiver="tsm" ownerContext="controlGraph2" userID="GUE" flexoID="449">
+                <AddFlexoConceptInstanceParameter id="GUE-450" paramName="aName" value="parameters.referenceName" userID="GUE" flexoID="450" />
+                <AddFlexoConceptInstanceParameter id="GUE-451" paramName="flexoConceptType" value="parameters.reference.executionUnitDefinition.supportConcept" userID="GUE" flexoID="451" />
+                <AddFlexoConceptInstanceParameter id="GUE-452" paramName="description" value="(&quot;Reference to &quot; + parameters.reference.machinery.name)" userID="GUE" flexoID="452" />
+              </AssignableAction_AddFlexoConceptInstance>
+            </ControlGraph1_DeclarationAction>
+          </ControlGraph2_Sequence>
+          <ControlGraph1_DeclarationAction id="GUE-447" variable="returned" ownerContext="controlGraph1" userID="GUE" flexoID="447">
+            <AssignableAction_AddFlexoConceptInstance id="GUE-441" container="this" creationSchemeURI="http://ensta-bretagne.fr/cyber/cta/CTA.fml#MachineryConnection.create(referenceName,relation,reference)" receiver="container.container" ownerContext="controlGraph2" userID="GUE" flexoID="441">
+              <AddFlexoConceptInstanceParameter id="GUE-443" paramName="referenceName" value="parameters.referenceName" userID="GUE" flexoID="443" />
+              <AddFlexoConceptInstanceParameter id="GUE-444" paramName="relation" value="parameters.relation" userID="GUE" flexoID="444" />
+              <AddFlexoConceptInstanceParameter id="GUE-445" paramName="reference" value="parameters.reference" userID="GUE" flexoID="445" />
+            </AssignableAction_AddFlexoConceptInstance>
+          </ControlGraph1_DeclarationAction>
+        </BehaviourControlGraph_Sequence>
+        <GenericBehaviourParameter id="GUE-419" widget="CUSTOM_WIDGET" name="referenceName" type="java.lang.String" userID="GUE" flexoID="419" />
+        <GenericBehaviourParameter id="GUE-420" widget="CUSTOM_WIDGET" name="relation" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCAModel.fml#Relation&gt;" userID="GUE" flexoID="420" />
+        <GenericBehaviourParameter id="GUE-421" widget="CUSTOM_WIDGET" name="reference" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml#MachineryAllocation&gt;" userID="GUE" flexoID="421" />
       </ActionScheme>
     </EmbeddedFlexoConcept>
     <FMLRTVirtualModelInstanceModelSlot id="SYL-43" virtualModelURI="http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCAModel.fml" isRequired="true" cloningStrategy="Reference" cardinality="ZeroOne" name="pimcaModel" userID="SYL" flexoID="43" />
@@ -121,12 +158,12 @@
       <GenericBehaviourParameter id="SYL-101" widget="TEXT_FIELD" name="diagramTitle" type="java.lang.String" userID="SYL" flexoID="101" />
       <GenericBehaviourParameter id="SYL-121" widget="TEXT_AREA" name="diagramDescription" type="java.lang.String" userID="SYL" flexoID="121" />
     </ActionScheme>
-    <ActionScheme id="SYL-141" visibility="Public" name="allocateExistingExecutionUnit" width="800" label="allocate_existing_execution_unit" height="600" userID="SYL" flexoID="141">
+    <ActionScheme id="SYL-141" name="allocateExistingExecutionUnit" width="800" label="allocate_existing_execution_unit" height="600" userID="SYL" flexoID="141">
       <BehaviourControlGraph_ExpressionAction id="SYL-199" expression="this.getMachineryAllocation(parameters.machinery).allocateExistingExecutionUnit(parameters.executionUnit)" userID="SYL" flexoID="199" />
       <GenericBehaviourParameter id="SYL-198" container="pimcaModel" widget="CUSTOM_WIDGET" name="machinery" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCAModel.fml#Machinery&gt;" userID="SYL" flexoID="198" />
       <GenericBehaviourParameter id="SYL-146" container="tsm" isRequired="true" widget="CUSTOM_WIDGET" name="executionUnit" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml#ExecutionUnit&gt;" userID="SYL" flexoID="146" />
     </ActionScheme>
-    <ActionScheme id="SYL-145" visibility="Public" name="allocateNewGuardActionExecutionUnit" width="800" label="allocate_new_guard_action_execution_unit" height="600" description="Create and allocate new Guard/Action execution unit&#xA;" userID="SYL" flexoID="145">
+    <ActionScheme id="SYL-145" name="allocateNewGuardActionExecutionUnit" width="800" label="allocate_new_guard_action_execution_unit" height="600" description="Create and allocate new Guard/Action execution unit&#xA;" userID="SYL" flexoID="145">
       <BehaviourControlGraph_ExpressionAction id="SYL-201" expression="this.getMachineryAllocation(parameters.machinery).allocateNewGuardActionExecutionUnit(parameters.executionUnitName)" userID="SYL" flexoID="201" />
       <GenericBehaviourParameter id="SYL-200" container="pimcaModel" widget="CUSTOM_WIDGET" name="machinery" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCAModel.fml#Machinery&gt;" userID="SYL" flexoID="200" />
       <GenericBehaviourParameter id="SYL-152" isRequired="true" widget="TEXT_FIELD" name="executionUnitName" type="java.lang.String" userID="SYL" flexoID="152" />

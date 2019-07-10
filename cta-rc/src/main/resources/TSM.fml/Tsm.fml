@@ -55,6 +55,20 @@ public class TSM {
       
     }    
   
+    @FlexoConcept    
+    public class ExecutionUnitReference {    
+      
+      public FlexoConceptInstanceRole property;    
+      
+      @CreationScheme      
+      ExecutionUnitReference:create(String aName, FlexoConcept flexoConceptType, String description) {      
+        property = supportVirtualModel.CreateFlexoConceptInstanceRole();        
+        property.description = parameters.description;        
+        container.firePropertyChange variables      
+      }      
+      
+    }    
+  
   }  
 
   @FlexoConcept  
@@ -141,7 +155,7 @@ public class TSM {
     }  
     public FlexoConcept supportContainerConcept;  
       
-    public String name = supportContainerConcept.name;  
+    public String containerName = supportContainerConcept.name;  
   
     @CreationScheme    
     SystemNodeExecutionDefinition:create(String name) {    
@@ -192,6 +206,20 @@ public class TSM {
           
       }      
       
+      @FlexoConcept      
+      public class ExecutionUnitReference {      
+          
+        public FlexoConceptInstanceRole property;      
+          
+        @CreationScheme        
+        ExecutionUnitReference:create(String aName, FlexoConcept flexoConceptType, String description) {        
+          property = supportVirtualModel.CreateFlexoConceptInstanceRole();          
+          property.description = parameters.description;          
+          container.firePropertyChange variables        
+        }        
+          
+      }      
+      
     }    
   
     @FlexoConcept    
@@ -230,6 +258,20 @@ public class TSM {
           
       }      
       
+    }    
+  
+  }  
+
+  @FlexoConcept  
+  public class ExecutionUnitReference {  
+  
+    public FlexoConceptInstanceRole property;  
+  
+    @CreationScheme    
+    ExecutionUnitReference:create(String aName, FlexoConcept flexoConceptType, String description) {    
+      property = supportVirtualModel.CreateFlexoConceptInstanceRole();      
+      property.description = parameters.description;      
+      container.firePropertyChange variables    
     }    
   
   }  

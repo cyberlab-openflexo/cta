@@ -62,12 +62,12 @@ public class CTA {
     }    
   
     @ActionScheme    
-    public Void allocateExistingExecutionUnit(FlexoConceptInstanceType<Machinery> machinery, UndefinedFlexoConceptInstanceType executionUnit) {    
+    Void allocateExistingExecutionUnit(FlexoConceptInstanceType<Machinery> machinery, UndefinedFlexoConceptInstanceType executionUnit) {    
       this.getMachineryAllocation(parameters.machinery).allocateExistingExecutionUnit(parameters.executionUnit)    
     }    
   
     @ActionScheme    
-    public Void allocateNewGuardActionExecutionUnit(FlexoConceptInstanceType<Machinery> machinery, String executionUnitName) {    
+    Void allocateNewGuardActionExecutionUnit(FlexoConceptInstanceType<Machinery> machinery, String executionUnitName) {    
       this.getMachineryAllocation(parameters.machinery).allocateNewGuardActionExecutionUnit(parameters.executionUnitName)    
     }    
   
@@ -124,13 +124,21 @@ public class CTA {
       }      
       
       @ActionScheme      
-      Void allocateNewGuardActionExecutionUnit(String executionUnitName) {      
-        executionUnitDefinition = GuardActionExecutionUnitDefinition.create(parameters.executionUnitName);      
+      FlexoConceptInstanceType<ExecutionUnitDefinition> allocateNewGuardActionExecutionUnit(String executionUnitName) {      
+        executionUnitDefinition = GuardActionExecutionUnitDefinition.create(parameters.executionUnitName);        
+        return executionUnitDefinition;      
       }      
       
       @ActionScheme      
       public Void clearAllocation() {      
         executionUnitDefinition = null;      
+      }      
+      
+      @ActionScheme      
+      FlexoConceptInstanceType<MachineryConnection> createMachineryConnection(String referenceName, FlexoConceptInstanceType<Relation> relation, FlexoConceptInstanceType<MachineryAllocation> reference) {      
+        FlexoConceptInstanceType<MachineryConnection> returned = MachineryConnection.create(parameters.referenceName,parameters.relation,parameters.reference);        
+        FlexoConceptInstanceType<ExecutionUnitReference> newReference = ExecutionUnitReference.create(parameters.referenceName,parameters.reference.executionUnitDefinition.supportConcept,("Reference to " + parameters.reference.machinery.name));        
+        return returned;      
       }      
       
       
@@ -142,9 +150,10 @@ public class CTA {
         public Relation relation;      
           
         @CreationScheme        
-        MachineryConnection:create(String referenceName, FlexoConceptInstanceType<Relation> relation) {        
+        MachineryConnection:create(String referenceName, FlexoConceptInstanceType<Relation> relation, FlexoConceptInstanceType<MachineryAllocation> reference) {        
           referenceName = parameters.referenceName;          
-          relation = parameters.relation;        
+          relation = parameters.relation;          
+          reference = parameters.reference;        
         }        
           
         @DeletionScheme        
@@ -181,13 +190,21 @@ public class CTA {
     }    
   
     @ActionScheme    
-    Void allocateNewGuardActionExecutionUnit(String executionUnitName) {    
-      executionUnitDefinition = GuardActionExecutionUnitDefinition.create(parameters.executionUnitName);    
+    FlexoConceptInstanceType<ExecutionUnitDefinition> allocateNewGuardActionExecutionUnit(String executionUnitName) {    
+      executionUnitDefinition = GuardActionExecutionUnitDefinition.create(parameters.executionUnitName);      
+      return executionUnitDefinition;    
     }    
   
     @ActionScheme    
     public Void clearAllocation() {    
       executionUnitDefinition = null;    
+    }    
+  
+    @ActionScheme    
+    FlexoConceptInstanceType<MachineryConnection> createMachineryConnection(String referenceName, FlexoConceptInstanceType<Relation> relation, FlexoConceptInstanceType<MachineryAllocation> reference) {    
+      FlexoConceptInstanceType<MachineryConnection> returned = MachineryConnection.create(parameters.referenceName,parameters.relation,parameters.reference);      
+      FlexoConceptInstanceType<ExecutionUnitReference> newReference = ExecutionUnitReference.create(parameters.referenceName,parameters.reference.executionUnitDefinition.supportConcept,("Reference to " + parameters.reference.machinery.name));      
+      return returned;    
     }    
   
   
@@ -199,9 +216,10 @@ public class CTA {
       public Relation relation;    
       
       @CreationScheme      
-      MachineryConnection:create(String referenceName, FlexoConceptInstanceType<Relation> relation) {      
+      MachineryConnection:create(String referenceName, FlexoConceptInstanceType<Relation> relation, FlexoConceptInstanceType<MachineryAllocation> reference) {      
         referenceName = parameters.referenceName;        
-        relation = parameters.relation;      
+        relation = parameters.relation;        
+        reference = parameters.reference;      
       }      
       
       @DeletionScheme      
@@ -221,9 +239,10 @@ public class CTA {
     public Relation relation;  
   
     @CreationScheme    
-    MachineryConnection:create(String referenceName, FlexoConceptInstanceType<Relation> relation) {    
+    MachineryConnection:create(String referenceName, FlexoConceptInstanceType<Relation> relation, FlexoConceptInstanceType<MachineryAllocation> reference) {    
       referenceName = parameters.referenceName;      
-      relation = parameters.relation;    
+      relation = parameters.relation;      
+      reference = parameters.reference;    
     }    
   
     @DeletionScheme    

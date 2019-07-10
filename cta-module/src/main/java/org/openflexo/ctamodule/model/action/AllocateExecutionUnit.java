@@ -43,7 +43,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-import org.apache.commons.lang3.StringUtils;
 import org.openflexo.ApplicationContext;
 import org.openflexo.connie.exception.InvalidBindingException;
 import org.openflexo.connie.exception.NullReferenceException;
@@ -55,12 +54,12 @@ import org.openflexo.foundation.FlexoException;
 import org.openflexo.foundation.FlexoObject;
 import org.openflexo.foundation.FlexoObject.FlexoObjectImpl;
 import org.openflexo.foundation.action.FlexoActionFactory;
-import org.openflexo.foundation.fml.FlexoConcept;
 import org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstance;
 import org.openflexo.foundation.fml.rt.FlexoConceptInstance;
 import org.openflexo.localization.LocalizedDelegate;
 import org.openflexo.toolbox.JavaUtils;
 import org.openflexo.toolbox.PropertyChangedSupportDefaultImplementation;
+import org.openflexo.toolbox.StringUtils;
 
 /**
  * @author sylvain
@@ -91,10 +90,9 @@ public class AllocateExecutionUnit extends CTAAction<AllocateExecutionUnit, Flex
 	static {
 		FlexoObjectImpl.addActionForClass(ACTION_TYPE, FlexoConceptInstance.class);
 	}
-	
+
 	public enum RefinementChoice {
-		NewExecutionUnit,
-		RefineExecutionUnit
+		NewExecutionUnit, RefineExecutionUnit
 	}
 
 	private RefinementChoice refinementChoice = RefinementChoice.NewExecutionUnit;
@@ -130,8 +128,18 @@ public class AllocateExecutionUnit extends CTAAction<AllocateExecutionUnit, Flex
 		System.out.println("machineryAllocation=" + machineryAllocation);
 
 		try {
-			//newExecutionUnitDefinition = systemNode.execute("this.createNewDiagram({$name},{$title},{$description})", getExecutionUnitName(), getDiagramTitle(),
-			//		getDiagramDescription());
+			FlexoConceptInstance executionUnitDefinition = getMachineryAllocation()
+					.execute("this.allocateNewGuardActionExecutionUnit({$executionUnitName})", getExecutionUnitName());
+			for (MachineryConnectionEntry entry : getConnectionEntries()) {
+				FlexoConceptInstance machineryConnection = getMachineryAllocation().execute(
+						"this.createMachineryConnection({$referenceName},{$relation},{$reference})", entry.getConnectionName(),
+						entry.getRelation(), entry.getReference());
+				System.out.println("machineryConnection=" + machineryConnection);
+			}
+			// newExecutionUnitDefinition =
+			// systemNode.execute("this.createNewDiagram({$name},{$title},{$description})",
+			// getExecutionUnitName(), getDiagramTitle(),
+			// getDiagramDescription());
 		} catch (Exception e) {
 			throw new FlexoException(e);
 		}
@@ -146,7 +154,8 @@ public class AllocateExecutionUnit extends CTAAction<AllocateExecutionUnit, Flex
 	}
 
 	public void setMachineryAllocation(FlexoConceptInstance machineryAllocation) {
-		if ((machineryAllocation == null && this.machineryAllocation != null) || (machineryAllocation != null && !machineryAllocation.equals(this.machineryAllocation))) {
+		if ((machineryAllocation == null && this.machineryAllocation != null)
+				|| (machineryAllocation != null && !machineryAllocation.equals(this.machineryAllocation))) {
 			FlexoConceptInstance oldValue = this.machineryAllocation;
 			this.machineryAllocation = machineryAllocation;
 			getPropertyChangeSupport().firePropertyChange("machineryAllocation", oldValue, machineryAllocation);
@@ -154,11 +163,31 @@ public class AllocateExecutionUnit extends CTAAction<AllocateExecutionUnit, Flex
 	}
 
 	public String getExecutionUnitName() {
+		if (StringUtils.isEmpty(executionUnitName)) {
+			if (getMachineryAllocation() != null) {
+				try {
+					return getMachineryAllocation().execute("this.machinery.name");
+				} catch (TypeMismatchException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (NullReferenceException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InvalidBindingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 		return executionUnitName;
 	}
 
 	public void setExecutionUnitName(String executionUnitName) {
-		if ((executionUnitName == null && this.executionUnitName != null) || (executionUnitName != null && !executionUnitName.equals(this.executionUnitName))) {
+		if ((executionUnitName == null && this.executionUnitName != null)
+				|| (executionUnitName != null && !executionUnitName.equals(this.executionUnitName))) {
 			String oldValue = this.executionUnitName;
 			this.executionUnitName = executionUnitName;
 			getPropertyChangeSupport().firePropertyChange("executionUnitName", oldValue, executionUnitName);
@@ -176,26 +205,25 @@ public class AllocateExecutionUnit extends CTAAction<AllocateExecutionUnit, Flex
 			getPropertyChangeSupport().firePropertyChange("refinementChoice", oldValue, refinementChoice);
 		}
 	}
-	
+
 	public FlexoConceptInstance getRefinedExecutionUnitDefinition() {
 		return refinedExecutionUnitDefinition;
 	}
-	
+
 	public void setRefinedExecutionUnitDefinition(FlexoConceptInstance refinedExecutionUnitDefinition) {
 		if ((refinedExecutionUnitDefinition == null && this.refinedExecutionUnitDefinition != null)
 				|| (refinedExecutionUnitDefinition != null
 						&& !refinedExecutionUnitDefinition.equals(this.refinedExecutionUnitDefinition))) {
 			FlexoConceptInstance oldValue = this.refinedExecutionUnitDefinition;
 			this.refinedExecutionUnitDefinition = refinedExecutionUnitDefinition;
-			getPropertyChangeSupport().firePropertyChange("refinedExecutionUnitDefinition", oldValue,
-					refinedExecutionUnitDefinition);
+			getPropertyChangeSupport().firePropertyChange("refinedExecutionUnitDefinition", oldValue, refinedExecutionUnitDefinition);
 		}
 	}
 
 	public FMLRTVirtualModelInstance getNewExecutionUnitDefinition() {
 		return newExecutionUnitDefinition;
 	}
-	
+
 	public FMLRTVirtualModelInstance getTSMVirtualModelInstance() {
 		try {
 			return getFocusedObject().execute("tsm");
@@ -216,59 +244,127 @@ public class AllocateExecutionUnit extends CTAAction<AllocateExecutionUnit, Flex
 	}
 
 	public boolean isAcceptableRefinedExecutionUnitDefinition(FlexoConceptInstance executionUnitDefinition) {
-		System.out.println("Acceptable: "+executionUnitDefinition);
+		System.out.println("Acceptable: " + executionUnitDefinition);
 		return true;
 	}
-	
-	private List<MachineryConnectionEntry> connectionEntries = new ArrayList<>();
-	
-	private void updateConnectionEntries() {
-		try {
-			FlexoConceptInstance machineryAllocation = getFocusedObject();
-			FlexoConceptInstance machinery = getFocusedObject().execute("this.machinery");
-			List<FlexoConceptInstance> swapRelations = machinery.execute("this.swapRelations");
-			FlexoConceptInstance systemNode = getFocusedObject().execute("this.container");
-			for (FlexoConceptInstance swapRelation : swapRelations) {
-				FlexoConceptInstance sourceMachinery = swapRelation.execute("this.source");
-				FlexoConceptInstance targetMachinery = swapRelation.execute("this.target");
-				FlexoConceptInstance oppositeMachinery;
-				if (sourceMachinery == machinery) {
-					oppositeMachinery = targetMachinery;
-				}
-				else {
-					oppositeMachinery = sourceMachinery;
-				}
-				FlexoConceptInstance oppositeMachineryAllocation = systemNode.execute("this.getMachineryAllocation({$machinery})",oppositeMachinery);
-				System.out.println("Entree avec ");
-				System.out.println("swapRelation="+swapRelation);
-				System.out.println("oppositeMachinery="+oppositeMachinery);
-				System.out.println("oppositeMachineryAllocation="+oppositeMachineryAllocation);
-			}
-		} catch (TypeMismatchException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NullReferenceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvalidBindingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+
+	private List<MachineryConnectionEntry> connectionEntries;
+
+	public List<MachineryConnectionEntry> getConnectionEntries() {
+		return connectionEntries;
 	}
-	
+
+	private void updateConnectionEntries() {
+		connectionEntries = new ArrayList<>();
+		if (getMachineryAllocation() != null) {
+			try {
+				FlexoConceptInstance machinery = getMachineryAllocation().execute("this.machinery");
+				List<FlexoConceptInstance> swapRelations = machinery.execute("this.swapRelations");
+				FlexoConceptInstance systemNode = getMachineryAllocation().execute("this.container");
+				for (FlexoConceptInstance swapRelation : swapRelations) {
+					FlexoConceptInstance sourceMachinery = swapRelation.execute("this.source");
+					FlexoConceptInstance targetMachinery = swapRelation.execute("this.target");
+					FlexoConceptInstance oppositeMachinery;
+					if (sourceMachinery == machinery) {
+						oppositeMachinery = targetMachinery;
+					}
+					else {
+						oppositeMachinery = sourceMachinery;
+					}
+					FlexoConceptInstance oppositeMachineryAllocation = systemNode.execute("this.getMachineryAllocation({$machinery})",
+							oppositeMachinery);
+					System.out.println("Entree avec ");
+					System.out.println("swapRelation=" + swapRelation);
+					System.out.println("oppositeMachinery=" + oppositeMachinery);
+					System.out.println("oppositeMachineryAllocation=" + oppositeMachineryAllocation);
+					String connectionName = JavaUtils.getVariableName(oppositeMachinery.toString());
+					MachineryConnectionEntry entry = new MachineryConnectionEntry(connectionName, oppositeMachineryAllocation,
+							swapRelation);
+					connectionEntries.add(entry);
+				}
+			} catch (TypeMismatchException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NullReferenceException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvalidBindingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
 	public static class MachineryConnectionEntry extends PropertyChangedSupportDefaultImplementation {
+
+		private Boolean selectIt;
 
 		private String connectionName;
 		private FlexoConceptInstance reference; // Instance of CTA MachineryAllocation
 		private FlexoConceptInstance relation; // Instance of PimCA Relation
 
+		public MachineryConnectionEntry(String connectionName, FlexoConceptInstance reference, FlexoConceptInstance relation) {
+			super();
+			this.connectionName = connectionName;
+			this.reference = reference;
+			this.relation = relation;
+			this.selectIt = true;
+		}
+
 		public void delete() {
 			reference = null;
 			relation = null;
+		}
+
+		public String getConnectionName() {
+			return connectionName;
+		}
+
+		public void setConnectionName(String connectionName) {
+			if ((connectionName == null && this.connectionName != null)
+					|| (connectionName != null && !connectionName.equals(this.connectionName))) {
+				String oldValue = this.connectionName;
+				this.connectionName = connectionName;
+				getPropertyChangeSupport().firePropertyChange("connectionName", oldValue, connectionName);
+			}
+		}
+
+		public FlexoConceptInstance getReference() {
+			return reference;
+		}
+
+		public void setReference(FlexoConceptInstance reference) {
+			if ((reference == null && this.reference != null) || (reference != null && !reference.equals(this.reference))) {
+				FlexoConceptInstance oldValue = this.reference;
+				this.reference = reference;
+				getPropertyChangeSupport().firePropertyChange("reference", oldValue, reference);
+			}
+		}
+
+		public FlexoConceptInstance getRelation() {
+			return relation;
+		}
+
+		public void setRelation(FlexoConceptInstance relation) {
+			if ((relation == null && this.relation != null) || (relation != null && !relation.equals(this.relation))) {
+				FlexoConceptInstance oldValue = this.relation;
+				this.relation = relation;
+				getPropertyChangeSupport().firePropertyChange("relation", oldValue, relation);
+			}
+		}
+
+		public Boolean getSelectIt() {
+			return selectIt;
+		}
+
+		public void setSelectIt(Boolean selectIt) {
+			if (selectIt != this.selectIt) {
+				this.selectIt = selectIt;
+				getPropertyChangeSupport().firePropertyChange("selectIt", (Boolean) !selectIt, selectIt);
+			}
 		}
 
 	}

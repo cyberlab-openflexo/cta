@@ -4,6 +4,7 @@ Une\ description\ ici\ ?\n=Une description ici ?\n
 allocate_existing_execution_unit=allocate_existing_execution_unit
 allocate_new_guard_action_execution_unit=allocate_new_guard_action_execution_unit
 clearAllocation=clearAllocation
+createMachineryConnection=createMachineryConnection
 createNewDiagram=createNewDiagram
 diagramName=diagramName
 diagramTitle=diagramTitle

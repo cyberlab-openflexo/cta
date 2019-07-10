@@ -85,10 +85,7 @@ public class AllocateExecutionUnitInitializer extends ActionInitializer<Allocate
 	@Override
 	protected FlexoActionRunnable<AllocateExecutionUnit, FlexoConceptInstance, FlexoObject> getDefaultFinalizer() {
 		return (e, action) -> {
-			/*if (getController().getCurrentDisplayedObjectAsModuleView() == action.getElementMapping()) {
-				getController().getCurrentModuleView().deleteModuleView();
-			}*/
-			getController().switchToPerspective(((CTAController) getController()).getPimCAPerspective());
+			getController().switchToPerspective(((CTAController) getController()).getExecutionUnitPerspective());
 			getController().selectAndFocusObject(action.getMachineryAllocation());
 			getController().getSelectionManager().setSelectedObject(action.getMachineryAllocation());
 			return true;
