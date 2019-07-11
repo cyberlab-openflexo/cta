@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<VirtualModel id="SYL-5" virtualModelClass="org.openflexo.foundation.fml.VirtualModel" modelVersion="2.0" version="0.1" uri="http://ensta-bretagne.fr/cyber/cta/TSM.fml" smallIconResource="../Icons/TSM_16x16.png" name="TSM" author="sylvain" description="Target System Modelling viewpoint" userID="SYL" flexoID="5">
+<VirtualModel id="SYL-5" virtualModelClass="org.openflexo.foundation.fml.VirtualModel" modelVersion="2.0" uri="http://ensta-bretagne.fr/cyber/cta/TSM.fml" version="0.1" smallIconResource="../Icons/TSM_16x16.png" name="TSM" author="sylvain" description="Target System Modelling viewpoint" userID="SYL" flexoID="5">
   <FlexoConcept idref="SYL-9" />
   <FlexoConcept idref="SYL-138" />
   <FlexoConcept idref="SYL-14" />
@@ -8,9 +8,8 @@
     <Inspector id="SYL-388" renderer="containerName" inspectorTitle="SystemNodeExecutionDefinition" userID="SYL" flexoID="388" />
     <EmbeddedFlexoConcept id="SYL-9" name="ExecutionUnitDefinition" userID="SYL" flexoID="9">
       <Inspector id="SYL-10" renderer="name" inspectorTitle="ExecutionUnit" userID="SYL" flexoID="10" />
-      <EmbeddedFlexoConcept id="SYL-138" name="Variable" userID="SYL" flexoID="138">
+      <EmbeddedFlexoConcept id="SYL-138" parentFlexoConceptsList="http://ensta-bretagne.fr/cyber/cta/TSM.fml#ExecutionUnitProperty" name="Variable" userID="SYL" flexoID="138">
         <Inspector id="SYL-139" inspectorTitle="Variable" userID="SYL" flexoID="139" />
-        <ExpressionProperty id="SYL-172" expression="property.name" name="name" userID="SYL" flexoID="172" />
         <PrimitiveRoleRole id="SYL-230" container="supportConcept" cloningStrategy="Reference" cardinality="ZeroOne" name="property" userID="SYL" flexoID="230" />
         <CreationScheme id="SYL-143" name="create" width="800" label="create" height="600" userID="SYL" flexoID="143">
           <BehaviourControlGraph_Sequence id="SYL-213" userID="SYL" flexoID="213">
@@ -32,7 +31,7 @@
           <BehaviourControlGraph_EmptyControlGraph id="SYL-173" userID="SYL" flexoID="173" />
         </DeletionScheme>
       </EmbeddedFlexoConcept>
-      <EmbeddedFlexoConcept id="GUE-480" name="ExecutionUnitReference" userID="GUE" flexoID="480">
+      <EmbeddedFlexoConcept id="GUE-480" parentFlexoConceptsList="http://ensta-bretagne.fr/cyber/cta/TSM.fml#ExecutionUnitProperty" name="ExecutionUnitReference" userID="GUE" flexoID="480">
         <Inspector id="GUE-481" inspectorTitle="ExecutionUnitReference" userID="GUE" flexoID="481" />
         <FlexoConceptInstanceRoleRole id="GUE-510" container="supportVirtualModel" cloningStrategy="Reference" cardinality="ZeroOne" name="property" userID="GUE" flexoID="510" />
         <CreationScheme id="SYL-511" name="create" width="800" label="create" height="600" userID="SYL" flexoID="511">
@@ -52,12 +51,29 @@
           <GenericBehaviourParameter id="SYL-521" widget="TEXT_AREA" name="description" type="java.lang.String" userID="SYL" flexoID="521" />
         </CreationScheme>
       </EmbeddedFlexoConcept>
+      <EmbeddedFlexoConcept id="GUE-547" isAbstract="true" name="ExecutionUnitProperty" userID="GUE" flexoID="547">
+        <Inspector id="GUE-548" inspectorTitle="ExecutionUnitProperty" userID="GUE" flexoID="548" />
+        <FlexoPropertyRole id="GUE-554" container="supportVirtualModel" cloningStrategy="Reference" cardinality="ZeroOne" name="property" userID="GUE" flexoID="554" />
+        <ExpressionProperty id="SYL-555" expression="property.name" name="propertyName" userID="SYL" flexoID="555" />
+      </EmbeddedFlexoConcept>
       <FlexoConceptRole id="SYL-81" container="supportVirtualModel" cloningStrategy="Reference" cardinality="One" name="supportConcept" userID="SYL" flexoID="81" />
       <ExpressionProperty id="SYL-108" expression="supportConcept.name" name="name" userID="SYL" flexoID="108" />
       <GetSetProperty id="SYL-207" name="variables" userID="SYL" flexoID="207">
         <SetControlGraph_EmptyControlGraph id="SYL-214" ownerContext="setControlGraph" userID="SYL" flexoID="214" />
         <GetControlGraph_ReturnStatement id="SYL-210" ownerContext="getControlGraph" userID="SYL" flexoID="210">
           <AssignableAction_SelectFlexoConceptInstance id="SYL-209" container="this" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/TSM.fml#Variable" receiver="container.container" userID="SYL" flexoID="209" />
+        </GetControlGraph_ReturnStatement>
+      </GetSetProperty>
+      <GetSetProperty id="SYL-558" name="properties" userID="SYL" flexoID="558">
+        <SetControlGraph_EmptyControlGraph id="SYL-559" ownerContext="setControlGraph" userID="SYL" flexoID="559" />
+        <GetControlGraph_ReturnStatement id="SYL-561" ownerContext="getControlGraph" userID="SYL" flexoID="561">
+          <AssignableAction_SelectFlexoConceptInstance id="SYL-560" container="this" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/TSM.fml#ExecutionUnitProperty" receiver="container.container" userID="SYL" flexoID="560" />
+        </GetControlGraph_ReturnStatement>
+      </GetSetProperty>
+      <GetSetProperty id="SYL-562" name="references" userID="SYL" flexoID="562">
+        <SetControlGraph_EmptyControlGraph id="SYL-563" ownerContext="setControlGraph" userID="SYL" flexoID="563" />
+        <GetControlGraph_ReturnStatement id="SYL-565" ownerContext="getControlGraph" userID="SYL" flexoID="565">
+          <AssignableAction_SelectFlexoConceptInstance id="SYL-564" container="this" flexoConceptTypeURI="http://ensta-bretagne.fr/cyber/cta/TSM.fml#ExecutionUnitReference" receiver="container.container" userID="SYL" flexoID="564" />
         </GetControlGraph_ReturnStatement>
       </GetSetProperty>
       <ActionScheme id="SYL-305" name="createNewVariable" width="800" label="createNewVariable" height="600" userID="SYL" flexoID="305">
@@ -140,6 +156,7 @@
     </DeletionScheme>
   </FlexoConcept>
   <FlexoConcept idref="GUE-480" />
+  <FlexoConcept idref="GUE-547" />
   <UseModelSlotDeclaration id="0" modelSlotClass="org.openflexo.foundation.fml.ta.FMLModelSlot" userID="SYL" flexoID="-1" />
   <Inspector id="SYL-1" inspectorTitle="Tsm" userID="SYL" flexoID="1" />
   <FMLModelSlot id="SYL-33" isRequired="true" cloningStrategy="Reference" cardinality="ZeroOne" name="supportVirtualModel" userID="SYL" flexoID="33" />

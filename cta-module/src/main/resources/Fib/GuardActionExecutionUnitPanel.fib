@@ -1,88 +1,136 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Panel id="0" align="left" borderTop="0" flowAlignment="LEADING" borderLeft="0" imageFile="../../../../bin/main/Icons/CTABackground.jpg" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="empty" imageWidth="626" sizeAdjustment="FitToAvailableSize" imageHeight="417" layout="twocols" borderRight="0" vGap="5" hGap="5" controllerClassName="org.openflexo.ctamodule.controller.CTAFIBController" name="Panel">
+<Panel id="0" align="left" borderTop="0" flowAlignment="LEADING" borderLeft="0" imageFile="../Icons/CTABackground.jpg" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="empty" imageWidth="626" sizeAdjustment="FitToAvailableSize" imageHeight="417" layout="twocols" borderRight="0" vGap="5" hGap="5" controllerClassName="org.openflexo.ctamodule.controller.CTAFIBController" name="Panel">
   <Panel id="1" align="left" borderTop="0" borderTitle="Panel" flowAlignment="CENTER" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="empty" sizeAdjustment="OriginalSize" layout="flow" borderRight="0" vGap="5" hGap="5" constraints="twocols(anchor=south;expandHorizontally=true;expandVertically=false;fill=both;gridHeight=1;gridWidth=0;gridX=-1;gridY=-1;insetsBottom=0;insetsLeft=10;insetsRight=10;insetsTop=10;location=center;padX=0;padY=0;weightX=1.0;weightY=0.0)" name="FIBPanel2">
     <Image id="2" imageWidth="80" sizeAdjustment="OriginalSize" align="left" imageHeight="46" data="controller.projectIcon.image" constraints="flow()" name="Image2" />
     <Label id="3" label="" align="center" data="data.name" constraints="flow(anchor=center;fill=horizontal;gridHeight=1;gridWidth=0;gridX=-1;gridY=-1;insetsBottom=0;insetsLeft=10;insetsRight=10;insetsTop=50;location=center;padX=0;padY=0;weightX=1.0;weightY=0.0)" font="ArialMT,0,30" name="Label" />
   </Panel>
-  <Label id="4" label="variables" align="left" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=5;location=left)" name="Label4" />
+  <Label id="4" label="variables" align="left" localize="true" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=5;location=left)" name="Label4" />
   <Panel id="5" align="left" borderTop="0" flowAlignment="LEADING" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="empty" sizeAdjustment="OriginalSize" layout="twocols" borderRight="0" vGap="5" hGap="5" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=10;insetsTop=5;location=right)" name="Panel3">
-    <Table id="6" backgroundSelectionColor="7,73,217" visibleRowCount="3" backgroundNonSelectionColor="255,255,255" iteratorClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml#Variable&gt;" textSelectionColor="255,255,255" backgroundSecondarySelectionColor="212,212,212" lookAndFeel="FlatDesign" textNonSelectionColor="0,0,0" selectionMode="MultipleIntervalSelection" rowHeight="18" manageDynamicModel="true" data="data.variables" constraints="twocols(expandHorizontally=false;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="VariableTable">
+    <Table id="6" backgroundSelectionColor="7,73,217" visibleRowCount="3" backgroundNonSelectionColor="255,255,255" iteratorClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml#ExecutionUnitProperty&gt;" backgroundSecondarySelectionColor="212,212,212" textSelectionColor="255,255,255" lookAndFeel="FlatDesign" textNonSelectionColor="0,0,0" selectionMode="MultipleIntervalSelection" rowHeight="18" localize="true" manageDynamicModel="true" data="data.properties" constraints="twocols(expandHorizontally=false;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="VariableTable">
       <IconColumn id="7" data="controller.iconForObject(iterator)" resizable="false" title="icon" displayTitle="false" columnWidth="20" showIcon="false" name="icon" />
-      <LabelColumn id="8" data="iterator.name" resizable="true" title="variable" displayTitle="true" columnWidth="100" showIcon="false" name="variable" />
+      <LabelColumn id="8" data="iterator.propertyName" resizable="true" title="variable" displayTitle="true" columnWidth="100" showIcon="false" name="variable" />
       <LabelColumn id="9" data="iterator.property.typeDescription" resizable="true" title="type" displayTitle="true" columnWidth="200" showIcon="false" name="type" />
       <AddAction id="10" method="controller.createNewVariable(data)" name="add_action" />
     </Table>
     <Panel id="11" align="left" borderTop="0" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="empty" sizeAdjustment="OriginalSize" layout="twocols" borderRight="0" constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)" name="Panel4">
-      <Label id="12" label="variable" align="left" enable="(VariableTable.selected != null)" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="Label5" />
-      <TextField id="13" columns="7" enable="(VariableTable.selected != null)" data="VariableTable.selected.name" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)" name="TextField" />
-      <Label id="14" label="type" align="left" enable="(VariableTable.selected != null)" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="Label6" />
-      <DropDown id="15" iteratorClassName="org.openflexo.connie.type.PrimitiveType" showText="true" showIcon="false" enable="(VariableTable.selected != null)" data="VariableTable.selected.property.primitiveType" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)" name="dropdown" />
-      <Label id="16" label="cardinality" align="left" enable="(VariableTable.selected != null)" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="Label8" />
-      <DropDown id="17" iteratorClassName="org.openflexo.foundation.fml.PropertyCardinality" showText="true" showIcon="false" enable="(VariableTable.selected != null)" data="VariableTable.selected.property.cardinality" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)" name="dropdown2" />
-      <Label id="18" label="description" align="left" enable="(VariableTable.selected != null)" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="Label7" />
-      <TextArea id="19" rows="5" columns="8" validateOnReturn="true" text="TextArea" enable="(VariableTable.selected != null)" data="VariableTable.selected.property.description" useScrollBar="true" verticalScrollbarPolicy="VERTICAL_SCROLLBAR_AS_NEEDED" constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)" horizontalScrollbarPolicy="HORIZONTAL_SCROLLBAR_AS_NEEDED" name="TextArea2" />
+      <Label id="12" label="variable" align="left" localize="true" enable="(VariableTable.selected != null)" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="Label5" />
+      <TextField id="13" columns="7" enable="(VariableTable.selected != null)" data="VariableTable.selected.propertyName" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)" name="TextField" />
+      <Label id="14" label="type" align="left" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" visible="(VariableTable.selected.concept.name = &quot;ExecutionUnitReference&quot;)" name="conceptType" />
+      <TextField id="15" columns="7" readOnly="true" data="VariableTable.selected.property.typeDescription" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)" visible="(VariableTable.selected.concept.name = &quot;ExecutionUnitReference&quot;)" name="TextField2" />
+      <Label id="16" label="type" align="left" enable="(VariableTable.selected != null)" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" visible="(VariableTable.selected.concept.name = &quot;Variable&quot;)" name="Label6" />
+      <DropDown id="17" iteratorClassName="org.openflexo.connie.type.PrimitiveType" showText="true" showIcon="false" enable="(VariableTable.selected != null)" data="VariableTable.selected.property.primitiveType" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)" visible="(VariableTable.selected.concept.name = &quot;Variable&quot;)" name="dropdown" />
+      <Label id="18" label="cardinality" align="left" localize="true" enable="(VariableTable.selected != null)" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="Label8" />
+      <DropDown id="19" iteratorClassName="org.openflexo.foundation.fml.PropertyCardinality" showText="true" showIcon="false" enable="(VariableTable.selected != null)" data="VariableTable.selected.property.cardinality" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)" name="dropdown2" />
+      <Label id="20" label="description" align="left" localize="true" enable="(VariableTable.selected != null)" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="Label7" />
+      <TextArea id="21" rows="5" columns="8" validateOnReturn="true" text="TextArea" enable="(VariableTable.selected != null)" data="VariableTable.selected.property.description" useScrollBar="true" verticalScrollbarPolicy="VERTICAL_SCROLLBAR_AS_NEEDED" constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)" horizontalScrollbarPolicy="HORIZONTAL_SCROLLBAR_AS_NEEDED" name="TextArea2" />
     </Panel>
   </Panel>
-  <Label id="20" label="guard/actions" align="left" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=10;location=left)" name="Label4" />
-  <Panel id="21" align="left" borderTop="0" flowAlignment="LEADING" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="empty" sizeAdjustment="OriginalSize" layout="twocols" borderRight="0" vGap="5" hGap="5" constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=10;insetsTop=10;location=right)" name="Panel3">
-    <Panel id="22" align="left" borderTop="0" borderTitle="Panel" flowAlignment="TRAILING" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="empty" sizeAdjustment="OriginalSize" layout="border" borderRight="0" vGap="5" hGap="5" constraints="twocols(expandHorizontally=false;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="Panel2">
-      <Table id="23" backgroundSelectionColor="7,73,217" visibleRowCount="3" backgroundNonSelectionColor="255,255,255" iteratorClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml#GuardAction&gt;" textSelectionColor="255,255,255" backgroundSecondarySelectionColor="212,212,212" autoSelectFirstRow="true" lookAndFeel="FlatDesign" textNonSelectionColor="0,0,0" selectionMode="MultipleIntervalSelection" rowHeight="18" manageDynamicModel="true" data="data.guardActions" constraints="border(expandHorizontally=false;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=north)" name="GuardActionTable">
-        <IconColumn id="24" data="controller.iconForObject(iterator)" resizable="false" title="icon" displayTitle="false" columnWidth="20" showIcon="false" name="icon" />
-        <LabelColumn id="25" data="(iterator.name + &quot;()&quot;)" resizable="true" title="action" displayTitle="true" columnWidth="100" showIcon="false" name="action" />
-        <LabelColumn id="26" data="iterator.actionScheme.conditional.toString" resizable="true" title="guard" displayTitle="true" columnWidth="200" showIcon="false" name="guard" />
-        <AddAction id="27" method="controller.createNewGuardAction(data)" name="add_action" />
+  <Label id="22" label="guard/actions" align="left" localize="true" constraints="twocols(expandHorizontally=true;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=10;location=left)" name="Label4" />
+  <Panel id="23" align="left" borderTop="0" flowAlignment="LEADING" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="empty" sizeAdjustment="OriginalSize" layout="twocols" borderRight="0" vGap="5" hGap="5" constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=10;insetsTop=10;location=right)" name="Panel3">
+    <Panel id="24" align="left" borderTop="0" borderTitle="Panel" flowAlignment="TRAILING" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="empty" sizeAdjustment="OriginalSize" layout="border" borderRight="0" vGap="5" hGap="5" constraints="twocols(expandHorizontally=false;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=left)" name="Panel2">
+      <Table id="25" backgroundSelectionColor="7,73,217" visibleRowCount="3" backgroundNonSelectionColor="255,255,255" iteratorClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml#GuardAction&gt;" backgroundSecondarySelectionColor="212,212,212" textSelectionColor="255,255,255" autoSelectFirstRow="true" lookAndFeel="FlatDesign" textNonSelectionColor="0,0,0" selectionMode="MultipleIntervalSelection" rowHeight="18" localize="true" manageDynamicModel="true" data="data.guardActions" constraints="border(expandHorizontally=false;expandVertically=false;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=north)" name="GuardActionTable">
+        <IconColumn id="26" data="controller.iconForObject(iterator)" resizable="false" title="icon" displayTitle="false" columnWidth="20" showIcon="false" name="icon" />
+        <LabelColumn id="27" data="(iterator.name + &quot;()&quot;)" resizable="true" title="action" displayTitle="true" columnWidth="100" showIcon="false" name="action" />
+        <LabelColumn id="28" data="iterator.actionScheme.conditional.toString" resizable="true" title="guard" displayTitle="true" columnWidth="200" showIcon="false" name="guard" />
+        <AddAction id="29" method="controller.createNewGuardAction(data)" name="add_action" />
       </Table>
-      <Browser id="28" backgroundSelectionColor="7,73,217" visibleRowCount="3" backgroundNonSelectionColor="255,255,255" iteratorClassName="org.openflexo.foundation.fml.FMLObject" textSelectionColor="255,255,255" backgroundSecondarySelectionColor="178,215,255" showRootsHandle="true" showFooter="true" textNonSelectionColor="0,0,0" root="GuardActionTable.selected.actionScheme" selectionMode="DiscontiguousTreeSelection" rowHeight="18" manageDynamicModel="true" constraints="border(location=center)" name="BehaviourBrowser">
-        <BrowserElement id="29" dataClassName="org.openflexo.foundation.fml.FlexoBehaviour" icon="controller.iconForObject(flexoBehaviour)" label="flexoBehaviour.signature" editableLabel="flexoBehaviour.name" isEditable="false" name="flexoBehaviour">
-          <Children id="30" data="flexoBehaviour.controlGraph.flattenedSequence" name="children" />
-          <BrowserAddAction id="31" method="controller.createEditionAction(GuardActionTable.selected.actionScheme.controlGraph)" name="add_action" />
-          <BrowserRemoveAction id="32" method="controller.deleteFlexoConceptObject(selected)" name="remove_flexo_concept" />
+      <Browser id="30" backgroundSelectionColor="7,73,217" visibleRowCount="3" backgroundNonSelectionColor="255,255,255" iteratorClassName="org.openflexo.foundation.fml.FMLObject" backgroundSecondarySelectionColor="178,215,255" textSelectionColor="255,255,255" showRootsHandle="true" showFooter="true" textNonSelectionColor="0,0,0" root="GuardActionTable.selected.actionScheme" selectionMode="DiscontiguousTreeSelection" rowHeight="18" manageDynamicModel="true" constraints="border(location=center)" name="BehaviourBrowser">
+        <BrowserElement id="31" dataClassName="org.openflexo.foundation.fml.FlexoBehaviour" icon="controller.iconForObject(flexoBehaviour)" label="flexoBehaviour.signature" editableLabel="flexoBehaviour.name" isEditable="false" name="flexoBehaviour">
+          <Children id="32" data="flexoBehaviour.controlGraph.flattenedSequence" name="children" />
+          <BrowserAddAction id="33" method="controller.createEditionAction(GuardActionTable.selected.actionScheme.controlGraph)" name="add_action" />
+          <BrowserRemoveAction id="34" method="controller.deleteFlexoConceptObject(selected)" name="remove_flexo_concept" />
         </BrowserElement>
-        <BrowserElement id="33" dataClassName="org.openflexo.foundation.fml.controlgraph.IterationAction" icon="controller.iconForObject(iterationAction)" label="iterationAction.stringRepresentation" isEditable="false" name="iterationAction">
-          <DragOperation id="34" isAvailable="controller.canMoveControlGraph(dragged,target)" targetElementName="editionAction" action="controller.moveControlGraph(dragged,target)" name="drag_operation" />
-          <Children id="35" data="iterationAction.controlGraph.flattenedSequence" name="children" />
-          <BrowserRemoveAction id="36" method="controller.deleteFlexoConceptObject(selected)" name="delete_action" />
-          <BrowserAddAction id="37" method="controller.createEditionAction(selected)" name="add_action" />
-          <BrowserAddAction id="38" method="controller.createEditionActionInIteration(selected)" name="add_action_inside_iteration" />
+        <BrowserElement id="35" dataClassName="org.openflexo.foundation.fml.controlgraph.IterationAction" icon="controller.iconForObject(iterationAction)" label="iterationAction.stringRepresentation" isEditable="false" name="iterationAction">
+          <DragOperation id="36" isAvailable="controller.canMoveControlGraph(dragged,target)" targetElementName="editionAction" action="controller.moveControlGraph(dragged,target)" name="drag_operation" />
+          <Children id="37" data="iterationAction.controlGraph.flattenedSequence" name="children" />
+          <BrowserRemoveAction id="38" method="controller.deleteFlexoConceptObject(selected)" name="delete_action" />
+          <BrowserAddAction id="39" method="controller.createEditionAction(selected)" name="add_action" />
+          <BrowserAddAction id="40" method="controller.createEditionActionInIteration(selected)" name="add_action_inside_iteration" />
         </BrowserElement>
-        <BrowserElement id="39" dataClassName="org.openflexo.foundation.fml.controlgraph.WhileAction" icon="controller.iconForObject(whileAction)" label="whileAction.stringRepresentation" isEditable="false" name="whileAction">
-          <DragOperation id="40" isAvailable="controller.canMoveControlGraph(dragged,target)" targetElementName="editionAction" action="controller.moveControlGraph(dragged,target)" name="drag_operation" />
-          <Children id="41" data="whileAction.controlGraph.flattenedSequence" name="children" />
-          <BrowserRemoveAction id="42" method="controller.deleteFlexoConceptObject(selected)" name="delete_action" />
-          <BrowserAddAction id="43" method="controller.createEditionAction(selected)" name="add_action" />
-          <BrowserAddAction id="44" method="controller.createEditionActionInWhileAction(selected)" name="add_action_inside_iteration" />
+        <BrowserElement id="41" dataClassName="org.openflexo.foundation.fml.controlgraph.WhileAction" icon="controller.iconForObject(whileAction)" label="whileAction.stringRepresentation" isEditable="false" name="whileAction">
+          <DragOperation id="42" isAvailable="controller.canMoveControlGraph(dragged,target)" targetElementName="editionAction" action="controller.moveControlGraph(dragged,target)" name="drag_operation" />
+          <Children id="43" data="whileAction.controlGraph.flattenedSequence" name="children" />
+          <BrowserRemoveAction id="44" method="controller.deleteFlexoConceptObject(selected)" name="delete_action" />
+          <BrowserAddAction id="45" method="controller.createEditionAction(selected)" name="add_action" />
+          <BrowserAddAction id="46" method="controller.createEditionActionInWhileAction(selected)" name="add_action_inside_iteration" />
         </BrowserElement>
-        <BrowserElement id="45" dataClassName="org.openflexo.foundation.fml.controlgraph.IncrementalIterationAction" icon="controller.iconForObject(incrementalIterationAction)" label="incrementalIterationAction.stringRepresentation" isEditable="false" name="incrementalIterationAction">
-          <DragOperation id="46" isAvailable="controller.canMoveControlGraph(dragged,target)" targetElementName="editionAction" action="controller.moveControlGraph(dragged,target)" name="drag_operation" />
-          <Children id="47" data="incrementalIterationAction.controlGraph.flattenedSequence" name="children" />
-          <BrowserRemoveAction id="48" method="controller.deleteFlexoConceptObject(selected)" name="delete_action" />
-          <BrowserAddAction id="49" method="controller.createEditionAction(selected)" name="add_action" />
-          <BrowserAddAction id="50" method="controller.createEditionActionInIncrementalIterationAction(selected)" name="add_action_inside_iteration" />
+        <BrowserElement id="47" dataClassName="org.openflexo.foundation.fml.controlgraph.IncrementalIterationAction" icon="controller.iconForObject(incrementalIterationAction)" label="incrementalIterationAction.stringRepresentation" isEditable="false" name="incrementalIterationAction">
+          <DragOperation id="48" isAvailable="controller.canMoveControlGraph(dragged,target)" targetElementName="editionAction" action="controller.moveControlGraph(dragged,target)" name="drag_operation" />
+          <Children id="49" data="incrementalIterationAction.controlGraph.flattenedSequence" name="children" />
+          <BrowserRemoveAction id="50" method="controller.deleteFlexoConceptObject(selected)" name="delete_action" />
+          <BrowserAddAction id="51" method="controller.createEditionAction(selected)" name="add_action" />
+          <BrowserAddAction id="52" method="controller.createEditionActionInIncrementalIterationAction(selected)" name="add_action_inside_iteration" />
         </BrowserElement>
-        <BrowserElement id="51" dataClassName="org.openflexo.foundation.fml.controlgraph.ConditionalAction" icon="controller.iconForObject(conditionalAction)" label="conditionalAction.stringRepresentation" isEditable="false" name="conditionalAction">
-          <DragOperation id="52" isAvailable="controller.canMoveControlGraph(dragged,target)" targetElementName="editionAction" action="controller.moveControlGraph(dragged,target)" name="drag_operation" />
-          <Children id="53" data="conditionalAction.thenControlGraph.flattenedSequence" name="thenChildren" />
-          <Children id="54" data="conditionalAction.elseControlGraph.flattenedSequence" name="elseChildren" />
-          <BrowserRemoveAction id="55" method="controller.deleteFlexoConceptObject(selected)" name="delete_action" />
-          <BrowserAddAction id="56" method="controller.createEditionAction(selected)" name="add_action" />
-          <BrowserAddAction id="57" method="controller.createEditionActionInThenControlGraph(selected)" name="add_action_in_then_control_graph" />
-          <BrowserAddAction id="58" method="controller.createEditionActionInElseControlGraph(selected)" name="add_action_in_else_control_graph" />
+        <BrowserElement id="53" dataClassName="org.openflexo.foundation.fml.controlgraph.ConditionalAction" icon="controller.iconForObject(conditionalAction)" label="conditionalAction.stringRepresentation" isEditable="false" name="conditionalAction">
+          <DragOperation id="54" isAvailable="controller.canMoveControlGraph(dragged,target)" targetElementName="editionAction" action="controller.moveControlGraph(dragged,target)" name="drag_operation" />
+          <Children id="55" data="conditionalAction.thenControlGraph.flattenedSequence" name="thenChildren" />
+          <Children id="56" data="conditionalAction.elseControlGraph.flattenedSequence" name="elseChildren" />
+          <BrowserRemoveAction id="57" method="controller.deleteFlexoConceptObject(selected)" name="delete_action" />
+          <BrowserAddAction id="58" method="controller.createEditionAction(selected)" name="add_action" />
+          <BrowserAddAction id="59" method="controller.createEditionActionInThenControlGraph(selected)" name="add_action_in_then_control_graph" />
+          <BrowserAddAction id="60" method="controller.createEditionActionInElseControlGraph(selected)" name="add_action_in_else_control_graph" />
         </BrowserElement>
-        <BrowserElement id="59" dataClassName="org.openflexo.foundation.fml.editionaction.EditionAction" icon="controller.iconForObject(editionAction)" label="editionAction.stringRepresentation" isEditable="false" name="editionAction">
-          <DragOperation id="60" isAvailable="controller.canMoveControlGraph(dragged,target)" targetElementName="editionAction" action="controller.moveControlGraph(dragged,target)" name="drag_operation" />
-          <BrowserAddAction id="61" method="controller.createEditionAction(selected)" name="add_action" />
-          <BrowserRemoveAction id="62" method="controller.deleteFlexoConceptObject(selected)" name="delete_action" />
+        <BrowserElement id="61" dataClassName="org.openflexo.foundation.fml.editionaction.EditionAction" icon="controller.iconForObject(editionAction)" label="editionAction.stringRepresentation" isEditable="false" name="editionAction">
+          <DragOperation id="62" isAvailable="controller.canMoveControlGraph(dragged,target)" targetElementName="editionAction" action="controller.moveControlGraph(dragged,target)" name="drag_operation" />
+          <BrowserAddAction id="63" method="controller.createEditionAction(selected)" name="add_action" />
+          <BrowserRemoveAction id="64" method="controller.deleteFlexoConceptObject(selected)" name="delete_action" />
         </BrowserElement>
       </Browser>
     </Panel>
-    <Panel id="63" align="left" borderTop="0" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="empty" sizeAdjustment="OriginalSize" layout="twocols" borderRight="0" constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)" name="Panel4">
-      <Panel id="64" align="left" borderTop="0" borderTitle="" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="rounded3d" sizeAdjustment="OriginalSize" layout="border" borderRight="0" constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=10;insetsRight=0;insetsTop=5;location=center)" name="Panel5">
-        <FIBReferencedComponent id="65" dynamicComponent="controller.basicInspectorTabForObject(((BehaviourBrowser.selected != null) ? BehaviourBrowser.selected : GuardActionTable.selected.actionScheme))" localize="true" manageDynamicModel="true" data="((BehaviourBrowser.selected != null) ? BehaviourBrowser.selected : GuardActionTable.selected.actionScheme)" constraints="border(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=center)" opaque="false" index="15" name="InspectedWidget">
-          <ReferenceAssignment id="66" variable="controller.flexoController" value="controller.flexoController" mandatory="true" />
+    <Panel id="65" align="left" borderTop="0" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="empty" sizeAdjustment="OriginalSize" layout="twocols" borderRight="0" constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=right)" name="Panel4">
+      <Panel id="66" align="left" borderTop="0" borderTitle="" borderLeft="0" trackViewPortHeight="true" trackViewPortWidth="true" borderBottom="0" border="rounded3d" sizeAdjustment="OriginalSize" layout="border" borderRight="0" constraints="twocols(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=10;insetsRight=0;insetsTop=5;location=center)" name="Panel5">
+        <FIBReferencedComponent id="67" dynamicComponent="controller.basicInspectorTabForObject(((BehaviourBrowser.selected != null) ? BehaviourBrowser.selected : GuardActionTable.selected.actionScheme))" localize="true" manageDynamicModel="true" data="((BehaviourBrowser.selected != null) ? BehaviourBrowser.selected : GuardActionTable.selected.actionScheme)" constraints="border(expandHorizontally=true;expandVertically=true;insetsBottom=0;insetsLeft=0;insetsRight=0;insetsTop=0;location=center)" opaque="false" index="15" name="InspectedWidget">
+          <ReferenceAssignment id="68" variable="controller.flexoController" value="controller.flexoController" mandatory="true" />
         </FIBReferencedComponent>
       </Panel>
     </Panel>
   </Panel>
-  <LocalizedDictionary id="67" />
-  <FIBVariable id="68" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml#GuardActionExecutionUnitDefinition&gt;" name="data" />
+  <LocalizedDictionary id="69">
+    <Localized id="70" lang="English" value="Variables" key="variables" />
+    <Localized id="71" lang="Dutch" value="Variables" key="variables" />
+    <Localized id="72" lang="French" value="Variables" key="variables" />
+    <Localized id="73" lang="English" value="Icon" key="icon" />
+    <Localized id="74" lang="Dutch" value="Icon" key="icon" />
+    <Localized id="75" lang="French" value="icon" key="icon" />
+    <Localized id="76" lang="English" value="Variable" key="variable" />
+    <Localized id="77" lang="Dutch" value="Variable" key="variable" />
+    <Localized id="78" lang="French" value="Variable" key="variable" />
+    <Localized id="79" lang="English" value="Type" key="type" />
+    <Localized id="80" lang="Dutch" value="Type" key="type" />
+    <Localized id="81" lang="French" value="Type" key="type" />
+    <Localized id="82" lang="English" value="Add action" key="add_action" />
+    <Localized id="83" lang="Dutch" value="Add action" key="add_action" />
+    <Localized id="84" lang="French" value="add_action" key="add_action" />
+    <Localized id="85" lang="English" value="Cardinality" key="cardinality" />
+    <Localized id="86" lang="Dutch" value="Cardinality" key="cardinality" />
+    <Localized id="87" lang="French" value="Cardinalité" key="cardinality" />
+    <Localized id="88" lang="English" value="Description" key="description" />
+    <Localized id="89" lang="Dutch" value="Description" key="description" />
+    <Localized id="90" lang="French" value="Description" key="description" />
+    <Localized id="91" lang="English" value="Guard/actions" key="guard/actions" />
+    <Localized id="92" lang="Dutch" value="Guard/actions" key="guard/actions" />
+    <Localized id="93" lang="French" value="Garde/actions" key="guard/actions" />
+    <Localized id="94" lang="English" value="Guard" key="guard" />
+    <Localized id="95" lang="Dutch" value="Guard" key="guard" />
+    <Localized id="96" lang="French" value="Garde" key="guard" />
+    <Localized id="97" lang="English" value="Remove flexo concept" key="remove_flexo_concept" />
+    <Localized id="98" lang="Dutch" value="Remove flexo concept" key="remove_flexo_concept" />
+    <Localized id="99" lang="French" value="remove_flexo_concept" key="remove_flexo_concept" />
+    <Localized id="100" lang="English" value="Delete action" key="delete_action" />
+    <Localized id="101" lang="Dutch" value="Delete action" key="delete_action" />
+    <Localized id="102" lang="French" value="delete_action" key="delete_action" />
+    <Localized id="103" lang="English" value="Add action inside iteration" key="add_action_inside_iteration" />
+    <Localized id="104" lang="Dutch" value="Add action inside iteration" key="add_action_inside_iteration" />
+    <Localized id="105" lang="French" value="add_action_inside_iteration" key="add_action_inside_iteration" />
+    <Localized id="106" lang="English" value="Add action in then control graph" key="add_action_in_then_control_graph" />
+    <Localized id="107" lang="Dutch" value="Add action in then control graph" key="add_action_in_then_control_graph" />
+    <Localized id="108" lang="French" value="add_action_in_then_control_graph" key="add_action_in_then_control_graph" />
+    <Localized id="109" lang="English" value="Add action in else control graph" key="add_action_in_else_control_graph" />
+    <Localized id="110" lang="Dutch" value="Add action in else control graph" key="add_action_in_else_control_graph" />
+    <Localized id="111" lang="French" value="add_action_in_else_control_graph" key="add_action_in_else_control_graph" />
+    <Localized id="112" lang="English" value="Action" key="action" />
+    <Localized id="113" lang="Dutch" value="action" key="action" />
+    <Localized id="114" lang="French" value="Action" key="action" />
+  </LocalizedDictionary>
+  <FIBVariable id="115" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml#GuardActionExecutionUnitDefinition&gt;" name="data" />
 </Panel>

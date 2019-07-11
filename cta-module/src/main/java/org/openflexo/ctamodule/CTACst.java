@@ -56,6 +56,7 @@ public class CTACst {
 	public static final String TSM_EXECUTION_UNIT_DEFINITION_CONCEPT_NAME = "ExecutionUnitDefinition";
 	public static final String TSM_GUARD_ACTION_EXECUTION_UNIT_DEFINITION_CONCEPT_NAME = "GuardActionExecutionUnitDefinition";
 	public static final String TSM_VARIABLE_CONCEPT_NAME = "Variable";
+	public static final String TSM_EXECUTION_UNIT_REFERENCE_CONCEPT_NAME = "ExecutionUnitReference";
 	public static final String TSM_GUARD_ACTION_CONCEPT_NAME = "GuardAction";
 
 	public static final String CTA_VIEW_NAME = "CTAView";

@@ -27,6 +27,14 @@ public class TSM {
     public List<FlexoConceptInstanceType<Variable>> getVariables {    
       return container.container.SelectFlexoConceptInstance(type=Variable);    
     }  
+    @GetSetProperty(value="properties", access=get)    
+    public List<FlexoConceptInstanceType<ExecutionUnitProperty>> getProperties {    
+      return container.container.SelectFlexoConceptInstance(type=ExecutionUnitProperty);    
+    }  
+    @GetSetProperty(value="references", access=get)    
+    public List<FlexoConceptInstanceType<ExecutionUnitReference>> getReferences {    
+      return container.container.SelectFlexoConceptInstance(type=ExecutionUnitReference);    
+    }  
   
     @ActionScheme    
     FlexoConceptInstanceType<Variable> createNewVariable(String name, PrimitiveType primitiveType, String description) {    
@@ -35,10 +43,8 @@ public class TSM {
   
   
     @FlexoConcept    
-    public class Variable {    
+    public class Variable extends ExecutionUnitProperty  {    
       
-          
-      public String name = property.name;    
       public PrimitiveRole property;    
       
       @CreationScheme      
@@ -56,7 +62,7 @@ public class TSM {
     }    
   
     @FlexoConcept    
-    public class ExecutionUnitReference {    
+    public class ExecutionUnitReference extends ExecutionUnitProperty  {    
       
       public FlexoConceptInstanceRole property;    
       
@@ -69,13 +75,19 @@ public class TSM {
       
     }    
   
+    @FlexoConcept    
+    public class ExecutionUnitProperty {    
+      
+      public FlexoProperty property;    
+          
+      public String propertyName = property.name;    
+    }    
+  
   }  
 
   @FlexoConcept  
-  public class Variable {  
+  public class Variable extends ExecutionUnitProperty  {  
   
-      
-    public String name = property.name;  
     public PrimitiveRole property;  
   
     @CreationScheme    
@@ -178,6 +190,14 @@ public class TSM {
       public List<FlexoConceptInstanceType<Variable>> getVariables {      
         return container.container.SelectFlexoConceptInstance(type=Variable);      
       }    
+      @GetSetProperty(value="properties", access=get)      
+      public List<FlexoConceptInstanceType<ExecutionUnitProperty>> getProperties {      
+        return container.container.SelectFlexoConceptInstance(type=ExecutionUnitProperty);      
+      }    
+      @GetSetProperty(value="references", access=get)      
+      public List<FlexoConceptInstanceType<ExecutionUnitReference>> getReferences {      
+        return container.container.SelectFlexoConceptInstance(type=ExecutionUnitReference);      
+      }    
       
       @ActionScheme      
       FlexoConceptInstanceType<Variable> createNewVariable(String name, PrimitiveType primitiveType, String description) {      
@@ -186,10 +206,8 @@ public class TSM {
       
       
       @FlexoConcept      
-      public class Variable {      
+      public class Variable extends ExecutionUnitProperty  {      
           
-              
-        public String name = property.name;      
         public PrimitiveRole property;      
           
         @CreationScheme        
@@ -207,7 +225,7 @@ public class TSM {
       }      
       
       @FlexoConcept      
-      public class ExecutionUnitReference {      
+      public class ExecutionUnitReference extends ExecutionUnitProperty  {      
           
         public FlexoConceptInstanceRole property;      
           
@@ -218,6 +236,14 @@ public class TSM {
           container.firePropertyChange variables        
         }        
           
+      }      
+      
+      @FlexoConcept      
+      public class ExecutionUnitProperty {      
+          
+        public FlexoProperty property;      
+              
+        public String propertyName = property.name;      
       }      
       
     }    
@@ -263,7 +289,7 @@ public class TSM {
   }  
 
   @FlexoConcept  
-  public class ExecutionUnitReference {  
+  public class ExecutionUnitReference extends ExecutionUnitProperty  {  
   
     public FlexoConceptInstanceRole property;  
   
@@ -274,6 +300,14 @@ public class TSM {
       container.firePropertyChange variables    
     }    
   
+  }  
+
+  @FlexoConcept  
+  public class ExecutionUnitProperty {  
+  
+    public FlexoProperty property;  
+      
+    public String propertyName = property.name;  
   }  
 
 }

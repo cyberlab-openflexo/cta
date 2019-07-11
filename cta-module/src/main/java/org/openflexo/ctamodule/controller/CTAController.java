@@ -207,6 +207,9 @@ public class CTAController extends FlexoController {
 						e.printStackTrace();
 					}
 				}
+				else if (type.getName().equals(CTACst.TSM_EXECUTION_UNIT_REFERENCE_CONCEPT_NAME)) {
+					return CTAIconLibrary.EXECUTION_UNIT_ICON;
+				}
 				else if (type.getName().equals(CTACst.TSM_GUARD_ACTION_CONCEPT_NAME)) {
 					try {
 						return iconForObject(((FlexoConceptInstance) object).execute("actionScheme"));

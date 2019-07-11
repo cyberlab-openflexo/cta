@@ -86,4 +86,7 @@ public class CTAIconLibrary extends IconLibrary {
 
 	public static final IconMarker CTA_BIG_MARKER = new IconMarker(CTA_MEDIUM_ICON, 32, 0);
 
+	public static final ImageIcon EXECUTION_UNIT_ICON = new ImageIconResource(
+			ResourceLocator.locateResource("Icons/CTA/ExecutionUnitPerspective_16x16.png"));
+
 }
