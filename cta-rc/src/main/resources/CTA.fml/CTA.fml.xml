@@ -3,7 +3,7 @@
   <FlexoConcept id="SYL-36" bigIconResource="../Icons/SystemNode_64x64.png" smallIconResource="../Icons/SystemNode_16x16.png" name="SystemNode" mediumIconResource="../Icons/SystemNode_32x32.png" userID="SYL" flexoID="36">
     <Inspector id="SYL-37" renderer="nodeName" inspectorTitle="SystemNode" userID="SYL" flexoID="37" />
     <EmbeddedFlexoConcept id="SYL-154" name="MachineryAllocation" userID="SYL" flexoID="154">
-      <Inspector id="SYL-153" renderer="(machinery.name + ((executionUnitDefinition != null) ? ((&quot;[&quot; + executionUnitDefinition.name) + &quot;]&quot;) : &quot;[Non allocated]&quot;))" inspectorTitle="MachineryAllocation" userID="SYL" flexoID="153">
+      <Inspector id="SYL-153" renderer="(machinery.name + ((executionUnitDefinition != null) ? ((executionUnitDefinition.name != machinery.name) ? ((&quot;[&quot; + executionUnitDefinition.name) + &quot;]&quot;) : &quot;&quot;) : &quot;[Non allocated]&quot;))" inspectorTitle="MachineryAllocation" userID="SYL" flexoID="153">
         <InspectorEntry id="SYL-160" container="pimcaModel" widget="CUSTOM_WIDGET" data="machinery" name="machinery" label="machinery" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/pimca/PimCA.fml/PimCAModel.fml#Machinery&gt;" userID="SYL" flexoID="160" />
         <InspectorEntry id="SYL-255" container="tsm" widget="CUSTOM_WIDGET" data="executionUnitDefinition" name="executionUnit" label="executionUnit" type="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/TSM.fml#ExecutionUnit&gt;" userID="SYL" flexoID="255" />
       </Inspector>

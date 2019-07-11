@@ -53,12 +53,21 @@ public class Execution {
           log ("Instantiate " + machineryAllocation.executionUnitDefinition)          
           Executor.create(machineryAllocation)        
         }      
+      }      
+      log "Mise a jour des references"      
+      for (executor : executors) {      
+        executor.updateExecutorReferences()      
       }    
     }    
   
     @DeletionScheme    
     Void delete() {    
       
+    }    
+  
+    @ActionScheme    
+    FlexoConceptInstanceType<Executor> getExecutor(FlexoConceptInstanceType<MachineryAllocation> machineryAllocation) {    
+      return container.SelectUniqueFlexoConceptInstance(type=Executor,where=where=(selected.machineryAllocation = parameters.machineryAllocation));    
     }    
   
   
@@ -77,6 +86,7 @@ public class Execution {
         machineryAllocation = parameters.machineryAllocation;        
         executionUnit = executionModel.AddFlexoConceptInstance();        
         executionUnit.machineryAllocation = parameters.machineryAllocation;        
+        this.updateExecutorReferences()        
         executionUnit.execute()        
         container.firePropertyChange executors      
       }      
@@ -89,6 +99,22 @@ public class Execution {
       @ActionScheme      
       public Void update() {      
         executionUnit.updateFireableTransitions()      
+      }      
+      
+      @ActionScheme      
+      Void updateExecutorReferences() {      
+        for (aMachineryAllocation : systemNode.machineryAllocations) {        
+          for (machineryConnection : aMachineryAllocation.machineryConnections) {          
+            log ("coucou pour " + machineryConnection.reference)            
+            log ("Que je compare avec " + aMachineryAllocation)            
+            if (machineryConnection.reference = machineryAllocation) {            
+              log ((("Justement ce serait bien que je mette a jour " + machineryConnection.referenceName) + " avec ") + this.executionUnit)              
+              FlexoConceptInstanceType<Executor> executor = container.getExecutor(aMachineryAllocation);              
+              log ("Instance to update = " + executor.executionUnit)              
+              executor.executionUnit.setFlexoPropertyValue(machineryConnection.referenceName,this.executionUnit)            
+            }          
+          }        
+        }      
       }      
       
     }    
@@ -110,6 +136,7 @@ public class Execution {
       machineryAllocation = parameters.machineryAllocation;      
       executionUnit = executionModel.AddFlexoConceptInstance();      
       executionUnit.machineryAllocation = parameters.machineryAllocation;      
+      this.updateExecutorReferences()      
       executionUnit.execute()      
       container.firePropertyChange executors    
     }    
@@ -122,6 +149,22 @@ public class Execution {
     @ActionScheme    
     public Void update() {    
       executionUnit.updateFireableTransitions()    
+    }    
+  
+    @ActionScheme    
+    Void updateExecutorReferences() {    
+      for (aMachineryAllocation : systemNode.machineryAllocations) {      
+        for (machineryConnection : aMachineryAllocation.machineryConnections) {        
+          log ("coucou pour " + machineryConnection.reference)          
+          log ("Que je compare avec " + aMachineryAllocation)          
+          if (machineryConnection.reference = machineryAllocation) {          
+            log ((("Justement ce serait bien que je mette a jour " + machineryConnection.referenceName) + " avec ") + this.executionUnit)            
+            FlexoConceptInstanceType<Executor> executor = container.getExecutor(aMachineryAllocation);            
+            log ("Instance to update = " + executor.executionUnit)            
+            executor.executionUnit.setFlexoPropertyValue(machineryConnection.referenceName,this.executionUnit)          
+          }        
+        }      
+      }    
     }    
   
   }  

@@ -9,11 +9,13 @@ public class TSMExecutionModel {
 
   public int globalCounter;
   public CTA cta;
+  public int objectId;
 
   @CreationScheme  
   TSMExecutionModel:initExecutionModel() {  
     log ("Initialize TSMExecutionModel " + this.name)    
-    globalCounter = 0;  
+    globalCounter = 0;    
+    objectId = 0;  
   }  
 
 
@@ -62,11 +64,15 @@ public class TSMExecutionModel {
       }    
           
       public FlexoConceptInstanceType<Machinery> machinery = machineryAllocation.machinery;    
+      public String id;    
       
       @ActionScheme      
       Void initExecutionUnit() {      
         log "Init ExecutionUnit"        
-        counter = 0;      
+        counter = 0;        
+        id = (this.concept.name + objectId);        
+        objectId = (objectId + 1);        
+        log ("Maintenant objectId=" + objectId)      
       }      
       
       @ActionScheme      
@@ -198,11 +204,15 @@ public class TSMExecutionModel {
     }  
       
     public FlexoConceptInstanceType<Machinery> machinery = machineryAllocation.machinery;  
+    public String id;  
   
     @ActionScheme    
     Void initExecutionUnit() {    
       log "Init ExecutionUnit"      
-      counter = 0;    
+      counter = 0;      
+      id = (this.concept.name + objectId);      
+      objectId = (objectId + 1);      
+      log ("Maintenant objectId=" + objectId)    
     }    
   
     @ActionScheme    

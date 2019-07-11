@@ -44,6 +44,7 @@ import java.util.List;
 import java.util.Vector;
 
 import org.openflexo.ApplicationContext;
+import org.openflexo.connie.DataBinding;
 import org.openflexo.connie.exception.InvalidBindingException;
 import org.openflexo.connie.exception.NullReferenceException;
 import org.openflexo.connie.exception.TypeMismatchException;
@@ -54,6 +55,8 @@ import org.openflexo.foundation.FlexoException;
 import org.openflexo.foundation.FlexoObject;
 import org.openflexo.foundation.FlexoObject.FlexoObjectImpl;
 import org.openflexo.foundation.action.FlexoActionFactory;
+import org.openflexo.foundation.fml.FlexoConcept;
+import org.openflexo.foundation.fml.action.CreateInspectorEntry;
 import org.openflexo.foundation.fml.rt.FMLRTVirtualModelInstance;
 import org.openflexo.foundation.fml.rt.FlexoConceptInstance;
 import org.openflexo.localization.LocalizedDelegate;
@@ -130,16 +133,23 @@ public class AllocateExecutionUnit extends CTAAction<AllocateExecutionUnit, Flex
 		try {
 			FlexoConceptInstance executionUnitDefinition = getMachineryAllocation()
 					.execute("this.allocateNewGuardActionExecutionUnit({$executionUnitName})", getExecutionUnitName());
+			FlexoConcept supportConcept = executionUnitDefinition.execute("supportConcept");
 			for (MachineryConnectionEntry entry : getConnectionEntries()) {
 				FlexoConceptInstance machineryConnection = getMachineryAllocation().execute(
 						"this.createMachineryConnection({$referenceName},{$relation},{$reference})", entry.getConnectionName(),
 						entry.getRelation(), entry.getReference());
 				System.out.println("machineryConnection=" + machineryConnection);
+				CreateInspectorEntry createInspectorEntry = CreateInspectorEntry.actionType
+						.makeNewEmbeddedAction(supportConcept.getInspector(), null, this);
+				createInspectorEntry.setEntryName(entry.getConnectionName());
+				createInspectorEntry.setData(new DataBinding<>(entry.getConnectionName()));
+				createInspectorEntry.setContainer(new DataBinding<>("container"));
+				createInspectorEntry.setIndex(supportConcept.getInspector().getEntries().size() - 1);
+				createInspectorEntry.doAction();
 			}
-			// newExecutionUnitDefinition =
-			// systemNode.execute("this.createNewDiagram({$name},{$title},{$description})",
-			// getExecutionUnitName(), getDiagramTitle(),
-			// getDiagramDescription());
+
+			supportConcept.getInspector().setRenderer(new DataBinding<String>("id"));
+
 		} catch (Exception e) {
 			throw new FlexoException(e);
 		}

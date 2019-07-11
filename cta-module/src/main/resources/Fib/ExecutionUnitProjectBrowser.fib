@@ -33,7 +33,7 @@
 			icon="controller.iconForObject(node)"
 			label="node.nodeName" isEditable="false" name="node">
 			<Children data="node.machineryAllocations" name="machineryAllocations" />
-			<Children data="node.systemNodeExecutionDefinition" name="systemNodeExecutionDefinition" />
+			<!--  <Children data="node.systemNodeExecutionDefinition" name="systemNodeExecutionDefinition" /> -->
 		</BrowserElement>
 		<BrowserElement
 				dataClassName="org.openflexo.foundation.fml.FlexoConceptInstanceType&lt;http://ensta-bretagne.fr/cyber/cta/CTA.fml#MachineryAllocation&gt;"
