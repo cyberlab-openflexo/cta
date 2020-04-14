@@ -79,7 +79,7 @@ public class CreateNewPimCADiagramWizard extends FlexoActionWizard<CreateNewPimC
 
 	@Override
 	public Image getDefaultPageImage() {
-		return IconFactory.getImageIcon(CTAIconLibrary.PIMCA_DIAGRAM_BIG_ICON, IconLibrary.NEW_32_32).getImage();
+		return IconFactory.getImageIcon(CTAIconLibrary.PIMCA_DIAGRAM_BIG_ICON, IconLibrary.BIG_NEW_MARKER).getImage();
 	}
 
 	public ConfigureNewPimcaDiagram getConfiguration() {

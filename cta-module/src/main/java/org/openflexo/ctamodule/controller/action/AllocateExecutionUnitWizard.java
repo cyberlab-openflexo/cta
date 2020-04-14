@@ -81,7 +81,7 @@ public class AllocateExecutionUnitWizard extends FlexoActionWizard<AllocateExecu
 
 	@Override
 	public Image getDefaultPageImage() {
-		return IconFactory.getImageIcon(CTAIconLibrary.BIG_EXECUTION_UNIT_ICON, IconLibrary.NEW_32_32).getImage();
+		return IconFactory.getImageIcon(CTAIconLibrary.BIG_EXECUTION_UNIT_ICON, IconLibrary.BIG_NEW_MARKER).getImage();
 	}
 
 	public ConfigureAllocateExecutionUnit getConfiguration() {

@@ -78,7 +78,7 @@ public class GivesCTANatureWizard extends FlexoWizard {
 
 	@Override
 	public Image getDefaultPageImage() {
-		return IconFactory.getImageIcon(CTAIconLibrary.CTA_BIG_ICON, IconLibrary.NEW_32_32).getImage();
+		return IconFactory.getImageIcon(CTAIconLibrary.CTA_BIG_ICON, IconLibrary.BIG_NEW_MARKER).getImage();
 	}
 
 	@Override
