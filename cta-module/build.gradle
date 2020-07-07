@@ -1,6 +1,6 @@
 dependencies {
    
-  runtime group: 'org.openflexo', name: 'pimca-rc', version: '2.0.0-SNAPSHOT'
+  runtime group: 'org.openflexo', name: 'pimca-rc', version: '2.1.0-SNAPSHOT'
   compile project(':cta-rc')
    
   compile flexoFoundation()
